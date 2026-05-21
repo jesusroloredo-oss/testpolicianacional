@@ -14,6 +14,12 @@
             --accent-glow: #3b82f6;
             --text-main: #ffffff;
             --text-muted: #cbd5e1;
+            
+            /* Colores del Test Interactivo */
+            --color-correct: #10b981;
+            --color-wrong: #ef4444;
+            --color-option-bg: rgba(255, 255, 255, 0.08);
+            --color-option-hover: rgba(59, 130, 246, 0.2);
         }
 
         body {
@@ -30,6 +36,7 @@
             padding: 40px 20px;
             margin: 0;
             min-height: 100vh;
+            box-sizing: border-box;
         }
 
         .header {
@@ -92,6 +99,7 @@
             backdrop-filter: blur(4px); /* Efecto cristal traslúcido */
             -webkit-backdrop-filter: blur(4px);
             border: 1px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
         }
 
         .card-image {
@@ -152,68 +160,386 @@
         .img-rd240-2007 { background-image: url('https://www.abogados-en-alicante.es/wp-content/uploads/2021/09/regimen-comunitario.jpg'); }
         .img-infracciones { background-image: url('https://www.tuabogadodefensor.com/wp-content/uploads/2022/01/infracciones-leves-extranje.jpg'); }
 
+        /* ========================================================
+           NUEVOS ESTILOS PARA EL CONTENEDOR DEL TEST INTERACTIVO
+           ======================================================== */
+        .hidden {
+            display: none !important;
+        }
+
+        .test-container {
+            width: 100%;
+            max-width: 700px;
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            margin-top: 20px;
+            box-sizing: border-box;
+        }
+
+        .test-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .back-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-main);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .back-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: var(--text-main);
+        }
+
+        .progress-text {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .question-text {
+            font-size: 1.35rem;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 25px;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 25px;
+        }
+
+        .option-item {
+            background-color: var(--color-option-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 16px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1.05rem;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .option-item:hover {
+            background-color: var(--color-option-hover);
+            border-color: var(--accent-glow);
+            transform: translateX(3px);
+        }
+
+        /* Estados de corrección del test */
+        .option-item.correct {
+            background-color: rgba(16, 185, 129, 0.2) !important;
+            border-color: var(--color-correct) !important;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .option-item.wrong {
+            background-color: rgba(239, 68, 108, 0.2) !important;
+            border-color: var(--color-wrong) !important;
+            color: #ffffff;
+        }
+
+        .option-item.disabled {
+            pointer-events: none;
+        }
+
+        .action-container {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .next-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+            transition: all 0.2s ease;
+        }
+
+        .next-btn:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6);
+        }
+
+        .results-container {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .score-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 4px solid var(--accent-glow);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 25px auto;
+        }
+
+        .score-num {
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        .score-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1>TEST POLICÍA NACIONAL</h1>
+    <!-- CONTENIDO PRINCIPAL DEL PANEL (GRID DE TARJETAS) -->
+    <div id="main-panel">
+        <div class="header">
+            <h1>TEST POLICÍA NACIONAL</h1>
+        </div>
+
+        <div class="section-title">Tema 1: El Derecho</div>
+        <div class="grid">
+            
+            <!-- TARJETA INTERACTIVA (Nacionalidad) -->
+            <div onclick="startTest()" class="card">
+                <div class="card-image img-nacionalidad"></div>
+                <div class="card-title">Nacionalidad</div>
+            </div>
+
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScZevOuGoqxbBu-UO5gUcLxllOHJtUGXHhBkQNisZBe-6zMbQ/viewform" target="_blank" class="card">
+                <div class="card-image img-ordenamiento"></div>
+                <div class="card-title">Ordenamiento Jurídico</div>
+            </a>
+
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScrpxlvrIYydyPTpI63EMrMhHOMgJAFvE2I3bVXZ3JMrPnpLQ/viewform" target="_blank" class="card">
+                <div class="card-image img-derecho"></div>
+                <div class="card-title">El Derecho</div>
+            </a>
+
+        </div>
+
+        <div class="section-title">Tema 8: DGP</div>
+        <div class="grid grid-single">
+            
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScEqwJ0xQ2O8wShTgnUP7P9ie32AXjjQv7_VX1MJzt1sP2jCQ/viewform" target="_blank" class="card">
+                <div class="card-image img-dgp"></div>
+                <div class="card-title">DGP</div>
+            </a>
+
+        </div>
+
+        <div class="section-title">Tema 10: Entrada, libre circulación y residencia en España</div>
+        <div class="grid">
+            
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfbCKHRGJPM2G3Pi_nJzqi_cbCBf9csvXtnwp_fcGYZG1GYow/viewform" target="_blank" class="card">
+                <div class="card-image img-lo4-2000"></div>
+                <div class="card-title">LO 4/2000</div>
+            </a>
+
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSecsyQPsvm4V_T8O85qX80xzDRkcPkJHhQbCAAED98J4_h7TA/viewform" target="_blank" class="card">
+                <div class="card-image img-rd240-2007"></div>
+                <div class="card-title">RD 240/2007</div>
+            </a>
+
+        </div>
+
+        <div class="section-title">Tema 11: De las infracciones en materia de extranjería y su régimen sancionador</div>
+        <div class="grid grid-single">
+            
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfeRveNwyVNb-oKcU8ktkJV3fbd4Y03AI1ePZJQmpu4cl2tTg/viewform" target="_blank" class="card">
+                <div class="card-image img-infracciones"></div>
+                <div class="card-title">Infracciones</div>
+            </a>
+
+        </div>
     </div>
 
-    <div class="section-title">Tema 1: El Derecho</div>
-    <div class="grid">
-        
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScorlXAy0K7CPXoVVVkJZqB4atgqtjZAPwS8leXbwu5NA_p7A/viewform" target="_blank" class="card">
-            <div class="card-image img-nacionalidad"></div>
-            <div class="card-title">Nacionalidad</div>
-        </a>
+    <!-- CONTENEDOR DINÁMICO DEL TEST INTERACTIVO -->
+    <div id="test-zone" class="test-container hidden">
+        <div class="test-header">
+            <button class="back-btn" onclick="exitTest()">← Volver al Panel</button>
+            <div id="progress" class="progress-text">Pregunta 1 de 3</div>
+        </div>
 
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScZevOuGoqxbBu-UO5gUcLxllOHJtUGXHhBkQNisZBe-6zMbQ/viewform" target="_blank" class="card">
-            <div class="card-image img-ordenamiento"></div>
-            <div class="card-title">Ordenamiento Jurídico</div>
-        </a>
+        <div id="quiz-box">
+            <div id="question" class="question-text">Aquí va la pregunta</div>
+            <div id="options" class="options-list">
+                <!-- Las opciones se generarán dinámicamente con JS -->
+            </div>
+            <div class="action-container">
+                <button id="next-btn" class="next-btn hidden" onclick="nextQuestion()">Siguiente →</button>
+            </div>
+        </div>
 
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScrpxlvrIYydyPTpI63EMrMhHOMgJAFvE2I3bVXZ3JMrPnpLQ/viewform" target="_blank" class="card">
-            <div class="card-image img-derecho"></div>
-            <div class="card-title">El Derecho</div>
-        </a>
-
+        <!-- Muestra de Resultados Finales -->
+        <div id="results-box" class="results-container hidden">
+            <div class="score-circle">
+                <div id="final-score" class="score-num">0/0</div>
+                <div class="score-label">Nota</div>
+            </div>
+            <h2 style="margin-bottom: 10px;">¡Test Finalizado!</h2>
+            <p id="results-summary" style="color: var(--text-muted); margin-bottom: 30px;">Has acertado 0 de 3 preguntas.</p>
+            <button class="next-btn" onclick="resetTest()" style="background-color: transparent; border: 2px solid var(--accent-glow); box-shadow: none;">Repetir Test</button>
+        </div>
     </div>
 
-    <div class="section-title">Tema 8: DGP</div>
-    <div class="grid grid-single">
-        
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScEqwJ0xQ2O8wShTgnUP7P9ie32AXjjQv7_VX1MJzt1sP2jCQ/viewform" target="_blank" class="card">
-            <div class="card-image img-dgp"></div>
-            <div class="card-title">DGP</div>
-        </a>
+    <!-- LÓGICA EN JAVASCRIPT PARA EL FUNCIONAMIENTO DEL TEST -->
+    <script>
+        // BANCO DE PREGUNTAS DEL TEMA (Sustituye u añade las tuyas aquí fácilmente)
+        const dbNacionalidad = [
+            {
+                pregunta: "¿Qué plazo general de residencia legal en España se exige para adquirir la nacionalidad por residencia?",
+                opciones: [
+                    "Cinco años.",
+                    "Diez años.",
+                    "Dos años."
+                ],
+                correcta: 1 // Corresponde a "Diez años." (Índice 1)
+            },
+            {
+                pregunta: "La concesión de la nacionalidad por carta de naturaleza corresponde a:",
+                opciones: [
+                    "El Rey, mediante Real Decreto aprobado por el Consejo de Ministros.",
+                    "El Ministro de Justicia en todo caso.",
+                    "El Gobierno mediante Real Decreto, discrecionalmente cuando concurran circunstancias excepcionales."
+                ],
+                correcta: 2
+            },
+            {
+                pregunta: "¿Cuál de los siguientes modos de adquisición de la nacionalidad española tiene carácter originario?",
+                opciones: [
+                    "La adquisición por residencia.",
+                    "La adquisición por opción.",
+                    "La adquisición por filiación (Ius sanguinis)."
+                ],
+                correcta: 2
+            }
+        ];
 
-    </div>
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let answered = false;
 
-    <div class="section-title">Tema 10: Entrada, libre circulación y residencia en España</div>
-    <div class="grid">
-        
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfbCKHRGJPM2G3Pi_nJzqi_cbCBf9csvXtnwp_fcGYZG1GYow/viewform" target="_blank" class="card">
-            <div class="card-image img-lo4-2000"></div>
-            <div class="card-title">LO 4/2000</div>
-        </a>
+        // Iniciar el test interactivo y ocultar el panel principal
+        function startTest() {
+            document.getElementById('main-panel').classList.add('hidden');
+            document.getElementById('test-zone').classList.remove('hidden');
+            resetTest();
+        }
 
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSecsyQPsvm4V_T8O85qX80xzDRkcPkJHhQbCAAED98J4_h7TA/viewform" target="_blank" class="card">
-            <div class="card-image img-rd240-2007"></div>
-            <div class="card-title">RD 240/2007</div>
-        </a>
+        // Salir del test y volver al menú principal
+        function exitTest() {
+            document.getElementById('test-zone').classList.add('hidden');
+            document.getElementById('main-panel').classList.remove('hidden');
+        }
 
-    </div>
+        // Reiniciar variables para empezar de cero
+        function resetTest() {
+            currentQuestionIndex = 0;
+            score = 0;
+            document.getElementById('quiz-box').classList.remove('hidden');
+            document.getElementById('results-box').classList.add('hidden');
+            loadQuestion();
+        }
 
-    <div class="section-title">Tema 11: De las infracciones en materia de extranjería y su régimen sancionador</div>
-    <div class="grid grid-single">
-        
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfeRveNwyVNb-oKcU8ktkJV3fbd4Y03AI1ePZJQmpu4cl2tTg/viewform" target="_blank" class="card">
-            <div class="card-image img-infracciones"></div>
-            <div class="card-title">Infracciones</div>
-        </a>
+        // Pintar la pregunta actual en pantalla
+        function loadQuestion() {
+            answered = false;
+            document.getElementById('next-btn').classList.add('hidden');
+            
+            const currentQuestion = dbNacionalidad[currentQuestionIndex];
+            
+            // Actualizar encabezado de progreso
+            document.getElementById('progress').innerText = `Pregunta ${currentQuestionIndex + 1} de ${dbNacionalidad.length}`;
+            
+            // Cargar enunciado
+            document.getElementById('question').innerText = currentQuestion.pregunta;
+            
+            // Limpiar y cargar opciones
+            const optionsContainer = document.getElementById('options');
+            optionsContainer.innerHTML = '';
+            
+            currentQuestion.opciones.forEach((opcion, index) => {
+                const button = document.createElement('div');
+                button.classList.add('option-item');
+                button.innerText = opcion;
+                button.onclick = () => selectOption(index, button);
+                optionsContainer.appendChild(button);
+            });
+        }
 
-    </div>
+        // Gestionar el clic del usuario en una alternativa
+        function selectOption(selectedIndex, selectedButton) {
+            if (answered) return; // Evita cambiar la respuesta una vez seleccionada
+            answered = true;
 
+            const currentQuestion = dbNacionalidad[currentQuestionIndex];
+            const correctIndex = currentQuestion.correcta;
+            const options = document.querySelectorAll('.option-item');
+
+            // Marcar acierto o fallo visualmente
+            if (selectedIndex === correctIndex) {
+                selectedButton.classList.add('correct');
+                score++;
+            } else {
+                selectedButton.classList.add('wrong');
+                // Revelar la respuesta correcta poniéndola en verde
+                options[correctIndex].classList.add('correct');
+            }
+
+            // Deshabilitar todas las opciones tras responder
+            options.forEach(opt => opt.classList.add('disabled'));
+            
+            // Mostrar botón para avanzar
+            document.getElementById('next-btn').classList.remove('hidden');
+        }
+
+        // Avanzar a la siguiente pregunta o mostrar resultados
+        function nextQuestion() {
+            currentQuestionIndex++;
+            
+            if (currentQuestionIndex < dbNacionalidad.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        // Pantalla final con la nota del opositor
+        function showResults() {
+            document.getElementById('quiz-box').classList.add('hidden');
+            document.getElementById('results-box').classList.remove('hidden');
+            
+            document.getElementById('final-score').innerText = `${score}/${dbNacionalidad.length}`;
+            document.getElementById('results-summary').innerText = `Has acertado ${score} de ${dbNacionalidad.length} preguntas en este intento.`;
+        }
+    </script>
 </body>
 </html>
