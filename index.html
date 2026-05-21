@@ -20,6 +20,7 @@
             --color-wrong: #ef4444;
             --color-option-bg: rgba(255, 255, 255, 0.08);
             --color-option-hover: rgba(59, 130, 246, 0.2);
+            --color-option-selected: rgba(59, 130, 246, 0.5);
         }
 
         body {
@@ -239,79 +240,124 @@
         .option-item:hover {
             background-color: var(--color-option-hover);
             border-color: var(--accent-glow);
-            transform: translateX(3px);
         }
 
-        /* Estados de corrección del test */
-        .option-item.correct {
-            background-color: rgba(16, 185, 129, 0.2) !important;
-            border-color: var(--color-correct) !important;
-            color: #ffffff;
-            font-weight: 600;
-        }
-
-        .option-item.wrong {
-            background-color: rgba(239, 68, 108, 0.2) !important;
-            border-color: var(--color-wrong) !important;
-            color: #ffffff;
-        }
-
-        .option-item.disabled {
-            pointer-events: none;
+        /* Estado seleccionado durante el test */
+        .option-item.selected {
+            background-color: var(--color-option-selected) !important;
+            border-color: var(--accent-glow) !important;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
         }
 
         .action-container {
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between; /* Alinea los botones de navegación izquierda y derecha */
+            gap: 15px;
+            margin-top: 20px;
         }
 
-        .next-btn {
-            background-color: var(--accent-color);
+        .nav-btn {
+            background-color: rgba(255, 255, 255, 0.05);
             color: white;
-            border: none;
-            padding: 12px 28px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 24px;
             border-radius: 10px;
             font-size: 1rem;
-            font-weight: 700;
+            font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
             transition: all 0.2s ease;
         }
 
-        .next-btn:hover {
+        .nav-btn:hover:not(:disabled) {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .submit-btn {
+            background-color: var(--accent-color);
+            border: none;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+        }
+
+        .submit-btn:hover {
             background-color: #1d4ed8;
-            transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6);
         }
 
+        /* Estructura de resultados finales en flexbox */
         .results-container {
             text-align: center;
             padding: 20px 0;
         }
 
-        .score-circle {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
+        .score-row {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .score-box {
             background: rgba(255, 255, 255, 0.05);
-            border: 4px solid var(--accent-glow);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 20px;
+            min-width: 140px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            margin: 0 auto 25px auto;
+        }
+
+        .score-box.score-box-rating {
+            border-color: var(--accent-glow);
+            background: rgba(59, 130, 246, 0.1);
         }
 
         .score-num {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 800;
+            line-height: 1.2;
         }
 
         .score-label {
             font-size: 0.8rem;
             color: var(--text-muted);
             text-transform: uppercase;
+            margin-top: 5px;
+            letter-spacing: 1px;
+            font-weight: 700;
         }
+
+        .details-list {
+            text-align: left;
+            max-width: 320px;
+            margin: 0 auto 30px auto;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 1.05rem;
+        }
+
+        .detail-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .text-correct { color: #10b981; font-weight: bold; }
+        .text-wrong { color: #ef4444; font-weight: bold; }
+        .text-blank { color: #94a3b8; font-weight: bold; }
 
     </style>
 </head>
@@ -326,7 +372,7 @@
         <div class="section-title">Tema 1: El Derecho</div>
         <div class="grid">
             
-            <!-- TARJETA INTERACTIVA CON HISTORIAL INTEGRADO -->
+            <!-- TARJETA INTERACTIVA CON SISTEMA DE OPOSICIÓN -->
             <div onclick="startTest()" class="card">
                 <div class="card-image img-nacionalidad"></div>
                 <div class="card-title">Nacionalidad</div>
@@ -393,19 +439,41 @@
                 <!-- Las opciones se generarán dinámicamente -->
             </div>
             <div class="action-container">
-                <button id="next-btn" class="next-btn hidden" onclick="nextQuestion()">Siguiente →</button>
+                <button id="prev-btn" class="nav-btn" onclick="prevQuestion()">← Anterior</button>
+                <button id="next-btn" class="nav-btn" onclick="nextQuestion()">Siguiente →</button>
             </div>
         </div>
 
-        <!-- Muestra de Resultados Finales -->
+        <!-- Muestra de Resultados Finales Estilo Oposición -->
         <div id="results-box" class="results-container hidden">
-            <div class="score-circle">
-                <div id="final-score" class="score-num">0/30</div>
-                <div class="score-label">Nota</div>
+            <div class="score-row">
+                <div class="score-box">
+                    <div id="final-ratio" class="score-num">0/30</div>
+                    <div class="score-label">Netas</div>
+                </div>
+                <div class="score-box score-box-rating">
+                    <div id="final-grade" class="score-num">0.00</div>
+                    <div class="score-label">Nota Oficial</div>
+                </div>
             </div>
-            <h2 style="margin-bottom: 10px;">¡Test Finalizado!</h2>
-            <p id="results-summary" style="color: var(--text-muted); margin-bottom: 30px;">Has acertado 0 de 30 preguntas.</p>
-            <button class="next-btn" onclick="resetTest()" style="background-color: transparent; border: 2px solid var(--accent-glow); box-shadow: none;">Repetir Test</button>
+            
+            <div class="details-list">
+                <div class="detail-item">
+                    <span>Preguntas Acertadas:</span>
+                    <span id="detail-correct" class="text-correct">0</span>
+                </div>
+                <div class="detail-item">
+                    <span>Preguntas Falladas:</span>
+                    <span id="detail-wrong" class="text-wrong">0</span>
+                </div>
+                <div class="detail-item">
+                    <span>Dejadas en Blanco:</span>
+                    <span id="detail-blank" class="text-blank">0</span>
+                </div>
+            </div>
+
+            <h2 id="qualification-text" style="margin-bottom: 25px;">¡Test Finalizado!</h2>
+            <button class="nav-btn submit-btn" onclick="resetTest()">Repetir Simulacro</button>
         </div>
     </div>
 
@@ -685,14 +753,21 @@
           }
         ];
 
+        // Matriz para guardar la respuesta elegida por el usuario en cada pregunta (-1 = en blanco)
+        let userAnswers = []; 
         let currentQuestionIndex = 0;
-        let score = 0;
-        let answered = false;
 
         function startTest() {
             document.getElementById('main-panel').classList.add('hidden');
             document.getElementById('test-zone').classList.remove('hidden');
-            resetTest();
+            
+            // Inicializar array de respuestas en blanco (-1) para todas las preguntas
+            userAnswers = new Array(dbNacionalidad.length).fill(-1);
+            currentQuestionIndex = 0;
+            
+            document.getElementById('quiz-box').classList.remove('hidden');
+            document.getElementById('results-box').classList.add('hidden');
+            loadQuestion();
         }
 
         function exitTest() {
@@ -701,22 +776,17 @@
         }
 
         function resetTest() {
-            currentQuestionIndex = 0;
-            score = 0;
-            document.getElementById('quiz-box').classList.remove('hidden');
-            document.getElementById('results-box').classList.add('hidden');
-            loadQuestion();
+            startTest();
         }
 
         function loadQuestion() {
-            answered = false;
-            document.getElementById('next-btn').classList.add('hidden');
-            
             const currentQuestion = dbNacionalidad[currentQuestionIndex];
             
+            // Actualizar texto de progreso superior
             document.getElementById('progress').innerText = `Pregunta ${currentQuestionIndex + 1} de ${dbNacionalidad.length}`;
             document.getElementById('question').innerText = currentQuestion.pregunta;
             
+            // Cargar las opciones de respuesta
             const optionsContainer = document.getElementById('options');
             optionsContainer.innerHTML = '';
             
@@ -724,46 +794,107 @@
                 const button = document.createElement('div');
                 button.classList.add('option-item');
                 button.innerText = opcion;
-                button.onclick = () => selectOption(index, button);
+                
+                // Si el usuario ya había seleccionado esta opción previamente, marcarla
+                if (userAnswers[currentQuestionIndex] === index) {
+                    button.classList.add('selected');
+                }
+                
+                button.onclick = () => selectOption(index);
                 optionsContainer.appendChild(button);
+            });
+
+            // Control de estado de los botones de navegación inferior
+            document.getElementById('prev-btn').disabled = (currentQuestionIndex === 0);
+            
+            // Si es la última pregunta, el botón "Siguiente" cambia de texto a "Finalizar"
+            const nextBtn = document.getElementById('next-btn');
+            if (currentQuestionIndex === dbNacionalidad.length - 1) {
+                nextBtn.innerText = "Finalizar Cuestionario";
+                nextBtn.classList.add('submit-btn');
+            } else {
+                nextBtn.innerText = "Siguiente →";
+                nextBtn.classList.remove('submit-btn');
+            }
+        }
+
+        function selectOption(selectedIndex) {
+            // Guardar la opción seleccionada (si hace clic en la que ya tenía, se queda igual o cambia a la nueva)
+            userAnswers[currentQuestionIndex] = selectedIndex;
+            
+            // Refrescar visualmente la clase 'selected' en los botones
+            const options = document.querySelectorAll('.option-item');
+            options.forEach((opt, index) => {
+                if (index === selectedIndex) {
+                    opt.classList.add('selected');
+                } else {
+                    opt.classList.remove('selected');
+                }
             });
         }
 
-        function selectOption(selectedIndex, selectedButton) {
-            if (answered) return;
-            answered = true;
-
-            const currentQuestion = dbNacionalidad[currentQuestionIndex];
-            const correctIndex = currentQuestion.correcta;
-            const options = document.querySelectorAll('.option-item');
-
-            if (selectedIndex === correctIndex) {
-                selectedButton.classList.add('correct');
-                score++;
-            } else {
-                selectedButton.classList.add('wrong');
-                options[correctIndex].classList.add('correct');
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion();
             }
-
-            options.forEach(opt => opt.classList.add('disabled'));
-            document.getElementById('next-btn').classList.remove('hidden');
         }
 
         function nextQuestion() {
-            currentQuestionIndex++;
-            if (currentQuestionIndex < dbNacionalidad.length) {
+            if (currentQuestionIndex < dbNacionalidad.length - 1) {
+                currentQuestionIndex++;
                 loadQuestion();
             } else {
-                showResults();
+                // Si pulsa el botón en la última pregunta, calcula el examen
+                finishTest();
             }
         }
 
-        function showResults() {
+        function finishTest() {
+            let aciertos = 0;
+            let fallos = 0;
+            let enBlanco = 0;
+
+            // Evaluar las respuestas del usuario frente a la plantilla correctora
+            userAnswers.forEach((ans, idx) => {
+                if (ans === -1) {
+                    enBlanco++;
+                } else if (ans === dbNacionalidad[idx].correcta) {
+                    aciertos++;
+                } else {
+                    fallos++;
+                }
+            });
+
+            // Aplicar fórmula oficial de la escala básica: aciertos - (fallos / 2)
+            let puntuacionNeta = aciertos - (fallos / 2);
+            
+            // Escalar la nota final sobre un rango de 10 puntos básicos
+            let notaFinal = (puntuacionNeta / dbNacionalidad.length) * 10;
+            if (notaFinal < 0) notaFinal = 0; // Impedir notas negativas bajo cero
+
+            // Pintar resultados numéricos en los cuadros
+            document.getElementById('final-ratio').innerText = `${aciertos}/${dbNacionalidad.length}`;
+            document.getElementById('final-grade').innerText = notaFinal.toFixed(2);
+            
+            // Desglose de estadísticas inferiores
+            document.getElementById('detail-correct').innerText = aciertos;
+            document.getElementById('detail-wrong').innerText = fallos;
+            document.getElementById('detail-blank').innerText = enBlanco;
+
+            // Mensaje motivacional según rendimiento del apto (corte de 5.00)
+            const qualifText = document.getElementById('qualification-text');
+            if (notaFinal >= 5.00) {
+                qualifText.innerText = "¡APTO! Buen trabajo.";
+                qualifText.style.color = "#10b981";
+            } else {
+                qualifText.innerText = "NO APTO. Toca repasar.";
+                qualifText.style.color = "#ef4444";
+            }
+
+            // Alternar pantallas visuales
             document.getElementById('quiz-box').classList.add('hidden');
             document.getElementById('results-box').classList.remove('hidden');
-            
-            document.getElementById('final-score').innerText = `${score}/${dbNacionalidad.length}`;
-            document.getElementById('results-summary').innerText = `Has acertado ${score} de ${dbNacionalidad.length} preguntas en este intento.`;
         }
     </script>
 </body>
