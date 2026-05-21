@@ -6,7 +6,9 @@
     <title>Test Policía Nacional</title>
     <style>
         :root {
-            --bg-color: #0b0f19;
+            /* CAMBIA AQUÍ EL FONDO DE LA WEB (Puedes usar colores como #000000 o degradados) */
+            --bg-gradient: linear-gradient(135deg, #090d16 0%, #111827 100%);
+            
             --card-bg: #1e2640;
             --accent-color: #2563eb;
             --accent-glow: #3b82f6;
@@ -16,7 +18,8 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--bg-color);
+            background: var(--bg-gradient); /* Aplica el nuevo degradado */
+            background-attachment: fixed;  /* Hace que el fondo se quede fijo al hacer scroll */
             color: var(--text-main);
             display: flex;
             flex-direction: column;
@@ -135,7 +138,7 @@
         .img-ordenamiento { background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiG3r2dCN8zPCopYZvntHHm3Tg02_9nOJROru-E_H1Q_7KJEcpJYU56y2XTql-D6k_W0_33BaWF5tEaJdUjZZ-UbNMP-z-9TumBtfuAaovnDnEaAnp6C7oGminGIebI0Q73prnS1MfkuXU/s1600/Ordenamiento-juridico-Derecho-Constitucional.jpg'); }
         .img-derecho { background-image: url('https://egserviciosjuridicos.com/wp-content/uploads/2023/02/Conoce-todos-los-tipos-del-derecho-e1687863405616.jpg'); }
         .img-dgp { background-image: url('https://bazarelolivo.com/20276-large_default/bandera-policia-nacional.jpg'); }
-        .img-extranjero { background-image: url('https://oficinamunicipalinmigracion.es/wp-content/uploads/2025/04/Extranjero.jpg'); }
+        .img-extranjero { background-image: url('Extranjero.jpg'); }
 
     </style>
 </head>
