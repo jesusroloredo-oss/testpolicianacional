@@ -251,7 +251,7 @@
 
         .action-container {
             display: flex;
-            justify-content: space-between; /* Alinea los botones de navegación izquierda y derecha */
+            justify-content: space-between;
             gap: 15px;
             margin-top: 20px;
         }
@@ -289,7 +289,7 @@
             box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6);
         }
 
-        /* Estructura de resultados finales en flexbox */
+        /* Estructura de resultados */
         .results-container {
             text-align: center;
             padding: 20px 0;
@@ -359,6 +359,95 @@
         .text-wrong { color: #ef4444; font-weight: bold; }
         .text-blank { color: #94a3b8; font-weight: bold; }
 
+        /* ========================================================
+           NUEVOS ESTILOS PARA LA SECCIÓN DE REVISIÓN DE ERRORES
+           ======================================================== */
+        .review-section {
+            text-align: left;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+        }
+
+        .review-section-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        .review-item {
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .review-question {
+            font-size: 1.1rem;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 15px;
+        }
+
+        .review-status-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .tag-wrong { background-color: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); }
+        .tag-blank { background-color: rgba(148, 163, 184, 0.2); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.4); }
+
+        .review-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .review-option {
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 0.98rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+
+        /* Indicadores visuales claros en la revisión */
+        .review-option.corrected-good {
+            background-color: rgba(16, 185, 129, 0.15) !important;
+            border-color: #10b981 !important;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .review-option.corrected-bad {
+            background-color: rgba(239, 68, 68, 0.15) !important;
+            border-color: #ef4444 !important;
+            color: #ffffff;
+        }
+
+        .review-label-badge {
+            float: right;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-top: 2px;
+        }
+        .badge-good { background: #10b981; color: white; }
+        .badge-bad { background: #ef4444; color: white; }
+
     </style>
 </head>
 <body>
@@ -372,7 +461,6 @@
         <div class="section-title">Tema 1: El Derecho</div>
         <div class="grid">
             
-            <!-- TARJETA INTERACTIVA CON SISTEMA DE OPOSICIÓN -->
             <div onclick="startTest()" class="card">
                 <div class="card-image img-nacionalidad"></div>
                 <div class="card-title">Nacionalidad</div>
@@ -436,7 +524,7 @@
         <div id="quiz-box">
             <div id="question" class="question-text">Aquí va la pregunta</div>
             <div id="options" class="options-list">
-                <!-- Las opciones se generarán dinámicamente -->
+                <!-- Opciones dinámicas -->
             </div>
             <div class="action-container">
                 <button id="prev-btn" class="nav-btn" onclick="prevQuestion()">← Anterior</button>
@@ -474,15 +562,23 @@
 
             <h2 id="qualification-text" style="margin-bottom: 25px;">¡Test Finalizado!</h2>
             <button class="nav-btn submit-btn" onclick="resetTest()">Repetir Simulacro</button>
+
+            <!-- CONTENEDOR NUEVO: LISTADO DE CORRECCIÓN DE ERRORES -->
+            <div id="review-zone" class="review-section">
+                <div class="review-section-title">Revisión de Errores y Preguntas en Blanco</div>
+                <div id="review-list">
+                    <!-- Se generará con JS solo para fallos y blancos -->
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- LÓGICA EN JAVASCRIPT PARA EL FUNCIONAMIENTO DEL TEST -->
     <script>
-        // BANCO DE PREGUNTAS INTEGRADO DE NACIONALIDAD (30 PREGUNTAS CORREGIDAS)
         const dbNacionalidad = [
           {
             "pregunta": "Conforme al artículo 6 del Código Civil:",
+            "options_noticia": "Uso interno de plantilla oficial",
             "opciones": [
               "Las leyes penales las de policía y las de seguridad pública obligan a todos los que se hallen en territorio español.",
               "La ignorancia de las leyes no excusa de su cumplimiento. El error de derecho producirá únicamente aquellos efectos que las leyes determinen.",
@@ -664,7 +760,7 @@
           {
             "pregunta": "¿Puede un menor de edad optar a la vecindad civil?:",
             "opciones": [
-              "No, salvo que se haya emancipado, haya cumplido los trece años y sea asistido por su representante legal.",
+              "No, salvo que se haya emancipado, haya cumplido los trece años and sea asistido por su representante legal.",
               "No, salvo que se haya emancipado y haya cumplido los doce años.",
               "Sí, si se ha emancipado y ha cumplido 14 años."
             ],
@@ -753,7 +849,6 @@
           }
         ];
 
-        // Matriz para guardar la respuesta elegida por el usuario en cada pregunta (-1 = en blanco)
         let userAnswers = []; 
         let currentQuestionIndex = 0;
 
@@ -761,7 +856,6 @@
             document.getElementById('main-panel').classList.add('hidden');
             document.getElementById('test-zone').classList.remove('hidden');
             
-            // Inicializar array de respuestas en blanco (-1) para todas las preguntas
             userAnswers = new Array(dbNacionalidad.length).fill(-1);
             currentQuestionIndex = 0;
             
@@ -782,11 +876,9 @@
         function loadQuestion() {
             const currentQuestion = dbNacionalidad[currentQuestionIndex];
             
-            // Actualizar texto de progreso superior
             document.getElementById('progress').innerText = `Pregunta ${currentQuestionIndex + 1} de ${dbNacionalidad.length}`;
             document.getElementById('question').innerText = currentQuestion.pregunta;
             
-            // Cargar las opciones de respuesta
             const optionsContainer = document.getElementById('options');
             optionsContainer.innerHTML = '';
             
@@ -795,7 +887,6 @@
                 button.classList.add('option-item');
                 button.innerText = opcion;
                 
-                // Si el usuario ya había seleccionado esta opción previamente, marcarla
                 if (userAnswers[currentQuestionIndex] === index) {
                     button.classList.add('selected');
                 }
@@ -804,10 +895,8 @@
                 optionsContainer.appendChild(button);
             });
 
-            // Control de estado de los botones de navegación inferior
             document.getElementById('prev-btn').disabled = (currentQuestionIndex === 0);
             
-            // Si es la última pregunta, el botón "Siguiente" cambia de texto a "Finalizar"
             const nextBtn = document.getElementById('next-btn');
             if (currentQuestionIndex === dbNacionalidad.length - 1) {
                 nextBtn.innerText = "Finalizar Cuestionario";
@@ -819,10 +908,8 @@
         }
 
         function selectOption(selectedIndex) {
-            // Guardar la opción seleccionada (si hace clic en la que ya tenía, se queda igual o cambia a la nueva)
             userAnswers[currentQuestionIndex] = selectedIndex;
             
-            // Refrescar visualmente la clase 'selected' en los botones
             const options = document.querySelectorAll('.option-item');
             options.forEach((opt, index) => {
                 if (index === selectedIndex) {
@@ -845,7 +932,6 @@
                 currentQuestionIndex++;
                 loadQuestion();
             } else {
-                // Si pulsa el botón en la última pregunta, calcula el examen
                 finishTest();
             }
         }
@@ -855,7 +941,6 @@
             let fallos = 0;
             let enBlanco = 0;
 
-            // Evaluar las respuestas del usuario frente a la plantilla correctora
             userAnswers.forEach((ans, idx) => {
                 if (ans === -1) {
                     enBlanco++;
@@ -866,23 +951,17 @@
                 }
             });
 
-            // Aplicar fórmula oficial de la escala básica: aciertos - (fallos / 2)
             let puntuacionNeta = aciertos - (fallos / 2);
-            
-            // Escalar la nota final sobre un rango de 10 puntos básicos
             let notaFinal = (puntuacionNeta / dbNacionalidad.length) * 10;
-            if (notaFinal < 0) notaFinal = 0; // Impedir notas negativas bajo cero
+            if (notaFinal < 0) notaFinal = 0;
 
-            // Pintar resultados numéricos en los cuadros
             document.getElementById('final-ratio').innerText = `${aciertos}/${dbNacionalidad.length}`;
             document.getElementById('final-grade').innerText = notaFinal.toFixed(2);
             
-            // Desglose de estadísticas inferiores
             document.getElementById('detail-correct').innerText = aciertos;
             document.getElementById('detail-wrong').innerText = fallos;
             document.getElementById('detail-blank').innerText = enBlanco;
 
-            // Mensaje motivacional según rendimiento del apto (corte de 5.00)
             const qualifText = document.getElementById('qualification-text');
             if (notaFinal >= 5.00) {
                 qualifText.innerText = "¡APTO! Buen trabajo.";
@@ -892,9 +971,75 @@
                 qualifText.style.color = "#ef4444";
             }
 
-            // Alternar pantallas visuales
+            // ========================================================
+            // GENERACIÓN DE LA REVISIÓN DE ERRORES Y BLANCOS
+            // ========================================================
+            const reviewListContainer = document.getElementById('review-list');
+            reviewListContainer.innerHTML = ''; // Vaciar revisiones anteriores
+
+            if (fallos === 0 && enBlanco === 0) {
+                reviewListContainer.innerHTML = '<p style="text-align:center; color:var(--text-muted);">¡Examen perfecto! No tienes fallos ni preguntas en blanco que revisar.</p>';
+            } else {
+                dbNacionalidad.forEach((item, idx) => {
+                    let userAns = userAnswers[idx];
+                    
+                    // Solo procesamos si es fallo (distinto de la correcta y no en blanco) o si está en blanco (-1)
+                    if (userAns !== item.correcta) {
+                        const reviewItem = document.createElement('div');
+                        reviewItem.classList.add('review-item');
+
+                        // Crear etiqueta de estado (Fallo o En Blanco)
+                        const tag = document.createElement('span');
+                        tag.classList.add('review-status-tag');
+                        if (userAns === -1) {
+                            tag.innerText = `Pregunta ${idx + 1} - En Blanco`;
+                            tag.classList.add('tag-blank');
+                        } else {
+                            tag.innerText = `Pregunta ${idx + 1} - Fallada`;
+                            tag.classList.add('tag-wrong');
+                        }
+                        reviewItem.appendChild(tag);
+
+                        // Enunciado de la pregunta
+                        const qText = document.createElement('div');
+                        qText.classList.add('review-question');
+                        qText.innerText = item.pregunta;
+                        reviewItem.appendChild(qText);
+
+                        // Contenedor de opciones corregidas
+                        const optionsDiv = document.createElement('review-options');
+                        optionsDiv.classList.add('review-options');
+
+                        item.opciones.forEach((opcion, oIdx) => {
+                            const optBox = document.createElement('div');
+                            optBox.classList.add('review-option');
+                            optBox.innerText = opcion;
+
+                            // Marcamos la correcta oficial siempre en verde
+                            if (oIdx === item.correcta) {
+                                optBox.classList.add('corrected-good');
+                                optBox.innerHTML += ' <span class="review-label-badge badge-good">Correcta</span>';
+                            }
+                            // Si el usuario falló marcando esta opción concreta, la ponemos en rojo
+                            else if (userAns === oIdx) {
+                                optBox.classList.add('corrected-bad');
+                                optBox.innerHTML += ' <span class="review-label-badge badge-bad">Tu Respuesta</span>';
+                            }
+
+                            optionsDiv.appendChild(optBox);
+                        });
+
+                        reviewItem.appendChild(optionsDiv);
+                        reviewListContainer.appendChild(reviewItem);
+                    }
+                });
+            }
+
             document.getElementById('quiz-box').classList.add('hidden');
             document.getElementById('results-box').classList.remove('hidden');
+            
+            // Subir el scroll arriba automáticamente para que el usuario vea la nota al terminar
+            document.getElementById('test-zone').scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 </body>
