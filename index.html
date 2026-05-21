@@ -72,7 +72,7 @@
             margin-bottom: 20px;
         }
 
-        /* Ajuste para que cuando haya una sola tarjeta no se estire demasiado */
+        /* Ajuste para cuando haya una sola tarjeta en una sección */
         .grid-single {
             grid-template-columns: repeat(auto-fit, minmax(280px, 320px));
         }
@@ -89,7 +89,7 @@
             display: flex;
             flex-direction: column;
             height: 220px;
-            backdrop-filter: blur(4px); /* Efecto cristal traslúcido en las tarjetas */
+            backdrop-filter: blur(4px); /* Efecto cristal traslúcido */
             -webkit-backdrop-filter: blur(4px);
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
@@ -146,7 +146,11 @@
         .img-ordenamiento { background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiG3r2dCN8zPCopYZvntHHm3Tg02_9nOJROru-E_H1Q_7KJEcpJYU56y2XTql-D6k_W0_33BaWF5tEaJdUjZZ-UbNMP-z-9TumBtfuAaovnDnEaAnp6C7oGminGIebI0Q73prnS1MfkuXU/s1600/Ordenamiento-juridico-Derecho-Constitucional.jpg'); }
         .img-derecho { background-image: url('https://egserviciosjuridicos.com/wp-content/uploads/2023/02/Conoce-todos-los-tipos-del-derecho-e1687863405616.jpg'); }
         .img-dgp { background-image: url('https://bazarelolivo.com/20276-large_default/bandera-policia-nacional.jpg'); }
-        .img-extranjero { background-image: url('https://www.gestoriarueda.es/uploads/images/Extranjería%20en%20España.jpg'); }
+        
+        /* Nuevas imágenes específicas para Extranjería e Infracciones */
+        .img-lo4-2000 { background-image: url('https://i0.wp.com/efe.com/wp-content/uploads/2026/03/EXTRANJERIA-OFICINA.webp?fit=900%2C600&ssl=1'); }
+        .img-rd240-2007 { background-image: url('https://www.abogados-en-alicante.es/wp-content/uploads/2021/09/regimen-comunitario.jpg'); }
+        .img-infracciones { background-image: url('https://www.tuabogadodefensor.com/wp-content/uploads/2022/01/infracciones-leves-extranje.jpg'); }
 
     </style>
 </head>
@@ -187,11 +191,26 @@
     </div>
 
     <div class="section-title">Tema 10: Entrada, libre circulación y residencia en España</div>
-    <div class="grid grid-single">
+    <div class="grid">
         
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSfbCKHRGJPM2G3Pi_nJzqi_cbCBf9csvXtnwp_fcGYZG1GYow/viewform" target="_blank" class="card">
-            <div class="card-image img-extranjero"></div>
+            <div class="card-image img-lo4-2000"></div>
             <div class="card-title">LO 4/2000</div>
+        </a>
+
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSecsyQPsvm4V_T8O85qX80xzDRkcPkJHhQbCAAED98J4_h7TA/viewform" target="_blank" class="card">
+            <div class="card-image img-rd240-2007"></div>
+            <div class="card-title">RD 240/2007</div>
+        </a>
+
+    </div>
+
+    <div class="section-title">Tema 11: De las infracciones en materia de extranjería y su régimen sancionador</div>
+    <div class="grid grid-single">
+        
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfeRveNwyVNb-oKcU8ktkJV3fbd4Y03AI1ePZJQmpu4cl2tTg/viewform" target="_blank" class="card">
+            <div class="card-image img-infracciones"></div>
+            <div class="card-title">Infracciones</div>
         </a>
 
     </div>
