@@ -161,7 +161,7 @@
         .img-infracciones { background-image: url('https://www.tuabogadodefensor.com/wp-content/uploads/2022/01/infracciones-leves-extranje.jpg'); }
 
         /* ========================================================
-           NUEVOS ESTILOS PARA EL CONTENEDOR DEL TEST INTERACTIVO
+           ESTILOS PARA EL CONTENEDOR DEL TEST INTERACTIVO
            ======================================================== */
         .hidden {
             display: none !important;
@@ -169,7 +169,7 @@
 
         .test-container {
             width: 100%;
-            max-width: 700px;
+            max-width: 750px;
             background-color: var(--card-bg);
             border-radius: 20px;
             padding: 30px;
@@ -212,9 +212,9 @@
         }
 
         .question-text {
-            font-size: 1.35rem;
+            font-size: 1.3rem;
             font-weight: 700;
-            line-height: 1.4;
+            line-height: 1.5;
             margin-bottom: 25px;
         }
 
@@ -233,8 +233,7 @@
             cursor: pointer;
             font-size: 1.05rem;
             transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
+            line-height: 1.4;
         }
 
         .option-item:hover {
@@ -327,7 +326,7 @@
         <div class="section-title">Tema 1: El Derecho</div>
         <div class="grid">
             
-            <!-- TARJETA INTERACTIVA (Nacionalidad) -->
+            <!-- TARJETA INTERACTIVA CON HISTORIAL INTEGRADO -->
             <div onclick="startTest()" class="card">
                 <div class="card-image img-nacionalidad"></div>
                 <div class="card-title">Nacionalidad</div>
@@ -385,13 +384,13 @@
     <div id="test-zone" class="test-container hidden">
         <div class="test-header">
             <button class="back-btn" onclick="exitTest()">← Volver al Panel</button>
-            <div id="progress" class="progress-text">Pregunta 1 de 3</div>
+            <div id="progress" class="progress-text">Pregunta 1 de 30</div>
         </div>
 
         <div id="quiz-box">
             <div id="question" class="question-text">Aquí va la pregunta</div>
             <div id="options" class="options-list">
-                <!-- Las opciones se generarán dinámicamente con JS -->
+                <!-- Las opciones se generarán dinámicamente -->
             </div>
             <div class="action-container">
                 <button id="next-btn" class="next-btn hidden" onclick="nextQuestion()">Siguiente →</button>
@@ -401,66 +400,306 @@
         <!-- Muestra de Resultados Finales -->
         <div id="results-box" class="results-container hidden">
             <div class="score-circle">
-                <div id="final-score" class="score-num">0/0</div>
+                <div id="final-score" class="score-num">0/30</div>
                 <div class="score-label">Nota</div>
             </div>
             <h2 style="margin-bottom: 10px;">¡Test Finalizado!</h2>
-            <p id="results-summary" style="color: var(--text-muted); margin-bottom: 30px;">Has acertado 0 de 3 preguntas.</p>
+            <p id="results-summary" style="color: var(--text-muted); margin-bottom: 30px;">Has acertado 0 de 30 preguntas.</p>
             <button class="next-btn" onclick="resetTest()" style="background-color: transparent; border: 2px solid var(--accent-glow); box-shadow: none;">Repetir Test</button>
         </div>
     </div>
 
     <!-- LÓGICA EN JAVASCRIPT PARA EL FUNCIONAMIENTO DEL TEST -->
     <script>
-        // BANCO DE PREGUNTAS DEL TEMA (Sustituye u añade las tuyas aquí fácilmente)
+        // BANCO DE PREGUNTAS INTEGRADO DE NACIONALIDAD (30 PREGUNTAS CORREGIDAS)
         const dbNacionalidad = [
-            {
-                pregunta: "¿Qué plazo general de residencia legal en España se exige para adquirir la nacionalidad por residencia?",
-                opciones: [
-                    "Cinco años.",
-                    "Diez años.",
-                    "Dos años."
-                ],
-                correcta: 1 // Corresponde a "Diez años." (Índice 1)
-            },
-            {
-                pregunta: "La concesión de la nacionalidad por carta de naturaleza corresponde a:",
-                opciones: [
-                    "El Rey, mediante Real Decreto aprobado por el Consejo de Ministros.",
-                    "El Ministro de Justicia en todo caso.",
-                    "El Gobierno mediante Real Decreto, discrecionalmente cuando concurran circunstancias excepcionales."
-                ],
-                correcta: 2
-            },
-            {
-                pregunta: "¿Cuál de los siguientes modos de adquisición de la nacionalidad española tiene carácter originario?",
-                opciones: [
-                    "La adquisición por residencia.",
-                    "La adquisición por opción.",
-                    "La adquisición por filiación (Ius sanguinis)."
-                ],
-                correcta: 2
-            }
+          {
+            "pregunta": "Conforme al artículo 6 del Código Civil:",
+            "opciones": [
+              "Las leyes penales las de policía y las de seguridad pública obligan a todos los que se hallen en territorio español.",
+              "La ignorancia de las leyes no excusa de su cumplimiento. El error de derecho producirá únicamente aquellos efectos que las leyes determinen.",
+              "La Ley no ampara el abuso del derecho o el ejercicio antisocial del mismo. Todo acto u omisión que por la intención de su autor, por su objetivo o por las circunstancias en que se realice sobrepase manifiestamente los límites normales del ejercicio de un derecho, con daño para terceros, dará lugar a la correspondiente indemnización y a la adopción de las medidas judiciales o administrativas que impidan la persistencia en el abuso."
+            ],
+            "correcta": 1
+          },
+          {
+            "pregunta": "Señale la opción correcta sobre la vecindad civil",
+            "opciones": [
+              "En caso de duda, prevalecerá la vecindad civil que corresponda al lugar de residencia.",
+              "El matrimonio no altera la vecindad civil.",
+              "Se adquiere por residencia continuada durante un año, siempre que el interesado manifieste esa voluntad."
+            ],
+            "correcta": 1
+          },
+          {
+            "pregunta": "Para la adquisición de la nacionalidad española por opción, carta de naturaleza o residencia, es necesario:",
+            "opciones": [
+              "Que el mayor de catorce años y capaz para prestar una declaración por sí, jure o prometa fidelidad al Rey y obediencia a la Constitución y a las leyes.",
+              "Que el mayor de edad y capaz para prestar una declaración por sí, jure o prometa fidelidad al Rey y obediencia a la Constitución y a las leyes.",
+              "Que el mayor de dieciséis años y capaz para prestar una declaración por sí, jure o prometa fidelidad al Rey y obediencia a la Constitución y a las leyes."
+            ],
+            "correcta": 0
+          },
+          {
+            "pregunta": "Según el art. 147 de la Constitución Española, la reforma de los Estatutos de Autonomía se ajustará al procedimiento establecido en los mismos y requerirá:",
+            "opciones": [
+              "En todo caso, la aprobación por las Cortes Generales, mediantes Ley Ordinaria.",
+              "Dependiendo de los establecido en el Estatuto, necesitará o no la aprobación de las Cortes Generales.",
+              "En todo caso, la aprobación por las Cortes Generales, mediantes Ley Orgánica."
+            ],
+            "correcta": 2
+          },
+          {
+            "pregunta": "Procede la declaración de fallecimiento de una persona física:",
+            "opciones": [
+              "Cumplidos tres meses, contados, de fecha a fecha, en caso de siniestro, sin haberse tenido noticias suyas.",
+              "Cumplidos dos años desde la expiración del año natural de un riesgo inminente de muerte por causa de violencia contra la vida, en que una persona se hubiera encontrado sin haberse tenido con posterioridad noticias suyas.",
+              "Transcurridos cinco años desde las últimas noticias habidas del ausente."
+            ],
+            "correcta": 1
+          },
+          {
+            "pregunta": "Cuando nos referimos al derecho como facultad, atribución o prerrogativa frente a los demás, aludimos al derecho:",
+            "opciones": [
+              "Objetivo.",
+              "Positivo.",
+              "Subjetivo."
+            ],
+            "correcta": 2
+          },
+          {
+            "pregunta": "En cuanto a la protección que el Código Civil ejerce sobre el nasciturus, podemos decir que:",
+            "opciones": [
+              "Equipara al concebido con el nacido a todos los efectos, pues evita el desamparo.",
+              "Solo se equipara al concebido con el nacido cuando ello le sea favorable.",
+              "La protección se produce a partir del nacimiento, que es el momento en que el sujeto tiene la capacidad de obrar."
+            ],
+            "correcta": 1
+          },
+          {
+            "pregunta": "Conforme el artículo 18 del Código Civil, es causa de consolidación de la nacionalidad española:",
+            "opciones": [
+              "La posesión y utilización continuada de la nacionalidad española durante diez años, con buena fe y basada en un título inscrito en el Registro Civil, aunque se anule el título que la originó.",
+              "La posesión y utilización de la nacionalidad española durante quince años, con buena fe y basada en un título inscrito en el Registro Civil, aunque se anule el título que la originó.",
+              "La posesión y utilización continuada de la nacionalidad española durante diez años, con buena fe y basada en un título inscrito en el Registro Civil, salvo que se anule el título que la originó."
+            ],
+            "correcta": 0
+          },
+          {
+            "pregunta": "En el caso de un recién nacido en el que los padres tengan distinta vecindad civil, al mismo le corresponderá la vecindad:",
+            "opciones": [
+              "Del lugar de nacimiento.",
+              "De derecho común.",
+              "Que corresponda a aquel de los dos respecto del cual la filiación se determinó antes."
+            ],
+            "correcta": 2
+          },
+          {
+            "pregunta": "Atendiendo al principio de jerarquía normativa, que consagra el artículo 9.3 de la Constitución Española:",
+            "opciones": [
+              "Un reglamento aprobado por el consejo de Ministros, a través de un real decreto, tiene mayor valor jurídico que una disposición oficial dictada por un ministro, a través de una orden ministerial.",
+              "Una disposición oficial dictada por un ministro, a través de una orden ministerial, tiene mayor valor jurídico que un reglamento aprobado por el Consejo de Ministros.",
+              "Un reglamento aprobado por el Consejo de Ministros, a través de un real decreto, tiene igual valor jurídico que una disposición oficial dictada por un ministro, a través de una orden ministerial."
+            ],
+            "correcta": 0
+          },
+          {
+            "pregunta": "Una ciudadana extranjera casada desde hace 18 meses con un funcionario diplomático español acreditado en el país de origen de ella, ¿puede solicitar la nacionalidad española?:",
+            "opciones": [
+              "No, pues aunque esté casada con español, el lugar de residencia no es España.",
+              "No, debe residir de forma continuada en territorio español durante diez años.",
+              "Sí, al llevar más de un año casada, y a todos los efectos se considera residencia legal en España."
+            ],
+            "correcta": 2
+          },
+          {
+            "pregunta": "Conforme al art. 30 del Código Civil en relación a las personas naturales, la personalidad se adquiere:",
+            "opciones": [
+              "Del nacimiento con vida, una vez producido el entero desprendimiento del seno materno.",
+              "Del nacimiento ya sea con o sin vida.",
+              "De la concepción del embrión en el útero materno."
+            ],
+            "correcta": 0
+          },
+          {
+            "pregunta": "Con respecto a la vecindad civil señale la afirmación correcta:",
+            "opciones": [
+              "En todo caso, el hijo desde que cumpla dieciséis años y hasta que transcurra un año después de su emancipación podrá optar bien por la vecindad civil del lugar de su nacimiento, bien por la última vecindad de cualquiera de sus padres.",
+              "Si al nacer el hijo, o al ser adoptado, los padres tuvieren distinta vecindad civil, el hijo tendrá la que corresponda a aquel de los dos respecto del cual la filiación haya sido determinada antes.",
+              "Se adquiere por residencia continuada durante tres años, siempre que el interesado manifieste ser esa su voluntad."
+            ],
+            "correcta": 0
+          },
+          {
+            "pregunta": "Para la concesión de la nacionalidad española por residencia, se requiere para las personas que hayan obtenido la condición de refugiado una permanencia en España de",
+            "opciones": [
+              "Cinco años",
+              "Diez años",
+              "Tres años"
+            ],
+            "correcta": 0
+          },
+          {
+            "pregunta": "En el caso de nacimiento fuera de un centro hospitalario, ¿cuánto tiempo se dispone para declarar el nacimiento en el Registro Civil?:",
+            "opciones": [
+              "72 horas",
+              "10 días",
+              "7 días"
+            ],
+            "correcta": 1
+          },
+          {
+            "pregunta": "El extranjero que adquiera la nacionalidad española deberá optar, al inscribir la adquisición de la nacionalidad, por cualquiera de las vecindades siguientes:",
+            "opciones": [
+              "La del lugar de residencia, el lugar de nacimiento, la última vecindad de sus progenitores o adoptantes, o la de su cónyuge.",
+              "La del lugar de residencia, la vecindad de sus progenitores o adoptantes, la del cónyuge o la de su elección.",
+              "La del lugar de residencia, la vecindad de sus progenitores o adoptantes o la de su cónyuge."
+            ],
+            "correcta": 0
+          },
+          {
+            "pregunta": "El nacido en un barco de la armada española, de madre apátrida:",
+            "opciones": [
+              "Requerirá residencia de diez años para optar a la nacionalidad española.",
+              "Podrá adquirir la nacionalidad española por residencia al año.",
+              "Tiene la condición de español de origen."
+            ],
+            "correcta": 2
+          },
+          {
+            "pregunta": "Según el art. 26 del Código Civil, indique cuál de los siguientes es un requisito para recuperar la nacionalidad española tras haberla perdido previamente:",
+            "opciones": [
+              "Declarar ante el encargado del Registro Civil su voluntad de recuperar la nacionalidad española.",
+              "Entrar voluntariamente al servicio de las armas o ejercer cargo político en España.",
+              "Llevar al menos dos años casado con español o española y no estuviere separado legalmente o de hecho."
+            ],
+            "correcta": 0
+          },
+          {
+            "pregunta": "El extranjero menor de 18 años adoptado por español, ¿adquiere la nacionalidad española de origen?",
+            "opciones": [
+              "Cuando cumple los 18 años.",
+              "Desde la adopción.",
+              "Nunca adquirirá la nacionalidad de origen, solo puede adquirir la nacionalidad derivada."
+            ],
+            "correcta": 1
+          },
+          {
+            "pregunta": "Los sefardíes originarios de España, ¿pueden obtener la nacionalidad española?:",
+            "opciones": [
+              "No.",
+              "Sí, mediante carta de naturaleza.",
+              "Sí, mediante residencia durante un año."
+            ],
+            "correcta": 1
+          },
+          {
+            "pregunta": "¿Puede un menor de edad optar a la vecindad civil?:",
+            "opciones": [
+              "No, salvo que se haya emancipado, haya cumplido los trece años y sea asistido por su representante legal.",
+              "No, salvo que se haya emancipado y haya cumplido los doce años.",
+              "Sí, si se ha emancipado y ha cumplido 14 años."
+            ],
+            "correcta": 2
+          },
+          {
+            "pregunta": "Acorde al art. 86, de la Constitución Española, en caso de extraordinaria y urgente necesidad, el Gobierno podrá dictar:",
+            "opciones": [
+              "Disposiciones legislativas provisionales en forma de Decretos legislativos.",
+              "Disposiciones legislativas provisionales que tomarán la forma de Decretos-leyes.",
+              "Disposiciones legislativas provisionales en forma de Decretos legislativos que en 30 días serán sometidos a votación del Congreso de Diputados."
+            ],
+            "correcta": 1
+          },
+          {
+            "pregunta": "Según el art. 147 de la Constitución Española, la reforma de los Estatutos de Autonomía se ajustará al procedimiento establecido en los mismos y requerirá:",
+            "opciones": [
+              "En todo caso, la aprobación por las Cortes Generales, mediantes Ley Ordinaria.",
+              "En todo caso, la aprobación por las Cortes Generales, mediantes Ley Orgánica.",
+              "Dependiendo de los establecido en el Estatuto, necesitará o no la aprobación de las Cortes Generales."
+            ],
+            "correcta": 1
+          },
+          {
+            "pregunta": "Noor, de nacionalidad pakistaní, es adoptada por una familia española de Cuenca a la edad de 19 años. ¿Desde qué momento adquiere o podrá optar por la nacionalidad española de origen?",
+            "opciones": [
+              "Deberá inscribir un título en el Registro Civil para poder consolidarla a los diez años.",
+              "Podrá optar a ella en el plazo de dos años a partir de la constitución de la adopción.",
+              "La adquiere desde la adopción."
+            ],
+            "correcta": 1
+          },
+          {
+            "pregunta": "Para la adquisición de la nacionalidad española por opción, carta de naturaleza o residencia, es necesario:",
+            "opciones": [
+              "Que el mayor de catorce años y capaz para prestar una declaración por sí, jure o prometa fidelidad al Rey y obediencia a la Constitución y a las leyes.",
+              "Que el mayor de edad y capaz para prestar una declaración por sí, jure o prometa fidelidad al Rey y obediencia a la Constitución y a las leyes.",
+              "Que el mayor de dieciséis años y capaz para prestar una declaración por sí, jure o prometa fidelidad al Rey y obediencia a la Constitución y a las leyes."
+            ],
+            "correcta": 0
+          },
+          {
+            "pregunta": "Entre la normativa que regula la adquisición de la nacionalidad española, se encuentra:",
+            "opciones": [
+              "Constitución española, Código Civil y Ley de Memoria Democrática.",
+              "Constitución española, Código Civil y Ley Orgánica del Registro Civil.",
+              "Constitución española, Código Penal y Ley de Extranjería."
+            ],
+            "correcta": 0
+          },
+          {
+            "pregunta": "Los que habiendo nacido y residiendo en el extranjero ostenten la nacionalidad española por ser hijos de padre o madre españoles, también nacidos en el extranjero, cuando las leyes del país donde residan les atribuyan la nacionalidad del mismo, perderán la nacionalidad española si no declaran su voluntad de conservarla:",
+            "opciones": [
+              "No se pierde la nacionalidad.",
+              "A los 3 años desde su mayoría de edad o emancipación.",
+              "Antes de 3 años desde la adquisición de la nacionalidad donde residen."
+            ],
+            "correcta": 1
+          },
+          {
+            "pregunta": "¿Cuántos años debe residir en España, como norma general un ciudadano portugués, para optar a la nacionalidad española?",
+            "opciones": [
+              "Cinco años.",
+              "Un año.",
+              "Dos años."
+            ],
+            "correcta": 2
+          },
+          {
+            "pregunta": "El artículo 30 del Código Civil dice:",
+            "opciones": [
+              "La personalidad civil se extingue con la muerte de las personas.",
+              "El nacimiento determina la personalidad.",
+              "La personalidad se adquiere en el momento del nacimiento con vida, una vez producido el entero desprendimiento del seno materno."
+            ],
+            "correcta": 2
+          },
+          {
+            "pregunta": "Es correcto afirmar que:",
+            "opciones": [
+              "Los que habiendo nacido y residiendo en el extranjero ostenten la nacionalidad española por ser hijos de padre o madre españoles, también nacidos en el extranjero, cuando las leyes del país donde residan les atribuyan la nacionalidad del mismo, perderán, en todo caso, la nacionalidad española si no declaran su voluntad de conservarla ante el encargado del Registro Civil en el plazo de dos años, a contar desde su mayoría de edad o emancipación.",
+              "Pierden la nacionalidad española los emancipados que, residiendo habitualmente en el extranjero, adquieran voluntariamente otra nacionalidad extranjera que tuvieran atribuida antes de la emancipación.",
+              "Pierden la nacionalidad española los españoles emancipados que renuncien tácitamente o expresamente a ella, si tienen otra nacionalidad y residen habitualmente en el extranjero."
+            ],
+            "correcta": 2
+          }
         ];
 
         let currentQuestionIndex = 0;
         let score = 0;
         let answered = false;
 
-        // Iniciar el test interactivo y ocultar el panel principal
         function startTest() {
             document.getElementById('main-panel').classList.add('hidden');
             document.getElementById('test-zone').classList.remove('hidden');
             resetTest();
         }
 
-        // Salir del test y volver al menú principal
         function exitTest() {
             document.getElementById('test-zone').classList.add('hidden');
             document.getElementById('main-panel').classList.remove('hidden');
         }
 
-        // Reiniciar variables para empezar de cero
         function resetTest() {
             currentQuestionIndex = 0;
             score = 0;
@@ -469,20 +708,15 @@
             loadQuestion();
         }
 
-        // Pintar la pregunta actual en pantalla
         function loadQuestion() {
             answered = false;
             document.getElementById('next-btn').classList.add('hidden');
             
             const currentQuestion = dbNacionalidad[currentQuestionIndex];
             
-            // Actualizar encabezado de progreso
             document.getElementById('progress').innerText = `Pregunta ${currentQuestionIndex + 1} de ${dbNacionalidad.length}`;
-            
-            // Cargar enunciado
             document.getElementById('question').innerText = currentQuestion.pregunta;
             
-            // Limpiar y cargar opciones
             const optionsContainer = document.getElementById('options');
             optionsContainer.innerHTML = '';
             
@@ -495,36 +729,28 @@
             });
         }
 
-        // Gestionar el clic del usuario en una alternativa
         function selectOption(selectedIndex, selectedButton) {
-            if (answered) return; // Evita cambiar la respuesta una vez seleccionada
+            if (answered) return;
             answered = true;
 
             const currentQuestion = dbNacionalidad[currentQuestionIndex];
             const correctIndex = currentQuestion.correcta;
             const options = document.querySelectorAll('.option-item');
 
-            // Marcar acierto o fallo visualmente
             if (selectedIndex === correctIndex) {
                 selectedButton.classList.add('correct');
                 score++;
             } else {
                 selectedButton.classList.add('wrong');
-                // Revelar la respuesta correcta poniéndola en verde
                 options[correctIndex].classList.add('correct');
             }
 
-            // Deshabilitar todas las opciones tras responder
             options.forEach(opt => opt.classList.add('disabled'));
-            
-            // Mostrar botón para avanzar
             document.getElementById('next-btn').classList.remove('hidden');
         }
 
-        // Avanzar a la siguiente pregunta o mostrar resultados
         function nextQuestion() {
             currentQuestionIndex++;
-            
             if (currentQuestionIndex < dbNacionalidad.length) {
                 loadQuestion();
             } else {
@@ -532,7 +758,6 @@
             }
         }
 
-        // Pantalla final con la nota del opositor
         function showResults() {
             document.getElementById('quiz-box').classList.add('hidden');
             document.getElementById('results-box').classList.remove('hidden');
