@@ -5,75 +5,156 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test Policía Nacional</title>
     <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #1e2640;
+            --accent-color: #2563eb;
+            --accent-glow: #3b82f6;
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: #0f172a;
-            color: #f8fafc;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 40px 20px;
             margin: 0;
+            min-height: 100vh;
         }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
         h1 {
-            color: #38bdf8;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin: 0 0 10px 0;
+            letter-spacing: -1px;
+            background: linear-gradient(90deg, #38bdf8, #2563eb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
-        p {
-            color: #94a3b8;
-            margin-bottom: 40px;
-        }
+
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            gap: 30px;
             width: 100%;
-            max-width: 900px;
+            max-width: 1000px;
         }
+
         .card {
-            background-color: #1e293b;
-            border: 1px solid #334155;
-            border-radius: 12px;
-            padding: 25px;
-            text-align: center;
+            position: relative;
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
             text-decoration: none;
-            color: #f8fafc;
-            font-size: 1.2rem;
-            font-weight: 600;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            color: var(--text-main);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 220px;
         }
+
+        .card-image {
+            height: 65%;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        /* Degradado oscuro sobre la imagen para que se fusione con la tarjeta */
+        .card-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: linear-gradient(to top, var(--card-bg), transparent);
+        }
+
+        .card-title {
+            padding: 15px 20px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-grow: 1;
+            background-color: var(--card-bg);
+        }
+
+        .card-title::after {
+            content: '→';
+            font-size: 1.4rem;
+            color: var(--accent-glow);
+            transition: transform 0.3s ease;
+        }
+
+        /* Efectos al pasar el ratón por encima (Hover) */
         .card:hover {
-            transform: translateY(-4px);
-            background-color: #0284c7;
-            border-color: #38bdf8;
+            transform: translateY(-8px);
+            box-shadow: 0 20px 35px -10px rgba(59, 130, 246, 0.2), 0 0 1px 2px var(--accent-glow);
         }
+
+        .card:hover .card-title::after {
+            transform: translateX(5px);
+        }
+
+        /* Imágenes de fondo para cada tema */
+        .img-nacionalidad { background-image: url('https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=500&q=80'); }
+        .img-ordenamiento { background-image: url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=500&q=80'); }
+        .img-derecho { background-image: url('https://images.unsplash.com/photo-1453728913147-0821c5b19153?auto=format&fit=crop&w=500&q=80'); }
+        .img-dgp { background-image: url('https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=500&q=80'); }
+
     </style>
 </head>
 <body>
 
-    <h1>Test Policía Nacional</h1>
-    <p>Tema 1: El Derecho</p>
+    <div class="header">
+        <h1>TEST POLICÍA NACIONAL</h1>
+        <div class="subtitle">Tema 1: El Derecho</div>
+    </div>
 
     <div class="grid">
+        
         <a href="https://docs.google.com/forms/d/e/1FAIpQLScorlXAy0K7CPXoVVVkJZqB4atgqtjZAPwS8leXbwu5NA_p7A/viewform" target="_blank" class="card">
-            Nacionalidad
+            <div class="card-image img-nacionalidad"></div>
+            <div class="card-title">Nacionalidad</div>
         </a>
 
         <a href="https://docs.google.com/forms/d/e/1FAIpQLScZevOuGoqxbBu-UO5gUcLxllOHJtUGXHhBkQNisZBe-6zMbQ/viewform" target="_blank" class="card">
-            Ordenamiento Jurídico
+            <div class="card-image img-ordenamiento"></div>
+            <div class="card-title">Ordenamiento Jurídico</div>
         </a>
 
         <a href="https://docs.google.com/forms/d/e/1FAIpQLScrpxlvrIYydyPTpI63EMrMhHOMgJAFvE2I3bVXZ3JMrPnpLQ/viewform" target="_blank" class="card">
-            El Derecho
+            <div class="card-image img-derecho"></div>
+            <div class="card-title">El Derecho</div>
         </a>
 
         <a href="https://docs.google.com/forms/d/e/1FAIpQLScEqwJ0xQ2O8wShTgnUP7P9ie32AXjjQv7_VX1MJzt1sP2jCQ/viewform" target="_blank" class="card">
-            DGP
+            <div class="card-image img-dgp"></div>
+            <div class="card-title">DGP</div>
         </a>
+
     </div>
 
 </body>
