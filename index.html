@@ -1367,6 +1367,163 @@
           }
         ];
 
+// BANCO 3: RD 240/2007 RÉGIMEN COMUNITARIO (17 PREGUNTAS BLINDADAS CON EL BOE)
+        const dbRD2402007 = [
+          {
+            "pregunta": "Según el Real Decreto 240/2007 sobre entrada, libre circulación y residencia en España de ciudadanos de los Estados miembro de la Unión Europea y de otros Estados parte en el Acuerdo sobre el Espacio Económico Europeo, ¿cuánto tiempo debe haber residido en España un ciudadano miembro de la Unión Europea para tener derecho a residencia de larga duración?:",
+            "opciones": [
+              "Cuando hayan residido legalmente durante un período continuado de 5 años",
+              "Cuando hayan residido legalmente durante un período continuado de cinco años, o no continuado de 5 años con trabajo por cuenta ajena",
+              "Cuando hayan residido de forma continuada durante 10 años, con buena fe y basada en un título inscrito"
+            ],
+            "correcta": 0 // Art. 10.1 RD 240/2007: Residencia legal y continuada durante 5 años da derecho a la residencia permanente.
+          },
+          {
+            "pregunta": "Según el Real Decreto 240/2007 sobre entrada, libre circulación y residencia en España de ciudadanos de los Estados miembros de la Unión Europea y de otros Estados parte en el Acuerdo sobre el Espacio Económico Europeo, si se dicta una resolución administrativa de expulsión contra personas solicitantes de tarjeta de residencia o certificado de registro:",
+            "opciones": [
+              "Se requerirá previo informe de la Abogacía del Estado",
+              "Se podrá, previa petición del interesado, examinar la resolución por la Dirección del Servicio Jurídico del Estado o de la Abogacía del Estado en la provincia",
+              "Podrá ser revisada por el Delegado o el Subdelegado para corroborar que se mantienen las causas que dieron lugar a la resolución"
+            ],
+            "correcta": 1 // Art. 17.2 RD 240/2007: Examen por los servicios jurídicos o Abogacía del Estado a petición del afectado.
+          },
+          {
+            "pregunta": "El Real Decreto 240/2007 sobre entrada, libre circulación y residencia en España de ciudadanos de los Estados miembros de la Unión Europea y de otros Estados parte en el Acuerdo sobre el Espacio Económico Europeo, se aplicará también:",
+            "opciones": [
+              "Al cónyuge, siempre que no haya recaído el acuerdo o la declaración de nulidad del vínculo matrimonial, divorcio o separación legal",
+              "A la pareja con la que mantenga una unión análoga a la conyugal inscrita o no en un registro público",
+              "A sus descendientes directos mayores de edad que vivan a su cargo, o incapaces"
+            ],
+            "correcta": 0 // Art. 2.a RD 240/2007: Cónyuge sin nulidad, divorcio ni separación. (La B y C fallan en su literalidad estricta).
+          },
+          {
+            "pregunta": "Según el Real Decreto 240/2007 sobre entrada, libre circulación y residencia en España de ciudadanos de los Estados miembros de la Unión Europea y de otros Estados parte en el Acuerdo sobre el Espacio Económico Europeo, la tarjeta de residencia de familiar de ciudadano de la Unión tendrá una validez de:",
+            "opciones": [
+              "2 años",
+              "10 años",
+              "5 años"
+            ],
+            "correcta": 2 // Art. 8.4 RD 240/2007: La tarjeta de residencia de familiar inicial tiene una validez de 5 años.
+          },
+          {
+            "pregunta": "Según el Real Decreto 240/2007 sobre entrada, libre circulación y residencia en España de ciudadanos de los Estados miembros de la Unión Europea y de otros Estados parte en el Acuerdo sobre el Espacio Económico Europeo, la Tarjeta de residencia permanente para miembros de la familia que no tengan la nacionalidad de un Estado miembro de la Unión Europea o de otro Estado parte en el Acuerdo sobre el Espacio Económico Europeo será renovable:",
+            "opciones": [
+              "A instancia de parte cada diez años",
+              "Cada cinco años",
+              "Automáticamente cada diez años"
+            ],
+            "correcta": 0 // Art. 11.4 RD 240/2007: La tarjeta permanente será renovable cada 10 años, a instancia de parte.
+          },
+          {
+            "pregunta": "Según el Real Decreto 240/2007 sobre entrada, libre circulación y residencia en España de ciudadanos de los Estados miembros de la Unión Europea y de otros Estados parte en el Acuerdo sobre el Espacio Económico Europeo, no podrá adoptarse una decisión de expulsión de un ciudadano comunitario, que hubiese residido en España durante los diez años anteriores, salvo:",
+            "opciones": [
+              "Si existen motivos imperiosos de orden público o seguridad interior",
+              "Si existen motivos graves de orden público, seguridad pública o salud pública",
+              "Si existen motivos imperiosos de seguridad pública"
+            ],
+            "correcta": 2 // Art. 15.1.c RD 240/2007: Protección máxima tras 10 años, solo expulsable por motivos imperiosos de SEGURIDAD PÚBLICA.
+          },
+          {
+            "pregunta": "Según el Real Decreto 240/2007 sobre entrada, libre circulación y residencia en España de ciudadanos de los Estados miembros de la Unión Europea y de otros Estados parte en el Acuerdo sobre el Espacio Económico Europeo:",
+            "opciones": [
+              "Las resoluciones de expulsión deberán ser motivadas y establecerán un plazo para abandonar España que no podrá ser inferior a un mes desde la notificación excepto en casos urgentes debidamente justificados",
+              "Únicamente podrá adoptarse una decisión de expulsión sobre personas que hayan adquirido la residencia permanente en España si existen motivos imperiosos de seguridad pública.",
+              "Las personas sobre las que haya recaído una decisión de prohibición de entrada podrán solicitar el levantamiento de la misma en el plazo de cinco años desde la ejecución de dicha decisión."
+            ],
+            "correcta": 0 // Art. 15.3 RD 240/2007: Plazo de abandono general no inferior a un mes.
+          },
+          {
+            "pregunta": "Los nacionales de un Estado miembro de la Unión Europea o de otro Estado parte en el Acuerdo sobre el Espacio Económico Europeo estarán obligados a solicitar personalmente ante la oficina de extranjeros de la provincia donde pretendan permanecer o fijar su residencia o, en su defecto, ante la Comisaría de Policía correspondiente, su inscripción en el Registro Central de Extranjeros, que deberá presentarse en el plazo de:",
+            "opciones": [
+              "Tres meses contados desde la fecha de entrada en España",
+              "Treinta días contados desde la fecha de entrada en España",
+              "Tres días contados desde la fecha de entrada en España"
+            ],
+            "correcta": 0 // Art. 7.5 RD 240/2007: Obligación de solicitar el registro a los 3 meses desde la entrada.
+          },
+          {
+            "pregunta": "Conforme al Real Decreto 240/2007 sobre la entrada, libre circulación y residencia en España de ciudadanos de los Estados miembros de la Unión Europea y de otros Estado parte en el Acuerdo sobre el Espacio Económico Europeo, la vigencia de la tarjeta de residencia familiar de ciudadano de la Unión caducará por las ausences superiores:",
+            "opciones": [
+              "A los tres años. No obstante, dicha vigencia no se verá afectada por las ausencias de mayor duración...",
+              "A doce meses consecutivos",
+              "A seis meses en un año"
+            ],
+            "correcta": 2 // Art. 8.5 RD 240/2007: Caduca por ausencias superiores a 6 meses en 1 año (salvo obligaciones militares, parto, enfermedad, etc.).
+          },
+          {
+            "pregunta": "El Certificado de Registro de ciudadano de la Unión Europea será expedido:",
+            "opciones": [
+              "De forma inmediata",
+              "En un mes",
+              "En tres meses"
+            ],
+            "correcta": 0 // Art. 7.6 RD 240/2007: Se expide de forma inmediata en el acto tras el abono de la tasa.
+          },
+          {
+            "pregunta": "Indique cual es la norma que regula la entrada, libre circulación y residencia en España de ciudadanos de los Estados miembros de la Unión Europea y de otros Estados parte en el Acuerdo sobre el Espacio Económico Europeo:",
+            "opciones": [
+              "RD 1155/2024",
+              "LO 4/2000",
+              "RD 240/2007"
+            ],
+            "correcta": 2 // El RD 240/2007 es la norma específica del derecho de la Unión Europea.
+          },
+          {
+            "pregunta": "Carlo, de nacionalidad italiana, tiene concedida la residencia permanente en España. En este momento permanece fuera de España por cuestiones laborales. ¿Cuándo perderá está condición?:",
+            "opciones": [
+              "Si la ausencia es superior a un año consecutivo",
+              "Si la ausencia de dos años",
+              "Si la ausencia es superior a dos años consecutivos"
+            ],
+            "correcta": 2 // Art. 11.3 RD 240/2007: El derecho a residencia permanente se pierde tras ausencias de más de 2 años consecutivos.
+          },
+          {
+            "pregunta": "Un ciudadano comunitario que ya no ejerza ninguna actividad por cuenta ajena o por cuenta propia, mantendrá la condición de trabajador por cuenta ajena o por cuenta propia cuando:",
+            "opciones": [
+              "Habiendo quedado en paro involuntario debidamente acreditado, tras haber estado empleado durante más de seis meses, se ha inscrito en el servicio de empleo competente con el fin de encontrar un trabajo",
+              "Habiendo quedado en paro involuntario debidamente acreditado, tras haber estado empleado durante más de un año, se ha inscrito en el servicio de empleo competente con el fin de encontrar un trabajo",
+              "Habiendo quedado en paro involuntario debidamente acreditado, tras haber estado empleado durante más de tres meses, se ha inscrito en el servicio de empleo competente con el fin de encontrar un trabajo"
+            ],
+            "correcta": 1 // Art. 7.2.b RD 240/2007: Si el paro es tras trabajar más de 1 año, mantiene la condición sin límite (la opción A falla porque si es menos de 1 año solo se garantiza por 6 meses).
+          },
+          {
+            "pregunta": "Paul, de nacionalidad francesa, podrá permanecer en territorio español con la posesión del pasaporte o documento de identidad en vigor, con una duración inferior a:",
+            "opciones": [
+              "Tres meses",
+              "Cinco meses",
+              "Seis meses"
+            ],
+            "correcta": 0 // Art. 6.1 RD 240/2007: Estancia básica con DNI/Pasaporte hasta un máximo de tres meses.
+          },
+          {
+            "pregunta": "Según el Real Decreto 240/2007 sobre entrada, libre circulación y residencia en España de ciudadanos de los Estados miembros de la Unión Europea y de otros Estados parte en el Acuerdo sobre el Espacio Económico Europeo, la tarjeta de residencia de familiar de ciudadano de la Unión tendrá una validez de:",
+            "opciones": [
+              "Dos años",
+              "Cinco años",
+              "Diez años"
+            ],
+            "correcta": 1 // Pregunta repetida en tu banco; respuesta idéntica: 5 años (Índice 1).
+          },
+          {
+            "pregunta": "Según el Real Decreto 240/2007 sobre entrada, libre circulación y residencia en España de ciudadanos de los Estados miembros de la Unión Europea y de otros Estados parte en el Acuerdo sobre el Espacio Económico Europeo, se podrá solicitar la aplicación de las disposiciones previstas en este real decreto para miembros de la familia de un ciudadano de un Estado miembro de la Unión Europea o de otros Estados parte en el Acuerdo sobre el Espacio Económico Europeo a favor de:",
+            "opciones": [
+              "Los miembros de su familia, cualquiera que sea su nacionalidad que, por motivos graves de salud o de discapacidad, sea estrictamente necesario que el ciudadano de la Unión se haga cargo del cuidado personal del miembro de la familia.",
+              "La pareja de hecho con la que mantenga una relación estable debidamente probada.",
+              "Ambas son correctas"
+            ],
+            "correcta": 2 // Art. 2 bis.1 (Familia extensa): Ambas opciones están contempladas para solicitar la aplicación del régimen comunitario.
+          },
+          {
+            "pregunta": "Según el Real Decreto 240/2007 sobre entrada, libre circulación y residencia en España de ciudadanos de los Estados miembros de la Unión Europea y de otros Estados parte en el Acuerdo sobre el Espacio Económico Europeo, la pareja de hecho podrá solicitar la aplicación de las disposiciones previstas en este real decreto, en el caso de que se trate de una pareja estable, se entenderá la existencia de este vínculo:",
+            "opciones": [
+              "Si se acredita un tiempo de convivencia marital de, al menos, dos años continuados",
+              "Si tuvieran descendencia en común, en cuyo caso, bastará la acreditación de convivencia estable debidamente probada",
+              "Ambas son correctas"
+            ],
+            "correcta": 2 // Art. 2 bis.4.b RD 240/2007: Se presume relación estable con 2 años de convivencia O descendencia en común.
+          }
+        ];
+        
         // VARIABLES GLOBALES DE CONTROL DE ESTADO
         let currentQuizData = []; // Guardará el banco de preguntas activo
         let userAnswers = [];     // Historial de respuestas del intento actual
