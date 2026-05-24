@@ -448,82 +448,33 @@
         .badge-bad { background: #ef4444; color: white; }
         
         /* ========================================================
-           PARCHE MÓVIL DEFINITIVO (Añadir justo antes de </style>)
+           ADAPTACIÓN PARA MÓVILES (IPHONE/ANDROID)
            ======================================================== */
         @media (max-width: 768px) {
-            body {
-                padding: 15px 10px; /* Reducimos márgenes laterales al mínimo */
-            }
+            body { padding: 15px 10px; }
+            h1 { font-size: 2rem; }
+            .section-title { font-size: 1.1rem; margin-top: 25px; }
             
-            h1 {
-                font-size: 2rem; /* Título principal más compacto */
-            }
-
-            .section-title {
-                font-size: 1.1rem;
-                margin-top: 25px;
-            }
-
-            /* Forzar tarjetas a 1 sola columna que ocupe el 100% de la pantalla */
+            /* Forzar 1 sola columna en el menú */
             .grid, .grid-single {
                 display: flex !important;
                 flex-direction: column !important;
                 width: 100%;
                 gap: 20px;
             }
-
-            .card {
-                width: 100%;
-                height: 180px; 
-                box-sizing: border-box;
-            }
-
-            /* Ajustes del contenedor del test para que no se salga de la pantalla */
-            .test-container {
-                padding: 20px 15px;
-                width: 100%;
-                box-sizing: border-box;
-                border-radius: 12px;
-            }
-
-            .question-text {
-                font-size: 1.15rem;
-                margin-bottom: 20px;
-            }
-
-            .option-item {
-                padding: 14px 15px;
-                font-size: 1rem;
-            }
-
-            /* Poner los botones de Anterior/Siguiente uno debajo de otro */
-            .action-container {
-                flex-direction: column;
-                gap: 12px;
-            }
-
-            .nav-btn {
-                width: 100%;
-                text-align: center;
-                box-sizing: border-box;
-            }
-
-            /* Ajustes del marcador de notas para que quepa bien */
-            .score-row {
-                flex-direction: column; /* Cuadros de nota en vertical */
-                gap: 15px;
-                margin-bottom: 20px;
-            }
-
-            .score-box {
-                width: 100%;
-                box-sizing: border-box;
-            }
-
-            .details-list {
-                max-width: 100%;
-                box-sizing: border-box;
-            }
+            .card { width: 100%; height: 180px; box-sizing: border-box; }
+            
+            /* Ajustes del test para que no se salga de la pantalla */
+            .test-container { padding: 20px 15px; width: 100%; box-sizing: border-box; border-radius: 12px; }
+            .question-text { font-size: 1.15rem; margin-bottom: 20px; }
+            .option-item { padding: 14px 15px; font-size: 1rem; }
+            
+            /* Botones y notas en vertical */
+            .action-container { flex-direction: column; gap: 12px; }
+            .nav-btn { width: 100%; text-align: center; box-sizing: border-box; }
+            .score-row { flex-direction: column; gap: 15px; margin-bottom: 20px; }
+            .score-box { width: 100%; box-sizing: border-box; }
+            .details-list { max-width: 100%; box-sizing: border-box; }
         }
         
     </style>
