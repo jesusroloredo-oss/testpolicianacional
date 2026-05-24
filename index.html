@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Test Policía Nacional</title>
     <style>
         :root {
@@ -446,7 +446,39 @@
         }
         .badge-good { background: #10b981; color: white; }
         .badge-bad { background: #ef4444; color: white; }
+        
+/* Este código solo se activará en pantallas del tamaño de un móvil o tablet (máximo 768 píxeles) */
+@media (max-width: 768px) {
+    
+    /* 1. Evitar que el contenedor principal sea más ancho que la pantalla */
+    .contenedor-principal {
+        width: 100%;
+        padding: 15px; /* Reducimos el margen para aprovechar la pantalla */
+        box-sizing: border-box; /* Evita que el padding sume ancho extra y corte la pantalla */
+    }
 
+    /* 2. Adaptar el texto de las preguntas de la oposición */
+    .texto-pregunta {
+        font-size: 18px; 
+        line-height: 1.4;
+    }
+
+    /* 3. Hacer que los botones de las opciones ocupen todo el ancho y sean fáciles de tocar */
+    .opcion-respuesta, .boton-siguiente {
+        width: 100%;
+        display: block; /* Fuerza a que se pongan uno debajo del otro */
+        padding: 15px; /* Botones más altos para no fallar con el dedo */
+        font-size: 16px;
+        margin-bottom: 12px;
+        box-sizing: border-box;
+    }
+
+    /* 4. Si tienes elementos en horizontal (ej. flexbox o grid), pasarlos a vertical */
+    .menu-opciones {
+        flex-direction: column;
+    }
+}
+        
     </style>
 </head>
 <body>
