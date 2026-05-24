@@ -447,37 +447,84 @@
         .badge-good { background: #10b981; color: white; }
         .badge-bad { background: #ef4444; color: white; }
         
-/* Este código solo se activará en pantallas del tamaño de un móvil o tablet (máximo 768 píxeles) */
-@media (max-width: 768px) {
-    
-    /* 1. Evitar que el contenedor principal sea más ancho que la pantalla */
-    .contenedor-principal {
-        width: 100%;
-        padding: 15px; /* Reducimos el margen para aprovechar la pantalla */
-        box-sizing: border-box; /* Evita que el padding sume ancho extra y corte la pantalla */
-    }
+        /* ========================================================
+           PARCHE MÓVIL DEFINITIVO (Añadir justo antes de </style>)
+           ======================================================== */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px 10px; /* Reducimos márgenes laterales al mínimo */
+            }
+            
+            h1 {
+                font-size: 2rem; /* Título principal más compacto */
+            }
 
-    /* 2. Adaptar el texto de las preguntas de la oposición */
-    .texto-pregunta {
-        font-size: 18px; 
-        line-height: 1.4;
-    }
+            .section-title {
+                font-size: 1.1rem;
+                margin-top: 25px;
+            }
 
-    /* 3. Hacer que los botones de las opciones ocupen todo el ancho y sean fáciles de tocar */
-    .opcion-respuesta, .boton-siguiente {
-        width: 100%;
-        display: block; /* Fuerza a que se pongan uno debajo del otro */
-        padding: 15px; /* Botones más altos para no fallar con el dedo */
-        font-size: 16px;
-        margin-bottom: 12px;
-        box-sizing: border-box;
-    }
+            /* Forzar tarjetas a 1 sola columna que ocupe el 100% de la pantalla */
+            .grid, .grid-single {
+                display: flex !important;
+                flex-direction: column !important;
+                width: 100%;
+                gap: 20px;
+            }
 
-    /* 4. Si tienes elementos en horizontal (ej. flexbox o grid), pasarlos a vertical */
-    .menu-opciones {
-        flex-direction: column;
-    }
-}
+            .card {
+                width: 100%;
+                height: 180px; 
+                box-sizing: border-box;
+            }
+
+            /* Ajustes del contenedor del test para que no se salga de la pantalla */
+            .test-container {
+                padding: 20px 15px;
+                width: 100%;
+                box-sizing: border-box;
+                border-radius: 12px;
+            }
+
+            .question-text {
+                font-size: 1.15rem;
+                margin-bottom: 20px;
+            }
+
+            .option-item {
+                padding: 14px 15px;
+                font-size: 1rem;
+            }
+
+            /* Poner los botones de Anterior/Siguiente uno debajo de otro */
+            .action-container {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .nav-btn {
+                width: 100%;
+                text-align: center;
+                box-sizing: border-box;
+            }
+
+            /* Ajustes del marcador de notas para que quepa bien */
+            .score-row {
+                flex-direction: column; /* Cuadros de nota en vertical */
+                gap: 15px;
+                margin-bottom: 20px;
+            }
+
+            .score-box {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .details-list {
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+        }
         
     </style>
 </head>
