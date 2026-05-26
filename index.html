@@ -166,6 +166,7 @@
         .img-coordinacion { background-image: url('https://portalencuestas.ses.mir.es/publico/.resources/formPlantilla/webresources/img/logo-V2.png'); background-color: #ffffff; background-size: contain; background-repeat: no-repeat; }
         .img-proteccion { background-image: url('https://upload.wikimedia.org/wikipedia/commons/d/d5/Proteccion-civil-logo-gen.png'); }
         .img-delitos { background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi9_iQtjSMCR2E0d2_fJTBz9hNcmHrKq3R3tM2WpbyzstxnEkdWKiOcBBMo3QO-XS3sJ8_-k2bu4iu2yJSQkKh842FtPb5bdxtANv5Xslbl4LPrasvnFsyB3hzVOZFXzWyP3G1HdNKIRpNK/s1600/delito-informatico.jpg'); }
+        .img-dependencia { background-image: url('https://despresdelcancer.cat/wp-content/uploads/2018/03/P16-1044_M-ORGANITZO_LLEI-DEPENDENCIA-_febrer2018_v0-2_INFO_CAST.jpg'); }
         
         /* Nuevas imágenes específicas para Extranjería e Infracciones */
         .img-lo4-2000 { background-image: url('https://i0.wp.com/efe.com/wp-content/uploads/2026/03/EXTRANJERIA-OFICINA.webp?fit=900%2C600&ssl=1'); }
@@ -610,6 +611,17 @@
             <div onclick="startTest('delitos')" class="card">
                 <div class="card-image img-delitos"></div>
                 <div class="card-title">Delitos Informáticos</div>
+            </div>
+
+        </div>
+
+        <div class="section-title">Tema 23: Políticas de Igualdad</div>
+        <div class="grid grid-single">
+            
+            <!-- TARJETA LEY DE DEPENDENCIA -->
+            <div onclick="startTest('dependencia')" class="card">
+                <div class="card-image img-dependencia"></div>
+                <div class="card-title">Ley de dependencia</div>
             </div>
 
         </div>
@@ -1796,6 +1808,22 @@
           {"pregunta": "Tras ser despedido Roberto de la empresa en la que trabajaba, a modo de venganza anuló las contraseñas de acceso a las cuentas en el servicio publicitario Google Adwords, ordenando también el barrido masivo de toda la información y campañas de publicidad de la empresa y del servicio de gestión de proyectos, eliminando el contenido de las cuentas referidas. Provocando en la empresa grandes pérdidas de información y causando graves perjuicios. ¿De qué delito es responsable Roberto?:", "opciones": ["Un delito relativo a la propiedad intelectual", "Un delito de daños informáticos", "Un delito relativo a la propiedad industrial"], "correcta": 1},
           {"pregunta": "Luisma es un hacker que en su tiempo libre se dedica a realizar actividades de ransomware, llegando a conseguir grandes cantidades de dinero a través de transferencias. ¿De qué delito es responsable Luisma?:", "opciones": ["Un delito de estafa", "Un delito de daños informáticos", "Un delito de extorsión"], "correcta": 0}
         ];
+
+// BANCO 10: TEMA 23 - LEY DE DEPENDENCIA (12 PREGUNTAS LEY 39/2006 CORREGIDAS)
+        const dbDependencia = [
+          {"pregunta": "Las tareas más elementales de la persona, que le permiten desenvolverse con un mínimo de autonomía e independencia, se definen como:", "opciones": ["Actividades Básicas de la Vida Diaria", "Dependencia", "Necesidades de apoyo"], "correcta": 0},
+          {"pregunta": "Según la Ley 39/2006 cuando a la persona necesita ayuda para realizar varias actividades básicas de la vida diaria dos o tres veces al día, pero no quiere el apoyo permanente de un cuidador o tiene necesidades de apoyo extenso para su autonomía personal se corresponde con:", "opciones": ["Dependencia Grado III", "Dependencia severa", "Gran Dependencia"], "correcta": 1},
+          {"pregunta": "De acuerdo con la Ley 39/2006 de promoción de la autonomía personal y atención a las personas en situación de dependencia, se entiende por gran invalidez (Gran Dependencia) al:", "opciones": ["Grado I", "Grado II", "Grado III"], "correcta": 2},
+          {"pregunta": "Conforme a la Ley 39/2006 de promoción de la autonomía personal y atención a las personas en situación de dependencia, ¿Qué plazo se establece para la graduación de la sanción cuando se acuerde la suspensión de prestaciones o subvenciones?:", "opciones": ["Entre un día y tres meses, según la gravedad de la infracción", "Entre uno y seis meses, según la gravedad de la infracción", "Entre tres y seis meses, según la gravedad de la infracción"], "correcta": 1},
+          {"pregunta": "Según la Ley 39/2006 de promoción de la autonomía personal y atención a las personas en situación de dependencia el estado de carácter permanente en que se encuentran las personas que, por razones derivadas de la edad, la enfermedad o la discapacidad, y ligadas a la falta o a la pérdida de autonomía física, mental, intelectual o sensorial, precisan de la atención de otra u otras personas o ayudas importantes para realizar actividades básicas de la vida diaria o, en el caso de las personas con discapacidad intelectual o enfermedad mental, de otros apoyos para su autonomía personal, es definición de:", "opciones": ["Dependencia", "Invalidez", "Discapacidad"], "correcta": 0},
+          {"pregunta": "Según la Ley 39/2006 de promoción de la autonomía personal y atención a las personas en situación de dependencia, las infracciones leves prescriben:", "opciones": ["A los seis meses", "A los tres meses", "Al año"], "correcta": 0},
+          {"pregunta": "Conforme a la Ley 39/2006 de Promoción de la Autonomía Personal y Atención a las personas en situación de dependencia, en el ámbito de la Administración General del Estado será órgano competente para imponer las sanciones por la comisión de infracciones muy graves:", "opciones": ["El titular de la Dirección General del Instituto de Mayores y Servicios Sociales", "El titular de la Secretaría de Estado de Derechos Sociales (o denominación actual equivalente)", "El titular del Ministerio de Trabajo y Economía Social"], "correcta": 1},
+          {"pregunta": "Conforme a la Ley 39/2006 de promoción de la autonomía personal y atención a las personas en situación de dependencia, la dependencia severa corresponde con:", "opciones": ["Grado II", "Grado III", "Grado IV"], "correcta": 0},
+          {"pregunta": "La Ley 39/2006 de promoción de la autonomía personal y atención a las personas en situación de dependencia, crea como órgano asesor:", "opciones": ["El Consejo Consultivo del Ayuda a la dependencia", "El Comité Consultivo del Sistema para la Autonomía y Atención a la Dependencia", "El Observatorio Nacional del Sistema para la Autonomía y Atención a la Dependencia"], "correcta": 1},
+          {"pregunta": "Conforme a la Ley 39/2006 de promoción de la autonomía personal y atención a las personas en situación de dependencia, el Catálogo de servicios comprende:", "opciones": ["Los servicios de guardería", "Servicio de atención en hospitales", "Servicio de Teleasistencia"], "correcta": 2},
+          {"pregunta": "En base a la Ley 39/2006 de promoción de la autonomía personal y atención a las personas en situación de dependencia, si una persona se niega absolutamente a facilitar información o a prestar colaboración a los servicios de inspección, así como el falseamiento de información, estaría cometiendo una infracción:", "opciones": ["Leve", "Grave", "Muy grave"], "correcta": 1},
+          {"pregunta": "La dependencia de Grado II, se conoce como:", "opciones": ["Gran Dependencia", "Dependencia moderada", "Dependencia Severa"], "correcta": 2}
+        ];
         
         // VARIABLES GLOBALES DE CONTROL DE ESTADO
         let currentQuizData = []; // Guardará el banco de preguntas activo
@@ -1824,6 +1852,8 @@
                 currentQuizData = dbProteccion;
             } else if (quizType === 'delitos') {
                 currentQuizData = dbDelitos;
+            } else if (quizType === 'dependencia') {
+                currentQuizData = dbDependencia;
             }
 
             document.getElementById('main-panel').classList.add('hidden');
