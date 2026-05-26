@@ -163,6 +163,8 @@
         .img-ue { background-image: url('https://mundistour.com/wp-content/uploads/2024/02/5-1024x819.png'); }
         .img-cortes { background-image: url('https://upload.wikimedia.org/wikipedia/commons/3/3f/Solemne_apertura_de_la_XIV_Legislatura_04.jpg'); }
         .img-empleado { background-image: url('https://www.appstonic.com/wp-content/uploads/2015/08/Oferta-de-empleo-publico.png'); }
+        .img-coordinacion { background-image: url('https://portalencuestas.ses.mir.es/publico/.resources/formPlantilla/webresources/img/logo-V2.png'); background-color: #ffffff; background-size: contain; background-repeat: no-repeat; }
+        .img-proteccion { background-image: url('https://upload.wikimedia.org/wikipedia/commons/d/d5/Proteccion-civil-logo-gen.png'); }
         
         /* Nuevas imágenes específicas para Extranjería e Infracciones */
         .img-lo4-2000 { background-image: url('https://i0.wp.com/efe.com/wp-content/uploads/2026/03/EXTRANJERIA-OFICINA.webp?fit=900%2C600&ssl=1'); }
@@ -544,6 +546,23 @@
             <div onclick="startTest('empleado')" class="card">
                 <div class="card-image img-empleado"></div>
                 <div class="card-title">Empleado Público</div>
+            </div>
+
+        </div>
+
+        <div class="section-title">Tema 7: Ministerio de Interior</div>
+        <div class="grid">
+            
+            <!-- TARJETA D.G. COORDINACIÓN Y ESTUDIOS -->
+            <div onclick="startTest('coordinacion')" class="card">
+                <div class="card-image img-coordinacion"></div>
+                <div class="card-title">D.G. Coordinación y Estudios</div>
+            </div>
+
+            <!-- TARJETA S.G. DE PROTECCIÓN CIVIL Y EMERGENCIAS -->
+            <div onclick="startTest('proteccion')" class="card">
+                <div class="card-image img-proteccion"></div>
+                <div class="card-title">S.G. Protección Civil</div>
             </div>
 
         </div>
@@ -1728,6 +1747,31 @@
           {"pregunta": "Con relación al art. 13 del Estatuto Básico del Empleado Público, la designación del personal directivo profesional atenderá a los principios de:", "opciones": ["Igualdad, mérito y criterios de capacidad", "Capacidad, mérito y criterios de celeridad", "Mérito, capacidad y criterios de idoneidad"], "correcta": 2},
           {"pregunta": "Con relación al Estatuto Básico del Empleado Público, ¿quién podrá excepcionalmente conceder la rehabilitación a petición del interesado por haber sido condenado a la pena principal o accesoria de inhabilitación?:", "opciones": ["Los órganos de gobierno de las Administraciones Públicas", "El Consejo de Ministros a propuesta del Ministerio del Interior", "El Consejo de Ministros a propuesta del Ministerio para la Transformación Digital y de la Función Publica"], "correcta": 0}
         ];
+
+// BANCO 7: TEMA 7 - D.G. COORDINACIÓN Y ESTUDIOS (9 PREGUNTAS RD 207/2024)
+        const dbCoordinacion = [
+          {"pregunta": "Según el Real Decreto 207/2024 por el que se desarrolla la estructura orgánica básica del Ministerio del Interior, promover actuaciones que favorezcan la integridad profesional y deontológica de los miembros de las Fuerzas y Cuerpos de Seguridad del Estado, le corresponde a:", "opciones": ["La Dirección General de Coordinación y Estudios", "La Subsecretaría de Interior", "La Inspección de Personal y Servicios de Seguridad"], "correcta": 0},
+          {"pregunta": "Según el Real Decreto 207/2024 por el que se desarrolla la estructura orgánica básica del Ministerio del Interior, la Inspección de Personal y Servicios de Seguridad tiene nivel orgánico:", "opciones": ["De Dirección General", "De Subdirección General", "Que se determine en la relación de puestos de trabajo"], "correcta": 1},
+          {"pregunta": "Conforme al Real Decreto 207/2024 por el que se desarrolla la estructura orgánica básica del Ministerio del Interior, ¿quién es el encargado de auxiliar al titular de la Secretaría de Estado en su función como responsable superior del Sistema Nacional de Protección de las Infraestructuras Críticas?:", "opciones": ["La Dirección General de Coordinación y Estudios", "La Secretaría General de Instituciones Penitenciarias", "La Subsecretaría del Interior"], "correcta": 0},
+          {"pregunta": "Según el Real Decreto 207/2024 por el que se desarrolla la estructura orgánica básica del Ministerio del Interior, albergar en su estructura la figura del Delegado de Protección de Datos de la Secretaría de Estado de Seguridad, es una función que le corresponde a:", "opciones": ["La Subsecretaría del Interior", "La Subdirección General de Sistemas de Información y Comunicaciones para la Seguridad", "La Dirección General de Coordinación y Estudios"], "correcta": 2},
+          {"pregunta": "El órgano encargado en dirigir la Oficina Nacional de lucha contra los delitos de odio es:", "opciones": ["El Gabinete de la Secretaría de Estado de Seguridad", "La Dirección General de la Policía.", "La Dirección General de Coordinación de Estudios"], "correcta": 2},
+          {"pregunta": "Con relación al Real Decreto 207/2024 por el que se desarrolla la estructura orgánica básica del Ministerio del Interior, desarrollar implantar y gestionar la Estadística Nacional de Criminalidad, integrado todos los datos procedentes de las Fuerzas y Cuerpos de Seguridad del Estado, Policías Autonómicas y Policías Locales, es función de:", "opciones": ["El Centro de Inteligencia contra el Terrorismo y el Crimen Organizado", "La Dirección General de Coordinación y Estudios", "La Secretaría General de Instituciones Penitenciarias"], "correcta": 1},
+          {"pregunta": "En el Ministerio del Interior, elaborar periódicamente informes estadísticos sobre la situación y evolución de la criminalidad es una función:", "opciones": ["De la Dirección General de Coordinación y Estudios", "Del Secretario de Estado de Seguridad", "De la Secretaría General Técnica"], "correcta": 0},
+          {"pregunta": "Según el Real Decreto 207/2024 por el que se desarrolla la estructura básica del Ministerio del Interior, la ONVIOSEX está integrada en:", "opciones": ["La Inspección de personal y servicios de seguridad", "La Dirección General de Coordinación y Estudios", "La Dirección General de la Policía"], "correcta": 1},
+          {"pregunta": "¿Quién se constituye , a través de la Oficina de Coordinación de Ciberseguridad , como Observatorio de la Cibercriminalidad del Ministerio del Interior con el objeto de monitorizar y detectar tendencias para hacer frente a los nuevos retos y amenazas en dicho ámbito?:", "opciones": ["La Dirección General de Coordinación y Estudios", "La Secretaría de Estado y Seguridad", "La Dirección General de la Policía"], "correcta": 0}
+        ];
+
+// BANCO 8: TEMA 7 - S.G. PROTECCIÓN CIVIL Y EMERGENCIAS (8 PREGUNTAS RD 328/2026)
+        const dbProteccion = [
+          {"pregunta": "Según el Real Decreto 328/2026 por el que se desarrolla la estructura orgánica del Ministerio de Interior, que nuevo nivel adquiere Protección Civil y Emergencias?", "opciones": ["Subsecretaría", "Dirección General", "Subdirección General"], "correcta": 0},
+          {"pregunta": "Según el Real Decreto 328/2026 por el que se desarrolla la estructura orgánica del Ministerio de Interior, la Dirección General e Protección Civil y Emergencias crea la nueva Subdirección General:", "opciones": ["S.D.G de Anticipación y Preparación", "S.D.G de Resilencia y Recuperación", "Ambas son correctas"], "correcta": 2},
+          {"pregunta": "Según el Real Decreto 328/2026 por el que se desarrolla la estructura orgánica del Ministerio de Interior, la Escuela Nacional de Protección Civil se integra en:", "opciones": ["S.D.G de Formación y Relaciones Institucionales", "S.D.G de Anticipación y Preparación", "S.D.G de Resilencia y Recuperación"], "correcta": 1},
+          {"pregunta": "Según el Real Decreto 328/2026 por el que se desarrolla la estructura orgánica del Ministerio de Interior, el Centro Nacional de Seguimiento y Coordinación de Emergencias (CENEM) se incardina:", "opciones": ["S.D.G de Anticipación y Preparación", "S.D.G de Planificación y Gestión de Emergencias", "S.D.G de Resilencia y Recuperación"], "correcta": 1},
+          {"pregunta": "Según el Real Decreto 328/2026 por el que se desarrolla la estructura orgánica del Ministerio de Interior, el Centro Europeo de Investigación Social de Situaciones de Emergencia (CEISE) se incardina:", "opciones": ["S.D.G de Anticipación y Preparación", "S.D.G de Planificación y Gestión de Emergencias", "S.D.G de Resilencia y Recuperación"], "correcta": 1},
+          {"pregunta": "Según el Real Decreto 328/2026 por el que se desarrolla la estructura orgánica del Ministerio de Interior, será el encargado tramitar las declaraciones de zona gravemente afectada por una emergencia (lo que popularmente conocemos como zona catastrófica) y de gestionar todas las subvenciones y ayudas estatales:", "opciones": ["S.D.G de Anticipación y Preparación", "S.D.G de Planificación y Gestión de Emergencias", "S.D.G de Resilencia y Recuperación"], "correcta": 2},
+          {"pregunta": "Según el Real Decreto 328/2026 por el que se desarrolla la estructura orgánica del Ministerio de Interior, las competencias para la la gestión operativa de las emergencias del Mecanismo Nacional de Respuesta:", "opciones": ["S.D.G de Anticipación y Preparación", "S.D.G de Planificación y Gestión de Emergencias", "S.D.G de Resilencia y Recuperación"], "correcta": 1},
+          {"pregunta": "Según el Real Decreto 328/2026 por el que se desarrolla la estructura orgánica del Ministerio de Interior, se encarga de las competencias en la anticipación, la prevención, la preparación y la formación:", "opciones": ["S.D.G de Anticipación y Preparación", "S.D.G de Planificación y Gestión de Emergencias", "S.D.G de Resilencia y Recuperación"], "correcta": 0}
+        ];
         
         // VARIABLES GLOBALES DE CONTROL DE ESTADO
         let currentQuizData = []; // Guardará el banco de preguntas activo
@@ -1750,6 +1794,10 @@
                 currentQuizData = dbCortes;
             } else if (quizType === 'empleado') {
                 currentQuizData = dbEmpleado;
+            } else if (quizType === 'coordinacion') {
+                currentQuizData = dbCoordinacion;
+            } else if (quizType === 'proteccion') {
+                currentQuizData = dbProteccion;
             }
 
             document.getElementById('main-panel').classList.add('hidden');
