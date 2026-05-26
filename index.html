@@ -164,7 +164,8 @@
         .img-cortes { background-image: url('https://upload.wikimedia.org/wikipedia/commons/3/3f/Solemne_apertura_de_la_XIV_Legislatura_04.jpg'); }
         .img-empleado { background-image: url('https://www.appstonic.com/wp-content/uploads/2015/08/Oferta-de-empleo-publico.png'); }
         .img-coordinacion { background-image: url('https://portalencuestas.ses.mir.es/publico/.resources/formPlantilla/webresources/img/logo-V2.png'); background-color: #ffffff; background-size: contain; background-repeat: no-repeat; }
-        .img-proteccion { background-image: url('https://upload.wikimedia.org/wikipedia/commons/d/d5/Proteccion-civil-logo-gen.png'); }
+        .img-proteccion { background-image: url('https://upload.wikimedia.org/wikipedia/commons/d/d5/Proteccion-civil-logo-gen.png'); 
+        .img-delitos { background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi9_iQtjSMCR2E0d2_fJTBz9hNcmHrKq3R3tM2WpbyzstxnEkdWKiOcBBMo3QO-XS3sJ8_-k2bu4iu2yJSQkKh842FtPb5bdxtANv5Xslbl4LPrasvnFsyB3hzVOZFXzWyP3G1HdNKIRpNK/s1600/delito-informatico.jpg'); }
         
         /* Nuevas imágenes específicas para Extranjería e Infracciones */
         .img-lo4-2000 { background-image: url('https://i0.wp.com/efe.com/wp-content/uploads/2026/03/EXTRANJERIA-OFICINA.webp?fit=900%2C600&ssl=1'); }
@@ -602,6 +603,17 @@
             </a>
 
         </div>
+
+        <div class="section-title">Tema 20: Delitos Informáticos</div>
+        <div class="grid grid-single">
+            
+            <div onclick="startTest('delitos')" class="card">
+                <div class="card-image img-delitos"></div>
+                <div class="card-title">Delitos Informáticos</div>
+            </div>
+
+        </div>
+        
     </div>
 
     <!-- CONTENEDOR DINÁMICO DEL TEST INTERACTIVO -->
@@ -1772,6 +1784,18 @@
           {"pregunta": "Según el Real Decreto 328/2026 por el que se desarrolla la estructura orgánica del Ministerio de Interior, las competencias para la la gestión operativa de las emergencias del Mecanismo Nacional de Respuesta:", "opciones": ["S.D.G de Anticipación y Preparación", "S.D.G de Planificación y Gestión de Emergencias", "S.D.G de Resilencia y Recuperación"], "correcta": 1},
           {"pregunta": "Según el Real Decreto 328/2026 por el que se desarrolla la estructura orgánica del Ministerio de Interior, se encarga de las competencias en la anticipación, la prevención, la preparación y la formación:", "opciones": ["S.D.G de Anticipación y Preparación", "S.D.G de Planificación y Gestión de Emergencias", "S.D.G de Resilencia y Recuperación"], "correcta": 0}
         ];
+
+// BANCO 9: TEMA 20 - DELITOS INFORMÁTICOS (8 PREGUNTAS CP / BUDAPEST CORREGIDAS)
+        const dbDelitos = [
+          {"pregunta": "El Convenio sobre Ciberdelincuencia obliga a que cada Parte designe un punto de contacto que esté disponible las veinticuatro horas del día, siete días a la semana, a éste se le denomina:", "opciones": ["Red 24/7", "Punto Ciber", "Red azul"], "correcta": 0},
+          {"pregunta": "El primer Tratado Internacional que busca hacer frente a los delitos informáticos y los delitos en internet mediante la armonización de leyes nacionales recibe el nombre de:", "opciones": ["Convenio de Budapest", "Convenio de Estambul", "Convenio de Bruselas"], "correcta": 0},
+          {"pregunta": "El Convenio sobre la Ciberdelincuencia se firmó:", "opciones": ["En noviembre de 2001", "En junio de 2004", "En Bruselas"], "correcta": 0},
+          {"pregunta": "El Convenio sobre la Ciberdelincuencia se conoce también como:", "opciones": ["Convenio de Viena", "Convenio de Ámsterdam", "Convenio de Budapest"], "correcta": 2},
+          {"pregunta": "Según la clasificación de los delitos informáticos en base al Convenio sobre Ciberdelincuencia, la falsificación informática estaría dentro de los:", "opciones": ["Delitos contra la confidencialidad, la integridad y la disponibilidad de los datos y sistemas informáticos", "Delitos relacionados con infracciones de la propiedad intelectual", "Delitos informáticos"], "correcta": 2},
+          {"pregunta": "Según la clasificación de los delitos informáticos realizada por el Convenio de Budapest, el abuso de un dispositivo queda incardinado en:", "opciones": ["Delitos informáticos", "Delitos contra la confidencialidad, la integridad y la disponibilidad de los datos y sistemas informáticos", "Delitos relacionados con infracciones de la propiedad intelectual"], "correcta": 1},
+          {"pregunta": "Tras ser despedido Roberto de la empresa en la que trabajaba, a modo de venganza anuló las contraseñas de acceso a las cuentas en el servicio publicitario Google Adwords, ordenando también el barrido masivo de toda la información y campañas de publicidad de la empresa y del servicio de gestión de proyectos, eliminando el contenido de las cuentas referidas. Provocando en la empresa grandes pérdidas de información y causando graves perjuicios. ¿De qué delito es responsable Roberto?:", "opciones": ["Un delito relativo a la propiedad intelectual", "Un delito de daños informáticos", "Un delito relativo a la propiedad industrial"], "correcta": 1},
+          {"pregunta": "Luisma es un hacker que en su tiempo libre se dedica a realizar actividades de ransomware, llegando a conseguir grandes cantidades de dinero a través de transferencias. ¿De qué delito es responsable Luisma?:", "opciones": ["Un delito de estafa", "Un delito de daños informáticos", "Un delito de extorsión"], "correcta": 0}
+        ];
         
         // VARIABLES GLOBALES DE CONTROL DE ESTADO
         let currentQuizData = []; // Guardará el banco de preguntas activo
@@ -1798,6 +1822,8 @@
                 currentQuizData = dbCoordinacion;
             } else if (quizType === 'proteccion') {
                 currentQuizData = dbProteccion;
+            } else if (quizType === 'delitos') {
+                currentQuizData = dbDelitos;
             }
 
             document.getElementById('main-panel').classList.add('hidden');
