@@ -161,6 +161,7 @@
         .img-derecho { background-image: url('https://egserviciosjuridicos.com/wp-content/uploads/2023/02/Conoce-todos-los-tipos-del-derecho-e1687863405616.jpg'); }
         .img-dgp { background-image: url('https://bazarelolivo.com/20276-large_default/bandera-policia-nacional.jpg'); }
         .img-ue { background-image: url('https://mundistour.com/wp-content/uploads/2024/02/5-1024x819.png'); }
+        .img-cortes { background-image: url ('https://upload.wikimedia.org/wikipedia/commons/3/3f/Solemne_apertura_de_la_XIV_Legislatura_04.jpg'); }
         
         /* Nuevas imágenes específicas para Extranjería e Infracciones */
         .img-lo4-2000 { background-image: url('https://i0.wp.com/efe.com/wp-content/uploads/2026/03/EXTRANJERIA-OFICINA.webp?fit=900%2C600&ssl=1'); }
@@ -515,6 +516,16 @@
 
         </div>
 
+        </div> <div class="section-title">Tema 3: CE</div>
+        <div class="grid grid-single">
+            
+            <div onclick="startTest('cortes')" class="card">
+                <div class="card-image img-cortes"></div>
+                <div class="card-title">Cortes Generales</div>
+            </div>
+
+        </div>
+        
         <div class="section-title">Tema 4: Unión Europea</div>
         <div class="grid grid-single">
             
@@ -1625,6 +1636,47 @@
           {"pregunta": "El Consejo Europeo se reunirá:", "opciones": ["Una vez al año", "Dos veces por semestre", "Dos veces por trimestre"], "correcta": 1},
           {"pregunta": "El organismo europeo de ayuda llamado COREPER, depende de:", "opciones": ["La Cosmisión", "El Parlamento", "El Consejo"], "correcta": 2}
         ];
+
+// BANCO 5: TEMA 3 - CORTES GENERALES (37 PREGUNTAS CE CORREGIDAS)
+        const dbCortes = [
+          {"pregunta": "Las Cortes Generales representan al:", "opciones": ["Gobierno", "Rey", "Pueblo Español"], "correcta": 2},
+          {"pregunta": "Las sesiones extraordinarias de las Cámaras:", "opciones": ["Deberán celebrarse cuatro veces al año, como mínimo", "Deberán celebrarse dos veces al ano, como mínimo", "Deberán convocarse sobre un orden del día determinado"], "correcta": 2},
+          {"pregunta": "Las facultades de policía interior dentro de las Cámaras es ejercido por:", "opciones": ["La Mesa de la Cámara respectiva", "Los Presidentes de las Cámaras respectivas", "La junta de Portavoces de la Cámara respectiva"], "correcta": 1},
+          {"pregunta": "Las reuniones de parlamentarios que se celebren sin convocatoria reglamentaria:", "opciones": ["Vincularán a las Cámaras, en cualquier caso", "Vincularán a las Cámaras si así lo recuerdan por mayoría absoluta", "No vincularán a las Cámaras"], "correcta": 2},
+          {"pregunta": "El primer período de sesiones parlamentarias es:", "opciones": ["De enero a junio", "De febrero a junio", "De septiembre a diciembre"], "correcta": 2},
+          {"pregunta": "Las Cortes Generales:", "opciones": ["Controlan la acción del Gobierno", "Dirigen la acción política del Gobierno", "Coordinan la acción del Gobierno"], "correcta": 0},
+          {"pregunta": "Todos los españoles en pleno uso de sus derechos políticos podrán votar en elecciones, esta característica es propia del sufragio:", "opciones": ["Universal", "Libre", "Igual"], "correcta": 0},
+          {"pregunta": "Las Cámaras podrán delegar la aprobación de proyectos o proposiciones de ley:", "opciones": ["En las Comisiones Legislativas Permanentes", "En las Comisiones de Investigación", "En la Diputación Permanente"], "correcta": 0},
+          {"pregunta": "Ceuta y Melilla están representados por:", "opciones": ["Un Diputado cada una", "Dos Diputados cada una", "Tres Diputados cada una"], "correcta": 0},
+          {"pregunta": "Respecto a los españoles que se encuentren fuera del territorio de España:", "opciones": ["La ley reconocerá el derecho de sufragio", "El Estado facilitará el ejercicio del derecho de sufragio", "Ambas son correctas"], "correcta": 2},
+          {"pregunta": "En las provincias insulares, a efecto de elección de Senadores, constituirá una circunscripción:", "opciones": ["Cada provincia", "Cada isla", "Cada isla o agrupación de islas con Cabildo o Consejo Insular"], "correcta": 2},
+          {"pregunta": "El resultado de la investigación llevada a cabo por las comisiones de investigación podrá ser comunicado para el ejercicio de las acciones oportunas a:", "opciones": ["Ministerio Fiscal", "Gobierno", "Tribunal Constitucional"], "correcta": 0},
+          {"pregunta": "Las Cortes Generales son:", "opciones": ["Inamovibles", "Inviolables", "Indisolubles"], "correcta": 1},
+          {"pregunta": "Se puede ser simultáneamente:", "opciones": ["Diputado y Senador", "Diputado y miembro de una Asamblea Legislativa", "Senador y miembro de una Asamblea Legislativa"], "correcta": 2},
+          {"pregunta": "Ibiza y Formentera eligen:", "opciones": ["Dos senadores cada una", "Dos senadores entre las dos", "Un senador entre las dos"], "correcta": 2},
+          {"pregunta": "La designación de senadores por parte de una Comunidad Autónoma, corresponde:", "opciones": ["Al Consejo de Gobierno", "A la Asamblea Legislativa", "A la Asamblea Legislativa, o en su caso, al órgano colegiado superior"], "correcta": 2},
+          {"pregunta": "Las causas de inelegibilidad e incompatibilidad de los Diputados y Senadores serán determinadas por:", "opciones": ["La Ley electoral", "La ley de incompatibilidad parlamentaria", "La Ley de Procedimiento Legislativo"], "correcta": 0},
+          {"pregunta": "La validez de las actas y credenciales de los miembros de ambas Cámaras está sometido a control:", "opciones": ["Legislativo", "Judicial", "Ejecutivo"], "correcta": 1},
+          {"pregunta": "Los Diputados y Senadores gozarán de inmunidad:", "opciones": ["Durante el período de su mandato y aún después de su cese", "Durante los 10 años a su elección", "Durante el período de su mandato"], "correcta": 2},
+          {"pregunta": "Los Diputados y Senadores no pueden ser inculpados ni procesados sin la previa autorización:", "opciones": ["Del Tribunal Constitucional", "Del Rey", "De la Cámara respectiva"], "correcta": 2},
+          {"pregunta": "Cuando el objeto de delegación sea la formación de texto articulados, la delegación deberá otorgarse mediante:", "opciones": ["Ley ordinaria", "Ley de bases", "Ley de bases o ley ordinaria"], "correcta": 1},
+          {"pregunta": "Los reglamentos de las Cámaras y su reforma serán sometidos:", "opciones": ["A una votación final sobre su totalidad, por mayoría absoluta", "A una votación final sobre su totalidad, por mayoría simple", "A una votación final, por mayoría de 3/5"], "correcta": 0},
+          {"pregunta": "Las sesiones conjuntas de las Cámaras se regirán:", "opciones": ["Por el Reglamento del Congreso", "Por el Reglamento del Senado", "Por el Reglamento de las Cortes Generales"], "correcta": 2},
+          {"pregunta": "Las Cámaras podrán reunirse en sesiones extraordinarias a petición de:", "opciones": ["Presidente del Gobierno", "Gobierno", "Presidente del Congreso"], "correcta": 1},
+          {"pregunta": "Según la Constitución, las cámaras pueden remitir las peticiones que reciban:", "opciones": ["A los particulares", "A los Tribunales", "Al Gobierno"], "correcta": 2},
+          {"pregunta": "Las diputaciones permanentes representan:", "opciones": ["A los grupos parlamentarios, en proporción a la población", "A la Junta de Portavoces", "A los grupos parlamentarios en proporción a su importancia numérica"], "correcta": 2},
+          {"pregunta": "La derogación de las leyes orgánicas exigirá:", "opciones": ["Mayoría simple en una votación final sobre el conjunto del proyecto", "Mayoría absoluta en una votación final sobre el conjunto del proyecto", "Mayoría absoluta para la aprobación de cada artículo"], "correcta": 1},
+          {"pregunta": "La delegación legislativa deberá otorgarse mediante:", "opciones": ["Ley ordinaria", "Ley de bases", "Ley de bases o ley ordinaria"], "correcta": 2},
+          {"pregunta": "Las leyes de bases:", "opciones": ["Delimitarán con precisión el objeto y alcance de las leyes orgánicas", "Delimitarán con precisión los principios y criterios que han de seguirse en ele ejercicio de la delegación legislativa", "Delimitarán con precisión el objeto y alcance de la delegación legislativa y los principios y criterios que han de seguirse en su ejercicio"], "correcta": 2},
+          {"pregunta": "Los Decretos Leyes deberán ser inmediatamente sometidos a debate y votación de totalidad:", "opciones": ["Al Congreso", "Al Senado", "Al Congreso y Senado"], "correcta": 0},
+          {"pregunta": "Las formas de ejercicio y requisitos de la iniciativa popular para la presentación de proposiciones de ley ha de regularse mediante:", "opciones": ["Ley ordinaria", "Ley orgánica", "Ley de bases"], "correcta": 1},
+          {"pregunta": "Los proyectos de ley serán aprobados:", "opciones": ["Por el Presidente del Gobierno", "Por el Presidente del Gobierno o Vicepresidente, en su caso", "Por el Consejo de Ministros"], "correcta": 2},
+          {"pregunta": "Los proyectos de ley irán acompañados de:", "opciones": ["De las leyes de delegación", "De la autorización del Presidente de cada Cámara", "De una exposición de motivos"], "correcta": 2},
+          {"pregunta": "Las proposiciones de ley que tome en consideración el Senado, se remitirán para su trámite:", "opciones": ["Al Gobierno", "Al Congreso", "Al Senado"], "correcta": 1},
+          {"pregunta": "Si el Senado introduce enmiendas, El Congreso se pronuncia sobre las mismas, aceptándolas o no, por mayoría:", "opciones": ["Absoluta", "Simple", "3/5"], "correcta": 1},
+          {"pregunta": "Las leyes son aprobadas por:", "opciones": ["El Congreso", "El Senado", "Las Cortes Generales"], "correcta": 2},
+          {"pregunta": "El plazo para la publicación de las leyes es de:", "opciones": ["15 días", "20 días", "El más breve posible"], "correcta": 0}
+        ];
         
         // VARIABLES GLOBALES DE CONTROL DE ESTADO
         let currentQuizData = []; // Guardará el banco de preguntas activo
@@ -1642,7 +1694,9 @@
             } else if (quizType === 'rd2402007') {
                 currentQuizData = dbRD2402007; 
             } else if (quizType === 'ue') {
-                currentQuizData = dbUE; // <--- Añadimos la ruta del Tema 4
+                currentQuizData = dbUE; 
+            } else if (quizType === 'cortes') {
+                currentQuizData = dbCortes;
             }
 
             document.getElementById('main-panel').classList.add('hidden');
