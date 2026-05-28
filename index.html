@@ -505,6 +505,38 @@
             .checkbox-group input[type="checkbox"] { width: 20px; height: 20px; }
             .num-input { width: 100%; padding: 12px; font-size: 1.1rem; border-radius: 8px; border: 1px solid #ccc; margin-bottom: 20px; }
             .start-btn { width: 100%; padding: 15px; background-color: #004481; color: white; border: none; border-radius: 8px; font-size: 1.2rem; font-weight: bold; cursor: pointer; margin-bottom: 30px; }
+
+            /* Estilos de la barra deslizadora (Slider) */
+            .slider {
+                -webkit-appearance: none;
+                width: 100%;
+                height: 10px;
+                border-radius: 5px;
+                background: #d1d5db;
+                outline: none;
+                margin-top: 10px;
+                margin-bottom: 30px;
+            }
+        
+            .slider::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 28px;
+                height: 28px;
+                border-radius: 50%;
+                background: #004481;
+                cursor: pointer;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            }
+    
+            .slider::-moz-range-thumb {
+                width: 28px;
+                height: 28px;
+                border-radius: 50%;
+                background: #004481;
+                cursor: pointer;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            }
         
     </style>
     <link rel="apple-touch-icon" href="/ChatGPT Image 24 may 2026, 20_13_16.png">
@@ -673,8 +705,8 @@
                 <label><input type="checkbox" value="dependencia"> Tema 23: Ley de Dependencia</label>
             </div>
 
-            <h3>2. Número de preguntas:</h3>
-            <input type="number" id="num-preguntas" value="20" min="1" max="100" class="num-input">
+            <h3>2. Número de preguntas: <span id="rango-valor" style="color: #004481; font-weight: bold; font-size: 1.3rem;">20</span></h3>
+            <input type="range" id="num-preguntas" value="20" min="1" max="100" class="slider" oninput="document.getElementById('rango-valor').innerText = this.value">
             
             <button onclick="startCustomTest()" class="start-btn">Comenzar Simulacro</button>
         </div>
