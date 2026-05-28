@@ -584,7 +584,7 @@
             <div onclick="startTest('dgp')" class="card">
                 <div class="card-image img-dgp"></div>
                 <div class="card-title">DGP</div>
-            </div>
+        </div>
 
         </div>
 
@@ -1972,6 +1972,8 @@
                 currentQuizData = dbDelitos;
             } else if (quizType === 'dependencia') {
                 currentQuizData = dbDependencia;
+            } else if (quizType === 'dgp') {
+                currentQuizData = dbDgp;
             }
 
             document.getElementById('main-panel').classList.add('hidden');
