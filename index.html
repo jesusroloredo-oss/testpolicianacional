@@ -2039,7 +2039,7 @@
 
     
         
-        // ACTIVAR EXAMEN DESDE LA TARJETA
+        // ACTIVAR EXAMEN DESDE LA TARJETA (TEMAS INDIVIDUALES)
         function startTest(quizType) {
             if (quizType === 'nacionalidad') {
                 currentQuizData = dbNacionalidad;
@@ -2076,36 +2076,41 @@
             loadQuestion();
         }
 
-        // El cerebro que genera el simulacro a medida
+        // --- NUEVAS FUNCIONES PARA EL SIMULACRO ALEATORIO ---
+
+        function openConfigPanel() {
+            document.getElementById('main-panel').classList.add('hidden');
+            document.getElementById('config-panel').classList.remove('hidden');
+        }
+
+        function closeConfigPanel() {
+            document.getElementById('config-panel').classList.add('hidden');
+            document.getElementById('main-panel').classList.remove('hidden');
+        }
+
         function startCustomTest() {
             try {
-                // 1. Recoger los temas marcados en el panel
                 const checkboxes = document.querySelectorAll('#topic-checkboxes input[type="checkbox"]:checked');
                 
                 if (checkboxes.length === 0) {
-                    alert("¡Alto ahí! Por favor, selecciona al menos un tema de la lista.");
+                    alert("Por favor, selecciona al menos un tema.");
                     return;
                 }
 
-                // 2. Leer número de preguntas y asegurar que es válido
                 let numQuestions = parseInt(document.getElementById('num-preguntas').value);
                 if (isNaN(numQuestions) || numQuestions < 1) {
-                    numQuestions = 20; // Si hay fallo, pone 20 por defecto
+                    numQuestions = 20; 
                 }
 
                 let mixedQuestions = [];
                 let numTopics = checkboxes.length;
-                
-                // 3. Calcular el reparto (cuántas sacamos de cada tema)
                 let basePerTopic = Math.floor(numQuestions / numTopics);
                 let remainder = numQuestions % numTopics;
 
-                // 4. Extraer preguntas de cada tema seleccionado
                 checkboxes.forEach((cb, index) => {
                     let topic = cb.value;
                     let db = null;
                     
-                    // Enlazamos directamente con las variables que ya tienes en tu web
                     if (topic === 'nacionalidad' && typeof dbNacionalidad !== 'undefined') db = dbNacionalidad;
                     else if (topic === 'lo42000' && typeof dbLO42000 !== 'undefined') db = dbLO42000;
                     else if (topic === 'rd2402007' && typeof dbRD2402007 !== 'undefined') db = dbRD2402007;
@@ -2119,50 +2124,43 @@
                     else if (topic === 'dependencia' && typeof dbDependencia !== 'undefined') db = dbDependencia;
 
                     if (db && db.length > 0) {
-                        // Copiamos el banco y lo desordenamos 
                         let shuffledDb = [...db].sort(() => 0.5 - Math.random());
-                        
-                        // Calculamos cuántas tocan de este tema en concreto
                         let take = basePerTopic + (index < remainder ? 1 : 0);
-                        take = Math.min(take, shuffledDb.length); // Nunca coger más de las que existen
-                        
-                        // Las metemos a la batidora general
+                        take = Math.min(take, shuffledDb.length);
                         mixedQuestions = mixedQuestions.concat(shuffledDb.slice(0, take));
                     }
                 });
 
                 if (mixedQuestions.length === 0) {
-                    alert("No se han encontrado preguntas. Puede que hayas marcado un tema cuyo banco de test aún no hemos programado.");
+                    alert("No se encontraron preguntas en los temas seleccionados.");
                     return;
                 }
 
-                // 5. Batidora final: Barajamos todas las preguntas extraídas para que los temas salgan mezclados
                 mixedQuestions.sort(() => 0.5 - Math.random());
 
-                // 6. Cargamos el simulacro en el motor nativo de tu web
                 currentQuizData = mixedQuestions;
                 userAnswers = new Array(currentQuizData.length).fill(-1);
                 currentQuestionIndex = 0;
 
-                // Apagamos las luces del panel y encendemos las del test
                 document.getElementById('config-panel').classList.add('hidden');
                 document.getElementById('test-zone').classList.remove('hidden');
                 document.getElementById('quiz-box').classList.remove('hidden');
                 
-                // Por si el usuario ha hecho un test antes, ocultamos los resultados anteriores
                 const resultsBox = document.getElementById('results-box');
                 if (resultsBox) resultsBox.classList.add('hidden');
                 
                 loadQuestion();
                 
             } catch (error) {
-                // Si el motor colapsa por algo extraño, te mostrará un aviso en pantalla en vez de quedarse en blanco
-                alert("Uy, algo falló al generar el simulacro: " + error.message);
+                alert("Error al generar el simulacro: " + error.message);
             }
         }
-        
+
+        // --- FUNCIONES COMUNES DEL MOTOR DE TEST ---
+
         function exitTest() {
             document.getElementById('test-zone').classList.add('hidden');
+            document.getElementById('config-panel').classList.add('hidden');
             document.getElementById('main-panel').classList.remove('hidden');
         }
 
