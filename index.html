@@ -2319,6 +2319,37 @@
             
             loadQuestion();
         }
+
+            // --- BARRERAS DE SEGURIDAD BÁSICAS ---
+        
+            // 1. Desactivar el clic derecho (evita el "Inspeccionar" con ratón)
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+            });
+    
+            // 2. Bloquear atajos de teclado para herramientas de desarrollador
+            document.onkeydown = function(e) {
+                // Bloquear F12
+                if (e.keyCode === 123) {
+                    return false;
+                }
+                // Bloquear Ctrl+Shift+I (Windows) o Cmd+Option+I
+                if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.keyCode === 73) {
+                    return false;
+                }
+                // Bloquear Ctrl+Shift+J o Cmd+Option+J
+                if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.keyCode === 74) {
+                    return false;
+                }
+                // Bloquear Ctrl+U o Cmd+Option+U (Ver código fuente)
+                if ((e.ctrlKey || e.metaKey) && e.keyCode === 85) {
+                    return false;
+                }
+                // Bloquear Ctrl+Shift+C o Cmd+Option+C (Selector de elementos)
+                if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.keyCode === 67) {
+                    return false;
+                }
+            };
         
     </script>
 </body>
