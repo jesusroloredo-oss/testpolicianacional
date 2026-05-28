@@ -2032,12 +2032,12 @@
           {"pregunta": "La dependencia de Grado II, se conoce como:", "opciones": ["Gran Dependencia", "Dependencia moderada", "Dependencia Severa"], "correcta": 2}
         ];
         
-        // VARIABLES GLOBALES (Imprescindibles para que funcione el motor)
+        // 👇 2. PEGA TODO EL MOTOR DE FUNCIONES JUSTO AQUÍ 👇
+
         let currentQuizData = [];
         let userAnswers = [];
         let currentQuestionIndex = 0;
 
-        // 1. ARRANCAR TEST INDIVIDUAL DESDE LA TARJETA
         function startTest(quizType) {
             if (quizType === 'nacionalidad') currentQuizData = dbNacionalidad;
             else if (quizType === 'lo42000') currentQuizData = dbLO42000;
@@ -2065,7 +2065,6 @@
             loadQuestion();
         }
 
-        // 2. SIMULACRO ALEATORIO: ABRIR Y CERRAR PANEL
         function openConfigPanel() {
             document.getElementById('main-panel').classList.add('hidden');
             const configPanel = document.getElementById('config-panel');
@@ -2078,7 +2077,6 @@
             document.getElementById('main-panel').classList.remove('hidden');
         }
 
-        // 3. SIMULACRO ALEATORIO: CREAR EL EXAMEN MEZCLADO
         function startCustomTest() {
             const checkboxes = document.querySelectorAll('#topic-checkboxes input[type="checkbox"]:checked');
             if (checkboxes.length === 0) {
@@ -2111,7 +2109,6 @@
                 else if (topic === 'dependencia' && typeof dbDependencia !== 'undefined') db = dbDependencia;
 
                 if (db && db.length > 0) {
-                    // Desordenamos la copia del banco actual
                     let shuffledDb = [...db].sort(() => 0.5 - Math.random());
                     let take = basePerTopic + (index < remainder ? 1 : 0);
                     take = Math.min(take, shuffledDb.length);
@@ -2124,7 +2121,6 @@
                 return;
             }
 
-            // Batidora final
             mixedQuestions.sort(() => 0.5 - Math.random());
             currentQuizData = mixedQuestions;
             userAnswers = new Array(currentQuizData.length).fill(-1);
@@ -2142,7 +2138,6 @@
             loadQuestion();
         }
 
-        // 4. FUNCIONES COMUNES DEL MOTOR DE TEST
         function exitTest() {
             document.getElementById('test-zone').classList.add('hidden');
             const configPanel = document.getElementById('config-panel');
@@ -2319,6 +2314,8 @@
             
             document.getElementById('test-zone').scrollIntoView({ behavior: 'smooth' });
         }
+        
+        // 👆 FIN DE LA ZONA DE PROGRAMACIÓN 👆
     </script>
 </body>
 </html>
