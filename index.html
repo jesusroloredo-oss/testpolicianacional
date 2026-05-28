@@ -565,10 +565,10 @@
                 <div class="card-title">Nacionalidad</div>
             </div>
 
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLScZevOuGoqxbBu-UO5gUcLxllOHJtUGXHhBkQNisZBe-6zMbQ/viewform" target="_blank" class="card">
+            <div onclick="startTest('ordenamiento')" class="card">
                 <div class="card-image img-ordenamiento"></div>
                 <div class="card-title">Ordenamiento Jurídico</div>
-            </a>
+            </div>
 
             <a href="https://docs.google.com/forms/d/e/1FAIpQLScrpxlvrIYydyPTpI63EMrMhHOMgJAFvE2I3bVXZ3JMrPnpLQ/viewform" target="_blank" class="card">
                 <div class="card-image img-derecho"></div>
@@ -711,6 +711,7 @@
             <h3>1. Selecciona los temas:</h3>
             <div id="topic-checkboxes" class="checkbox-group">
                 <label><input type="checkbox" value="nacionalidad"> Tema 1: Nacionalidad</label>
+                <label><input type="checkbox" value="ordenamiento"> Tema 1: Ordenamiento Jurídico</label>
                 <label><input type="checkbox" value="cortes"> Tema 3: Cortes Generales</label>
                 <label><input type="checkbox" value="ue"> Tema 4: Unión Europea</label>
                 <label><input type="checkbox" value="empleado"> Tema 6: Empleado Público</label>
@@ -1059,6 +1060,36 @@
           }
         ];
 
+        // BANCO NUEVO: ORDENAMIENTO JURÍDICO (26 PREGUNTAS)
+        const dbOrdenamiento = [
+          {"pregunta": "¿Donde tiene lugar los debates de las leyes orgánicas?", "opciones": ["Exclusivamente en comisión", "Solo en Pleno", "Tanto en comisión como en pleno"], "correcta": 1},
+          {"pregunta": "La decisión para lograr o no una ley de armonización requiere", "opciones": ["Mayoría absoluta de cada una de las cámaras", "Mayoría simple tanto del Congreso como del Senado", "Mayoría absoluta del Congreso y simple del Senado"], "correcta": 0},
+          {"pregunta": "Un decreto ley cuando ya ha sido convalidado por el Congreso de los Diputados", "opciones": ["Adopta la forma de ley ordinaria", "Se mantiene como decreto ley, pero convalidado", "Adquiere la categoría de proyecto de ley del Gobierno"], "correcta": 1},
+          {"pregunta": "La exigencia de que las leyes deben emanar del poder legislativo supone la necesidad que tengan", "opciones": ["Legitimidad formal", "Legitimidad personal", "Legitimidad material"], "correcta": 0},
+          {"pregunta": "¿Cuánto tiempo tiene el Senado para aprobar o no un proyecto urgente de ley remitido por el Congreso de los Diputados?", "opciones": ["60 días", "20 días", "15 días"], "correcta": 1},
+          {"pregunta": "¿Quién debe convalidar o derogar un decreto ley?", "opciones": ["El Gobierno por delegación del Congreso", "El Congreso de los Diputados", "Las Cortes generales"], "correcta": 1},
+          {"pregunta": "La aprobación de una ley de armonización requiere", "opciones": ["Mayoría simple", "Mayoría absoluta", "Unanimidad"], "correcta": 1},
+          {"pregunta": "Plazo tiene las Cortes generales para poder tramitar los proyectos leyes como proyectos de ley por el procedimiento de urgencia.", "opciones": ["15 días", "20 días", "30 días"], "correcta": 2},
+          {"pregunta": "¿Cuál es la ley de las Cortes en materia de competencia estatal que permite a las comunidades Autónomas a dictar normas legislativas autonómicas bajo principios y directrices establecidos por dicha ley estatal?", "opciones": ["Ley de transferencia", "Ley marco", "Las dos anteriores"], "correcta": 1},
+          {"pregunta": "Afirmación correcta en relación con el proceso de elaboración de una ley", "opciones": ["El dictamen de la comisión legislativa es siempre anterior al Pleno del Congreso", "El Pleno del Congreso debe aprobar un proyecto de ley después de hacerlo el Senado", "Las dos afirmaciones anteriores son correctas"], "correcta": 0},
+          {"pregunta": "¿Para los funcionarios de la Policía Nacional, cuál de las siguientes sería la norma de mayor rango?", "opciones": ["Un Real Decreto", "Una orden ministerial interior", "Una resolución del Director General de Policía"], "correcta": 0},
+          {"pregunta": "La promulgación de una ley dictada por una Comunidad Autónoma le corresponde", "opciones": ["Al rey, a propuesta del Presidente de la Comunidad Autónoma", "Al Presidente de la Comunidad Autónoma en nombre del Rey", "Las leyes autonómicas no se promulgan al no ir dirigidas a todo el Estado"], "correcta": 1},
+          {"pregunta": "¿Quién tiene la competencia para ejercer la potestad legislativa estatal?", "opciones": ["Las Cortes generales", "Las asambleas legislativas autonómicas", "Las dos anteriores, según los casos"], "correcta": 0},
+          {"pregunta": "Las cámaras podrán delegar en las comisiones legislativas permanentes", "opciones": ["Solo la aprobación de proyectos de ley", "Únicamente proposiciones de ley", "Tanto proyectos como proposiciones de ley"], "correcta": 2},
+          {"pregunta": "Si una Comunidad Autónoma no está de acuerdo, discrepa con lo que determina la ley de armonización que ponga en entredicho una actividad legislativa autonómica", "opciones": ["Corresponder al Tribunal Constitucional decidirlo al respecto", "Se utilizará la coacción y la fuerza necesaria", "Podrá anularse el Estatuto de Autonomía parcial o totalmente"], "correcta": 0},
+          {"pregunta": "¿Qué normas del Gobierno constituyen la expresión de su función propia y exclusiva no delegada?", "opciones": ["Los reglamentos", "Los decretos leyes", "Los decretos legislativos"], "correcta": 0},
+          {"pregunta": "Afirmación correcta respecto a las leyes orgánicas", "opciones": ["Su aprobación, modificación o derogación requiere mayoría absoluta de las Cortes", "Pueden ser creadas por las Cortes Generales y las asambleas legislativas autonómicas", "No podrán ser objeto de delegación legislativa en las materias sobre las que versan"], "correcta": 2},
+          {"pregunta": "¿Cuándo formarán parte del Derecho positivo español los tratados internacionales válidamente celebrados?", "opciones": ["Una vez publicados oficialmente en España", "Una vez ratificados por el Jefe de Estado", "Una vez aprobados por el poder legislativo"], "correcta": 0},
+          {"pregunta": "El Gobierno solicitará de las Cortes autorización para celebrar determinados tratados internacionales que deberá pronunciarse", "opciones": ["En un plazo de 60 días", "En un plazo de 90 días", "En un plazo de 180 días"], "correcta": 1},
+          {"pregunta": "Cuando el contenido de una norma de rango inferior que contradice a otra de rango superior no será considerado nulo", "opciones": ["Solo cuando la norma de rango inferior proceda o haya sido dictada por un órgano superior", "Cuando la norma inferior proceda de órgano igual o superior al que dictó la de mayor rango", "Nunca, porque la jerarquía se fundamenta en la propia norma, no en el órgano que la dicta"], "correcta": 2},
+          {"pregunta": "¿Quién debe decidir y cuando si un decreto ley debe ser tramitado o no como proyecto de ley de gobierno?", "opciones": ["El propio Gobierno, proponiendo al dictar el propio decreto ley", "Las Cortes una vez convalidado el decreto ley a petición del Gobierno", "El Congreso en el propio Pleno de convalidación del decreto ley"], "correcta": 2},
+          {"pregunta": "Afirmación incorrecta respecto de la delegación legislativa otorgada al Gobierno", "opciones": ["No puede concederse de modo implícito", "No admite subdelegación en otros miembros del Gobierno", "No puede entenderse concedida por un tiempo indeterminado"], "correcta": 1},
+          {"pregunta": "¿Cómo debe ser, según la propia Constitución española, el procedimiento de convalidación o derogación de un decreto ley?", "opciones": ["Urgente y extraordinario", "Provisional y ordinario", "Especial y sumario"], "correcta": 2},
+          {"pregunta": "¿Qué ocurre si el texto de una Ley Orgánica en trámite, enmendado por el Senado, no es aprobado en su conjunto por la mayoría absoluta del Congreso de los Diputados?", "opciones": ["Que queda ratificado el texto inicial del Congreso y rechazadas todas las enmiendas del Senado", "Que las enmiendas del Senado podrán ser superadas por mayoría simple pasado dos meses", "Que el proyecto proposición de Ley Orgánica se devuelva la mesa para una nueva tramitación"], "correcta": 0},
+          {"pregunta": "¿Qué valor tienen para el ordenamiento interno los tratados internacionales firmados por España, pendientes aún de ser publicados en el BOE?", "opciones": ["Ninguno, ya que la falta la publicación, por lo que carecen de cualquier influencia", "El de verdaderas leyes, pero con carácter de fuente indirecta no directa", "Solo el de fuente indirecta del ordenamiento, pero no como verdaderas leyes"], "correcta": 0},
+          {"pregunta": "Las leyes que determinan los principios, directrices y límites en los cuales deben aprobarse posteriormente otras disposiciones posteriores, se conocen como:", "opciones": ["Leyes de bases", "Leyes marco", "Leyes orgánicas"], "correcta": 0}
+        ];
+        
         // BANCO 2: LO 4/2000 EXTRANJERÍA (47 PREGUNTAS TOTALMENTE BLINDADAS)
         const dbLO42000 = [
           {
@@ -2049,6 +2080,7 @@
             
             // Identificamos qué test se ha pulsado y le damos un título bonito
             if (quizType === 'nacionalidad') { db = dbNacionalidad; title = "Tema 1: Nacionalidad"; }
+            else if (quizType === 'ordenamiento') { db = dbOrdenamiento; title = "Tema 1: Ordenamiento Jurídico"; }
             else if (quizType === 'lo42000') { db = dbLO42000; title = "Tema 10: LO 4/2000"; }
             else if (quizType === 'rd2402007') { db = dbRD2402007; title = "Tema 10: RD 240/2007"; }
             else if (quizType === 'ue') { db = dbUE; title = "Tema 4: Unión Europea"; }
@@ -2139,6 +2171,7 @@
 
             const dbs = {
                 'nacionalidad': typeof dbNacionalidad !== 'undefined' ? dbNacionalidad : null,
+                'ordenamiento': typeof dbOrdenamiento !== 'undefined' ? dbOrdenamiento : null,
                 'lo42000': typeof dbLO42000 !== 'undefined' ? dbLO42000 : null,
                 'rd2402007': typeof dbRD2402007 !== 'undefined' ? dbRD2402007 : null,
                 'ue': typeof dbUE !== 'undefined' ? dbUE : null,
