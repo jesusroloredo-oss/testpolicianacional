@@ -2032,38 +2032,24 @@
           {"pregunta": "La dependencia de Grado II, se conoce como:", "opciones": ["Gran Dependencia", "Dependencia moderada", "Dependencia Severa"], "correcta": 2}
         ];
         
-        // VARIABLES GLOBALES DE CONTROL DE ESTADO
-        let currentQuizData = []; // Guardará el banco de preguntas activo
-        let userAnswers = [];     // Historial de respuestas del intento actual
+        // VARIABLES GLOBALES (Imprescindibles para que funcione el motor)
+        let currentQuizData = [];
+        let userAnswers = [];
         let currentQuestionIndex = 0;
 
-    
-        
-        // ACTIVAR EXAMEN DESDE LA TARJETA (TEMAS INDIVIDUALES)
+        // 1. ARRANCAR TEST INDIVIDUAL DESDE LA TARJETA
         function startTest(quizType) {
-            if (quizType === 'nacionalidad') {
-                currentQuizData = dbNacionalidad;
-            } else if (quizType === 'lo42000') {
-                currentQuizData = dbLO42000;
-            } else if (quizType === 'rd2402007') {
-                currentQuizData = dbRD2402007; 
-            } else if (quizType === 'ue') {
-                currentQuizData = dbUE;
-            } else if (quizType === 'cortes') {
-                currentQuizData = dbCortes;
-            } else if (quizType === 'empleado') {
-                currentQuizData = dbEmpleado;
-            } else if (quizType === 'coordinacion') {
-                currentQuizData = dbCoordinacion;
-            } else if (quizType === 'proteccion') {
-                currentQuizData = dbProteccion;
-            } else if (quizType === 'delitos') {
-                currentQuizData = dbDelitos;
-            } else if (quizType === 'dependencia') {
-                currentQuizData = dbDependencia;
-            } else if (quizType === 'dgp') {
-                currentQuizData = dbDgp;
-            }
+            if (quizType === 'nacionalidad') currentQuizData = dbNacionalidad;
+            else if (quizType === 'lo42000') currentQuizData = dbLO42000;
+            else if (quizType === 'rd2402007') currentQuizData = dbRD2402007; 
+            else if (quizType === 'ue') currentQuizData = dbUE;
+            else if (quizType === 'cortes') currentQuizData = dbCortes;
+            else if (quizType === 'empleado') currentQuizData = dbEmpleado;
+            else if (quizType === 'coordinacion') currentQuizData = dbCoordinacion;
+            else if (quizType === 'proteccion') currentQuizData = dbProteccion;
+            else if (quizType === 'delitos') currentQuizData = dbDelitos;
+            else if (quizType === 'dependencia') currentQuizData = dbDependencia;
+            else if (quizType === 'dgp') currentQuizData = dbDgp;
 
             document.getElementById('main-panel').classList.add('hidden');
             document.getElementById('test-zone').classList.remove('hidden');
@@ -2072,95 +2058,95 @@
             currentQuestionIndex = 0;
             
             document.getElementById('quiz-box').classList.remove('hidden');
-            document.getElementById('results-box').classList.add('hidden');
+            
+            const resultsBox = document.getElementById('results-box');
+            if (resultsBox) resultsBox.classList.add('hidden');
+            
             loadQuestion();
         }
 
-        // --- NUEVAS FUNCIONES PARA EL SIMULACRO ALEATORIO ---
-
+        // 2. SIMULACRO ALEATORIO: ABRIR Y CERRAR PANEL
         function openConfigPanel() {
             document.getElementById('main-panel').classList.add('hidden');
-            document.getElementById('config-panel').classList.remove('hidden');
+            const configPanel = document.getElementById('config-panel');
+            if (configPanel) configPanel.classList.remove('hidden');
         }
 
         function closeConfigPanel() {
-            document.getElementById('config-panel').classList.add('hidden');
+            const configPanel = document.getElementById('config-panel');
+            if (configPanel) configPanel.classList.add('hidden');
             document.getElementById('main-panel').classList.remove('hidden');
         }
 
+        // 3. SIMULACRO ALEATORIO: CREAR EL EXAMEN MEZCLADO
         function startCustomTest() {
-            try {
-                const checkboxes = document.querySelectorAll('#topic-checkboxes input[type="checkbox"]:checked');
-                
-                if (checkboxes.length === 0) {
-                    alert("Por favor, selecciona al menos un tema.");
-                    return;
-                }
-
-                let numQuestions = parseInt(document.getElementById('num-preguntas').value);
-                if (isNaN(numQuestions) || numQuestions < 1) {
-                    numQuestions = 20; 
-                }
-
-                let mixedQuestions = [];
-                let numTopics = checkboxes.length;
-                let basePerTopic = Math.floor(numQuestions / numTopics);
-                let remainder = numQuestions % numTopics;
-
-                checkboxes.forEach((cb, index) => {
-                    let topic = cb.value;
-                    let db = null;
-                    
-                    if (topic === 'nacionalidad' && typeof dbNacionalidad !== 'undefined') db = dbNacionalidad;
-                    else if (topic === 'lo42000' && typeof dbLO42000 !== 'undefined') db = dbLO42000;
-                    else if (topic === 'rd2402007' && typeof dbRD2402007 !== 'undefined') db = dbRD2402007;
-                    else if (topic === 'ue' && typeof dbUE !== 'undefined') db = dbUE;
-                    else if (topic === 'cortes' && typeof dbCortes !== 'undefined') db = dbCortes;
-                    else if (topic === 'empleado' && typeof dbEmpleado !== 'undefined') db = dbEmpleado;
-                    else if (topic === 'coordinacion' && typeof dbCoordinacion !== 'undefined') db = dbCoordinacion;
-                    else if (topic === 'proteccion' && typeof dbProteccion !== 'undefined') db = dbProteccion;
-                    else if (topic === 'dgp' && typeof dbDgp !== 'undefined') db = dbDgp;
-                    else if (topic === 'delitos' && typeof dbDelitos !== 'undefined') db = dbDelitos;
-                    else if (topic === 'dependencia' && typeof dbDependencia !== 'undefined') db = dbDependencia;
-
-                    if (db && db.length > 0) {
-                        let shuffledDb = [...db].sort(() => 0.5 - Math.random());
-                        let take = basePerTopic + (index < remainder ? 1 : 0);
-                        take = Math.min(take, shuffledDb.length);
-                        mixedQuestions = mixedQuestions.concat(shuffledDb.slice(0, take));
-                    }
-                });
-
-                if (mixedQuestions.length === 0) {
-                    alert("No se encontraron preguntas en los temas seleccionados.");
-                    return;
-                }
-
-                mixedQuestions.sort(() => 0.5 - Math.random());
-
-                currentQuizData = mixedQuestions;
-                userAnswers = new Array(currentQuizData.length).fill(-1);
-                currentQuestionIndex = 0;
-
-                document.getElementById('config-panel').classList.add('hidden');
-                document.getElementById('test-zone').classList.remove('hidden');
-                document.getElementById('quiz-box').classList.remove('hidden');
-                
-                const resultsBox = document.getElementById('results-box');
-                if (resultsBox) resultsBox.classList.add('hidden');
-                
-                loadQuestion();
-                
-            } catch (error) {
-                alert("Error al generar el simulacro: " + error.message);
+            const checkboxes = document.querySelectorAll('#topic-checkboxes input[type="checkbox"]:checked');
+            if (checkboxes.length === 0) {
+                alert("Por favor, selecciona al menos un tema del menú.");
+                return;
             }
+
+            let numQuestions = parseInt(document.getElementById('num-preguntas').value);
+            if (isNaN(numQuestions) || numQuestions < 1) numQuestions = 20;
+
+            let mixedQuestions = [];
+            let numTopics = checkboxes.length;
+            let basePerTopic = Math.floor(numQuestions / numTopics);
+            let remainder = numQuestions % numTopics;
+
+            checkboxes.forEach((cb, index) => {
+                let topic = cb.value;
+                let db = null;
+                
+                if (topic === 'nacionalidad' && typeof dbNacionalidad !== 'undefined') db = dbNacionalidad;
+                else if (topic === 'lo42000' && typeof dbLO42000 !== 'undefined') db = dbLO42000;
+                else if (topic === 'rd2402007' && typeof dbRD2402007 !== 'undefined') db = dbRD2402007;
+                else if (topic === 'ue' && typeof dbUE !== 'undefined') db = dbUE;
+                else if (topic === 'cortes' && typeof dbCortes !== 'undefined') db = dbCortes;
+                else if (topic === 'empleado' && typeof dbEmpleado !== 'undefined') db = dbEmpleado;
+                else if (topic === 'coordinacion' && typeof dbCoordinacion !== 'undefined') db = dbCoordinacion;
+                else if (topic === 'proteccion' && typeof dbProteccion !== 'undefined') db = dbProteccion;
+                else if (topic === 'dgp' && typeof dbDgp !== 'undefined') db = dbDgp;
+                else if (topic === 'delitos' && typeof dbDelitos !== 'undefined') db = dbDelitos;
+                else if (topic === 'dependencia' && typeof dbDependencia !== 'undefined') db = dbDependencia;
+
+                if (db && db.length > 0) {
+                    // Desordenamos la copia del banco actual
+                    let shuffledDb = [...db].sort(() => 0.5 - Math.random());
+                    let take = basePerTopic + (index < remainder ? 1 : 0);
+                    take = Math.min(take, shuffledDb.length);
+                    mixedQuestions = mixedQuestions.concat(shuffledDb.slice(0, take));
+                }
+            });
+
+            if (mixedQuestions.length === 0) {
+                alert("No se encontraron preguntas. Comprueba que los bancos de los temas elegidos existan.");
+                return;
+            }
+
+            // Batidora final
+            mixedQuestions.sort(() => 0.5 - Math.random());
+            currentQuizData = mixedQuestions;
+            userAnswers = new Array(currentQuizData.length).fill(-1);
+            currentQuestionIndex = 0;
+
+            const configPanel = document.getElementById('config-panel');
+            if (configPanel) configPanel.classList.add('hidden');
+            
+            document.getElementById('test-zone').classList.remove('hidden');
+            document.getElementById('quiz-box').classList.remove('hidden');
+            
+            const resultsBox = document.getElementById('results-box');
+            if (resultsBox) resultsBox.classList.add('hidden');
+            
+            loadQuestion();
         }
 
-        // --- FUNCIONES COMUNES DEL MOTOR DE TEST ---
-
+        // 4. FUNCIONES COMUNES DEL MOTOR DE TEST
         function exitTest() {
             document.getElementById('test-zone').classList.add('hidden');
-            document.getElementById('config-panel').classList.add('hidden');
+            const configPanel = document.getElementById('config-panel');
+            if (configPanel) configPanel.classList.add('hidden');
             document.getElementById('main-panel').classList.remove('hidden');
         }
 
@@ -2168,7 +2154,10 @@
             userAnswers = new Array(currentQuizData.length).fill(-1);
             currentQuestionIndex = 0;
             document.getElementById('quiz-box').classList.remove('hidden');
-            document.getElementById('results-box').classList.add('hidden');
+            
+            const resultsBox = document.getElementById('results-box');
+            if (resultsBox) resultsBox.classList.add('hidden');
+            
             loadQuestion();
         }
 
@@ -2208,7 +2197,6 @@
 
         function selectOption(selectedIndex) {
             userAnswers[currentQuestionIndex] = selectedIndex;
-            
             const options = document.querySelectorAll('.option-item');
             options.forEach((opt, index) => {
                 if (index === selectedIndex) {
@@ -2326,7 +2314,8 @@
             }
 
             document.getElementById('quiz-box').classList.add('hidden');
-            document.getElementById('results-box').classList.remove('hidden');
+            const resultsBox = document.getElementById('results-box');
+            if (resultsBox) resultsBox.classList.remove('hidden');
             
             document.getElementById('test-zone').scrollIntoView({ behavior: 'smooth' });
         }
