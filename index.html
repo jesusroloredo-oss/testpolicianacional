@@ -570,10 +570,10 @@
                 <div class="card-title">Ordenamiento Jurídico</div>
             </div>
 
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLScrpxlvrIYydyPTpI63EMrMhHOMgJAFvE2I3bVXZ3JMrPnpLQ/viewform" target="_blank" class="card">
+            <div onclick="startTest('derecho')" class="card">
                 <div class="card-image img-derecho"></div>
                 <div class="card-title">El Derecho</div>
-            </a>
+            </div>
 
         </div>
 
@@ -712,6 +712,7 @@
             <div id="topic-checkboxes" class="checkbox-group">
                 <label><input type="checkbox" value="nacionalidad"> Tema 1: Nacionalidad</label>
                 <label><input type="checkbox" value="ordenamiento"> Tema 1: Ordenamiento Jurídico</label>
+                <label><input type="checkbox" value="derecho"> Tema 1: El Derecho</label>
                 <label><input type="checkbox" value="cortes"> Tema 3: Cortes Generales</label>
                 <label><input type="checkbox" value="ue"> Tema 4: Unión Europea</label>
                 <label><input type="checkbox" value="empleado"> Tema 6: Empleado Público</label>
@@ -1088,6 +1089,68 @@
           {"pregunta": "¿Qué ocurre si el texto de una Ley Orgánica en trámite, enmendado por el Senado, no es aprobado en su conjunto por la mayoría absoluta del Congreso de los Diputados?", "opciones": ["Que queda ratificado el texto inicial del Congreso y rechazadas todas las enmiendas del Senado", "Que las enmiendas del Senado podrán ser superadas por mayoría simple pasado dos meses", "Que el proyecto proposición de Ley Orgánica se devuelva la mesa para una nueva tramitación"], "correcta": 0},
           {"pregunta": "¿Qué valor tienen para el ordenamiento interno los tratados internacionales firmados por España, pendientes aún de ser publicados en el BOE?", "opciones": ["Ninguno, ya que la falta la publicación, por lo que carecen de cualquier influencia", "El de verdaderas leyes, pero con carácter de fuente indirecta no directa", "Solo el de fuente indirecta del ordenamiento, pero no como verdaderas leyes"], "correcta": 0},
           {"pregunta": "Las leyes que determinan los principios, directrices y límites en los cuales deben aprobarse posteriormente otras disposiciones posteriores, se conocen como:", "opciones": ["Leyes de bases", "Leyes marco", "Leyes orgánicas"], "correcta": 0}
+        ];
+
+        // BANCO NUEVO: EL DERECHO (58 PREGUNTAS CORREGIDAS)
+        const dbDerecho = [
+          {"pregunta": "Cuando una norma es derogada significa que pierde su vigencia, pero la derogación se produce, en todo caso:", "opciones": ["Por otra norma posterior con independencia de su rango", "Por otra posterior de inferior rango", "Por otra posterior de igual o superior rango"], "correcta": 2},
+          {"pregunta": "¿Cuál es la norma suprema del ordenamiento jurídico español?", "opciones": ["La Constitución", "Ley Orgánica", "El Estatuto de Autonomía"], "correcta": 0},
+          {"pregunta": "¿Cuantos días tiene el Congreso de los Diputados para derogar o convalidar un Decreto-Ley?", "opciones": ["30 días a partir de su promulgación", "60 días a partir de su promulgación", "90 días a partir de su promulgación"], "correcta": 0},
+          {"pregunta": "El poder que la norma concede a la persona se conoce con el nombre de:", "opciones": ["Derecho positivo", "Derecho subjetivo", "Derecho objetivo"], "correcta": 1},
+          {"pregunta": "El tiempo que lleva viviendo una persona desde que nace se denomina:", "opciones": ["Viabilidad", "Personalidad", "Edad"], "correcta": 2},
+          {"pregunta": "Las normas jurídicas en las que el supuesto de hecho y la consecuencia jurídica son taxativos, de contenido concreto e invariable, como por ejemplo con las leyes penales, son:", "opciones": ["Necesarias", "Generales", "Rígidas"], "correcta": 2},
+          {"pregunta": "Los derechos deberán ejercitarse conforme:", "opciones": ["Al principio de legalidad", "Al ordenamiento jurídico", "A las exigencias de la buena fe"], "correcta": 2},
+          {"pregunta": "¿Cuáles de las siguientes personas tienen obligaciones?", "opciones": ["Las físicas", "Las jurídicas", "Las respuestas a y b son correctas"], "correcta": 2},
+          {"pregunta": "El conjunto de normas que regulan la vida de una comunidad humana en un momento determinado se conoce con el nombre de:", "opciones": ["Derecho natural", "Derecho positivo", "Derecho objetivo"], "correcta": 1},
+          {"pregunta": "La potestad reglamentaria se lleva a cabo a través de las formas siguientes:", "opciones": ["Reales Decretos", "Decretos legislativos y Decretos Leyes", "Leyes de Bases y Textos Refundidos"], "correcta": 0},
+          {"pregunta": "Es una característica del Derecho positivo:", "opciones": ["Ser cambiante", "Estar impreso en la propia naturaleza humana", "Ser inmutable"], "correcta": 0},
+          {"pregunta": "El Derecho Natural tiene como características principales:", "opciones": ["La igualdad, la justicia y el pluralismo político", "Ser un conjunto de principios universales ajenos a la naturaleza humana", "Ser un derecho permanente e inmutable"], "correcta": 2},
+          {"pregunta": "La derogación de una norma puede ser:", "opciones": ["Positiva y negativa", "Expresa y tácita", "General y particular"], "correcta": 1},
+          {"pregunta": "El período de 'vacatio legis' comprende:", "opciones": ["15 días", "30 días", "20 días"], "correcta": 2},
+          {"pregunta": "El Rey da a conocer la Ley a sus súbditos mediante un acto solemne que recibe el nombre de:", "opciones": ["Referéndum", "Promulgación", "Sanción"], "correcta": 1},
+          {"pregunta": "Para hacer cumplir las normas, a veces, hay que recurrir a la fuerza. A esta posibilidad se le conoce con el nombre de:", "opciones": ["Imperatividad", "Coercitividad", "Obligatoriedad"], "correcta": 1},
+          {"pregunta": "Una vez que las Cortes Generales han aprobado una Ley pasa al Rey para que la sancione, promulgue y ordene su publicación en el BOE, pero, ¿quién sanciona esa Ley junto con el Monarca?", "opciones": ["El Presidente del Gobierno", "El Presidente del Congreso", "Ninguna es correcta"], "correcta": 2},
+          {"pregunta": "El Control Social Formal se lleva a cabo a través de:", "opciones": ["La religión", "La familia", "La norma jurídica"], "correcta": 2},
+          {"pregunta": "Las leyes ordinarias pueden aprobarse:", "opciones": ["En Pleno o en Comisión", "Por mayoría simple, en todo caso", "Son ciertas las dos anteriores"], "correcta": 0},
+          {"pregunta": "Requisito imprescindible de una forma jurídica es:", "opciones": ["Que se haga posible su cumplimiento por cualquier medio", "Que se pueda imponer por la fuerza", "Que tenga contenido económico y político"], "correcta": 1},
+          {"pregunta": "Para la aprobación de un Real Decreto se exige:", "opciones": ["Mayoría absoluta del Congreso", "Mayoría absoluta del Congreso y del Senado", "Los Reales Decretos no se aprueban por las Cortes"], "correcta": 2},
+          {"pregunta": "Una agrupación de personas que se constituye legalmente para conseguir un determinado fin y a la que el Derecho atribuye capacidad jurídica, es la definición de:", "opciones": ["Persona jurídica", "Derecho público", "Persona física"], "correcta": 0},
+          {"pregunta": "Podemos decir que el Derecho que representa la justicia perfecta es:", "opciones": ["Derecho natural", "Derecho positivo", "Derecho constitucional"], "correcta": 0},
+          {"pregunta": "La personalidad se extingue por:", "opciones": ["La incapacitación de la persona en vía judicial", "La inhabilitación de la persona declarada legalmente", "La muerte de la persona"], "correcta": 2},
+          {"pregunta": "El sistema de fuentes de nuestro ordenamiento jurídico se encuentra recogido en:", "opciones": ["La Constitución", "El Código Civil", "La Jurisprudencia"], "correcta": 1},
+          {"pregunta": "De acuerdo con el sistema De Fuentes, ¿cuál de las señaladas a continuación tiene primacía sobre las otras?", "opciones": ["La Ley", "La costumbre", "Los principios generales del Derecho"], "correcta": 0},
+          {"pregunta": "En virtud del principio de jerarquía normativa:", "opciones": ["La costumbre puede ir en contra de una Ley", "Todas las leyes del Estado tienen el mismo rango", "Carece de validez toda norma que atente contra otra de rango superior"], "correcta": 2},
+          {"pregunta": "¿Cuál de los señalados a continuación no tiene rango de Ley?", "opciones": ["Un Real Decreto", "Un Decreto Legislativo", "Un Decreto Ley"], "correcta": 0},
+          {"pregunta": "La competencia para determinar o no la constitucionalidad de un Decreto Ley corresponde:", "opciones": ["A las Cortes Generales", "Al Congreso de los Diputados que es que de convalidarlo", "Al Tribunal Constitucional"], "correcta": 2},
+          {"pregunta": "Los derechos fundamentales y las libertades públicas recogidas en los artículos 15 al 29 de la Constitución, necesitan para su desarrollo:", "opciones": ["Ley ordinaria y orgánica", "Solo ley ordinaria", "Siempre ley orgánica"], "correcta": 2},
+          {"pregunta": "Un Decreto Ley que regule la aplicación y desarrollo de un derecho fundamental:", "opciones": ["Debe ser convalidado por el Congreso", "Deben convalidarlo las Cortes Generales", "Es inconstitucional"], "correcta": 2},
+          {"pregunta": "La Ley es:", "opciones": ["Un documento parlamentario", "La expresión de la voluntad Real", "Una fuente de Derecho"], "correcta": 2},
+          {"pregunta": "Los principios generales del Derecho aplicarán:", "opciones": ["Si no existe ley aplicable a un caso concreto", "Si no existe ley ni costumbre a aplicar", "Los principios generales no aplicarán nunca"], "correcta": 1},
+          {"pregunta": "Los Decretos Legislativos reciben también la denominación de:", "opciones": ["Reales Decretos", "Decretos Leyes", "Leyes delegadas"], "correcta": 2},
+          {"pregunta": "Una Orden Ministerial, bajo el punto de vista de las normas jurídicas, se incluye dentro de:", "opciones": ["Decretos Leyes", "Reglamentos", "Decretos Legislativos"], "correcta": 1},
+          {"pregunta": "La facultad del individuo para actuar en defensa de sus intereses, conforme a una norma de carácter general se conoce como:", "opciones": ["Derecho Positivo", "Derecho Subjetivo", "Derecho Objetivo"], "correcta": 1},
+          {"pregunta": "El derecho que se encuentra fuera, que es externo a la persona, recibe el nombre de:", "opciones": ["Derecho objetivo", "Derecho natural", "Derecho subjetivo"], "correcta": 0},
+          {"pregunta": "Las Leyes Marco y las Leyes de Armonización son aprobadas:", "opciones": ["Las Cortes Generales", "Las Comunidades autónomas", "Las primeras las Cortes y las segundas las Comunidades Autónomas"], "correcta": 0},
+          {"pregunta": "Todo precepto general cuyo fin sea ordenar la convivencia de la comunidad y cuya observancia pueda ser impuesta coactivamente, es lo que se conoce con el nombre de:", "opciones": ["Normas sociales", "Normas generales", "Normas jurídicas"], "correcta": 2},
+          {"pregunta": "Las disposiciones estatales con rango inferior a la Ley, se llaman:", "opciones": ["Decretos Legislativos", "Decretos Leyes", "Reglamentos"], "correcta": 2},
+          {"pregunta": "El acto solemne en virtud del cual el Jefe del Estado, da a conocer a los ciudadanos la existencia de una Ley, y ordena que se cumpla y se haga cumplir, se conoce con el nombre de:", "opciones": ["Publicación", "Sanción", "Promulgación"], "correcta": 2},
+          {"pregunta": "En el ordenamiento jurídico español existen diversas clases de normas, pero ¿están todas ellas sometidas a la Constitución?", "opciones": ["La Ley Orgánica del Tribunal Constitucional no está sometida a la Constitución, sino que se equipara a ella", "Solamente está sometidas a la Constitución las Leyes Orgánicas y Ordinarias", "Todas las normas, sin excepción, están sometidas a la Constitución en virtud del principio de jerarquía normativa"], "correcta": 2},
+          {"pregunta": "¿Tienen las leyes orgánicas y las leyes ordinarias la misma jerarquía normativa, el mismo rango?", "opciones": ["No, porque las leyes orgánicas regulan materias que no pueden regular las leyes ordinarias", "No, porque las primeras se aprueban por mayoría simple y las segundas por mayoría absoluta", "La mayor parte de la doctrina jurídica mantiene la igualdad de rango"], "correcta": 2},
+          {"pregunta": "La teoría según la cual el nacimiento determina la personalidad, si bien se reconocen derecho al concebido desde el momento de la concepción, recibe el nombre de:", "opciones": ["Teoría ecléctica", "Teoría de la concepción", "Teoría del nacimiento"], "correcta": 0},
+          {"pregunta": "¿Cuál de las siguientes afirmaciones es correcta según el Código Civil?", "opciones": ["El nacimiento da origen a la personalidad, pero se reconocen los derechos al concebido aunque no haya nacido", "Sólo se considera nacido al feto que tuviere forma humana", "Además de tener figura humana que viva 24 horas enteramente desprendido del seno materno"], "correcta": 0},
+          {"pregunta": "¿Cuáles son los elementos de la norma jurídica?", "opciones": ["Imperatividad, generalidad, coactividad", "Supuesto de derecho y Consecuencia jurídica", "Supuesto de hecho y Consecuencia jurídica"], "correcta": 2},
+          {"pregunta": "Cual de las siguientes características no es de la norma jurídica:", "opciones": ["Generalidad", "Flexibilidad", "Coercibilidad"], "correcta": 1},
+          {"pregunta": "Son personas jurídicas:", "opciones": ["Asociaciones", "Fundaciones", "Las dos anteriores y las corporaciones"], "correcta": 2},
+          {"pregunta": "Las leyes de las Comunidades Autónomas y las del Estado se miden por el criterio de:", "opciones": ["Jerarquía", "Igualdad", "Competencia"], "correcta": 2},
+          {"pregunta": "Carecerán de validez:", "opciones": ["Las disposiciones que contradigan otras de rango superior", "Las disposiciones que contradigan otras de igual o inferior rango", "Los reglamentos por ser de rango inferior a la ley"], "correcta": 0},
+          {"pregunta": "La ley no ampara:", "opciones": ["El uso del derecho", "El ejercicio social del mismo", "El abuso del derecho o el ejercicio antisocial del mismo"], "correcta": 2},
+          {"pregunta": "El que la norma jurídica contenga mandatos o prohibiciones, estamos haciendo referencia a:", "opciones": ["Coercitividad", "Bilateralidad", "Imperatividad"], "correcta": 2},
+          {"pregunta": "En el supuesto de hecho de una norma se contempla:", "opciones": ["La pena establecida y que se aplicará en caso de incumplimiento", "Un modelo de conducta para que el juez obligatoriamente la aplique", "La descripción de la conducta humana que se quiere regular"], "correcta": 2},
+          {"pregunta": "Los Decretos Leyes reciben también el nombre de:", "opciones": ["Legislación delegada", "Legislación provisional", "Leyes de bases"], "correcta": 1},
+          {"pregunta": "¿Qu fuente del derecho tiene carácter informador?", "opciones": ["La jurisprudencia", "La Ley", "Los principios generales del derecho"], "correcta": 2},
+          {"pregunta": "El Derecho que regule las relaciones entre el Estado y los particulares es:", "opciones": ["Derecho positivo", "Derecho público", "Derecho privado"], "correcta": 1},
+          {"pregunta": "Aunque todo el Derecho va encaminado a conferir la justicia, valor supremo que constituye la finalidad y razón de ser el mismo. ¿Cuál de los señalados a continuación representa la justicia perfecta?", "opciones": ["Derecho constitucional", "Derecho natural", "Derecho procesal"], "correcta": 1},
+          {"pregunta": "La Ley pierde su vigencia:", "opciones": ["Cuando el Rey dispone su nulidad", "Cuando es derogada por otra", "Cuando es ordinaria, pero no si es orgánica"], "correcta": 1}
         ];
         
         // BANCO 2: LO 4/2000 EXTRANJERÍA (47 PREGUNTAS TOTALMENTE BLINDADAS)
@@ -2081,6 +2144,7 @@
             // Identificamos qué test se ha pulsado y le damos un título bonito
             if (quizType === 'nacionalidad') { db = dbNacionalidad; title = "Tema 1: Nacionalidad"; }
             else if (quizType === 'ordenamiento') { db = dbOrdenamiento; title = "Tema 1: Ordenamiento Jurídico"; }
+            else if (quizType === 'derecho') { db = dbDerecho; title = "Tema 1: El Derecho"; }
             else if (quizType === 'lo42000') { db = dbLO42000; title = "Tema 10: LO 4/2000"; }
             else if (quizType === 'rd2402007') { db = dbRD2402007; title = "Tema 10: RD 240/2007"; }
             else if (quizType === 'ue') { db = dbUE; title = "Tema 4: Unión Europea"; }
@@ -2172,6 +2236,7 @@
             const dbs = {
                 'nacionalidad': typeof dbNacionalidad !== 'undefined' ? dbNacionalidad : null,
                 'ordenamiento': typeof dbOrdenamiento !== 'undefined' ? dbOrdenamiento : null,
+                'derecho': typeof dbDerecho !== 'undefined' ? dbDerecho : null, //
                 'lo42000': typeof dbLO42000 !== 'undefined' ? dbLO42000 : null,
                 'rd2402007': typeof dbRD2402007 !== 'undefined' ? dbRD2402007 : null,
                 'ue': typeof dbUE !== 'undefined' ? dbUE : null,
