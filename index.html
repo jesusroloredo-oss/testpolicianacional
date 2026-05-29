@@ -2249,9 +2249,9 @@
             else if (quizType === 'empleado') { db = dbEmpleado; title = "Tema 6: Empleado Público"; }
             else if (quizType === 'coordinacion') { db = dbCoordinacion; title = "Tema 7: D.G. Coordinación"; }
             else if (quizType === 'proteccion') { db = dbProteccion; title = "Tema 7: Protección Civil"; }
+            else if (quizType === 'dgp') { db = dbDgp; title = "Tema 8: DGP"; }
             else if (quizType === 'delitos') { db = dbDelitos; title = "Tema 20: Delitos Informáticos"; }
             else if (quizType === 'dependencia') { db = dbDependencia; title = "Tema 23: Ley de Dependencia"; }
-            else if (quizType === 'dgp') { db = dbDgp; title = "Tema 8: DGP"; }
             else if (quizType === 'lo42015') { db = dbLO42015; title = "Tema 14: LO 4/2015"; }
 
             if (!db || db.length === 0) {
@@ -2342,8 +2342,8 @@
                 'proteccion': typeof dbProteccion !== 'undefined' ? dbProteccion : null,
                 'dgp': typeof dbDgp !== 'undefined' ? dbDgp : null,
                 'delitos': typeof dbDelitos !== 'undefined' ? dbDelitos : null,
-                'dependencia': typeof dbDependencia !== 'undefined' ? dbDependencia : null
-                'lo42015': typeof dbLO42015 !== 'undefined' ? dbLO42015 : null,
+                'dependencia': typeof dbDependencia !== 'undefined' ? dbDependencia : null,
+                'lo42015': typeof dbLO42015 !== 'undefined' ? dbLO42015 : null
             };
 
             checkboxes.forEach((cb, index) => {
@@ -2399,7 +2399,6 @@
         }
 
         function resetTest() {
-            // INICIALIZAR RESPUESTAS Y DUDAS AL REPETIR
             userAnswers = new Array(currentQuizData.length).fill(-1);
             userDoubts = new Array(currentQuizData.length).fill(false);
             currentQuestionIndex = 0;
@@ -2412,7 +2411,6 @@
             loadQuestion();
         }
 
-        // FUNCIÓN QUE CONTROLA EL CLICK EN EL BOTÓN DE DUDA
         function toggleDoubt() {
             userDoubts[currentQuestionIndex] = !userDoubts[currentQuestionIndex];
             const doubtBtn = document.getElementById('doubt-btn');
@@ -2456,7 +2454,6 @@
                 nextBtn.classList.remove('submit-btn');
             }
 
-            // ACTUALIZAR ESTADO VISUAL DEL BOTÓN DE DUDA
             const doubtBtn = document.getElementById('doubt-btn');
             if (doubtBtn) {
                 if (userDoubts[currentQuestionIndex]) {
@@ -2511,7 +2508,6 @@
                     fallos++;
                 }
                 
-                // Si falla, en blanco, o tiene DUDA marcada, lo mandamos a revisión
                 if (ans !== currentQuizData[idx].correcta || userDoubts[idx]) {
                     hayParaRevisar = true;
                 }
@@ -2546,7 +2542,6 @@
                 currentQuizData.forEach((item, idx) => {
                     let userAns = userAnswers[idx];
                     
-                    // Mostramos la pregunta en la revisión si está mal, en blanco, o es DUDA
                     if (userAns !== item.correcta || userDoubts[idx]) {
                         const reviewItem = document.createElement('div');
                         reviewItem.classList.add('review-item');
@@ -2568,7 +2563,6 @@
                         }
                         tagsContainer.appendChild(tag);
 
-                        // ETIQUETA EXCLUSIVA SI ESTABA MARCADA COMO DUDA
                         if (userDoubts[idx]) {
                             const doubtTag = document.createElement('span');
                             doubtTag.classList.add('review-status-tag', 'tag-doubt');
@@ -2629,7 +2623,6 @@
             if ((e.ctrlKey || e.metaKey) && e.keyCode === 85) { return false; }               
             if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.keyCode === 67) { return false; } 
         };
-        
     </script>
 </body>
 </html>
