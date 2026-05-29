@@ -537,28 +537,31 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.4);
         }
 
-        /* Estilos para el botón y etiqueta de DUDA */
+        /* ========================================================
+           ESTILOS PARA EL BOTÓN Y ETIQUETA DE DUDA
+           ======================================================== */
         .doubt-btn {
-            background-color: transparent;
-            border-color: #f59e0b;
-            color: #f59e0b;
+            background-color: transparent !important;
+            border-color: #f59e0b !important;
+            color: #f59e0b !important;
+            transition: all 0.3s ease;
         }
         .doubt-btn.active {
-            background-color: #f59e0b;
-            color: white;
-            box-shadow: 0 0 12px rgba(245, 158, 11, 0.6);
-            border-color: #f59e0b;
+            background-color: #f59e0b !important;
+            color: white !important;
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.6) !important;
+            border-color: #f59e0b !important;
         }
-        .tag-doubt { 
-            background-color: rgba(245, 158, 11, 0.15); 
-            color: #fbbf24; 
-            border: 1px solid rgba(245, 158, 11, 0.4); 
+        .tag-doubt {
+            background-color: rgba(245, 158, 11, 0.15) !important;
+            color: #fbbf24 !important;
+            border: 1px solid rgba(245, 158, 11, 0.4) !important;
             margin-left: 10px;
         }
         .tag-correct {
-            background-color: rgba(16, 185, 129, 0.15); 
-            color: #34d399; 
-            border: 1px solid rgba(16, 185, 129, 0.4);
+            background-color: rgba(16, 185, 129, 0.15) !important;
+            color: #34d399 !important;
+            border: 1px solid rgba(16, 185, 129, 0.4) !important;
         }
         
     </style>
@@ -2155,7 +2158,7 @@
         let currentQuizData = []; // Guardará el banco de preguntas activo
         let pendingQuizData = []; // Guardará temporalmente el banco para cortar
         let userAnswers = [];     // Historial de respuestas del intento actual
-        let userDoubts = [];      // <--- NUEVA VARIABLE PARA LAS DUDAS
+        let userDoubts = [];      // Historial de DUDAS marcadas
         let currentQuestionIndex = 0;
 
 
@@ -2167,7 +2170,6 @@
             let db = [];
             let title = "";
             
-            // Identificamos qué test se ha pulsado y le damos un título bonito
             if (quizType === 'nacionalidad') { db = dbNacionalidad; title = "Tema 1: Nacionalidad"; }
             else if (quizType === 'ordenamiento') { db = dbOrdenamiento; title = "Tema 1: Ordenamiento Jurídico"; }
             else if (quizType === 'derecho') { db = dbDerecho; title = "Tema 1: El Derecho"; }
@@ -2187,19 +2189,16 @@
                 return;
             }
 
-            pendingQuizData = [...db]; // Guardamos el banco completo en la memoria temporal
+            pendingQuizData = [...db]; 
 
-            // Actualizamos los textos del panel
             document.getElementById('single-test-title').innerText = title;
             document.getElementById('single-total-q').innerText = db.length;
             
-            // Configuramos la barra deslizadora al máximo de ese tema
             const slider = document.getElementById('single-num-preguntas');
             slider.max = db.length;
             slider.value = db.length; 
             document.getElementById('single-rango-valor').innerText = db.length;
 
-            // Ocultamos el menú principal y mostramos el panel intermedio
             document.getElementById('main-panel').classList.add('hidden');
             document.getElementById('single-config-panel').classList.remove('hidden');
         }
@@ -2212,10 +2211,10 @@
         function beginSingleTest() {
             const numQuestions = parseInt(document.getElementById('single-num-preguntas').value);
             
-            // Barajamos el banco original y cortamos la cantidad elegida
             let shuffledDb = [...pendingQuizData].sort(() => 0.5 - Math.random());
             currentQuizData = shuffledDb.slice(0, numQuestions);
             
+            // INICIALIZAR RESPUESTAS Y DUDAS
             userAnswers = new Array(currentQuizData.length).fill(-1);
             userDoubts = new Array(currentQuizData.length).fill(false);
             currentQuestionIndex = 0;
@@ -2263,7 +2262,7 @@
             const dbs = {
                 'nacionalidad': typeof dbNacionalidad !== 'undefined' ? dbNacionalidad : null,
                 'ordenamiento': typeof dbOrdenamiento !== 'undefined' ? dbOrdenamiento : null,
-                'derecho': typeof dbDerecho !== 'undefined' ? dbDerecho : null, //
+                'derecho': typeof dbDerecho !== 'undefined' ? dbDerecho : null,
                 'lo42000': typeof dbLO42000 !== 'undefined' ? dbLO42000 : null,
                 'rd2402007': typeof dbRD2402007 !== 'undefined' ? dbRD2402007 : null,
                 'ue': typeof dbUE !== 'undefined' ? dbUE : null,
@@ -2296,7 +2295,10 @@
             mixedQuestions.sort(() => 0.5 - Math.random());
             
             currentQuizData = mixedQuestions;
+            
+            // INICIALIZAR RESPUESTAS Y DUDAS
             userAnswers = new Array(currentQuizData.length).fill(-1);
+            userDoubts = new Array(currentQuizData.length).fill(false);
             currentQuestionIndex = 0;
 
             document.getElementById('config-panel').classList.add('hidden');
@@ -2326,14 +2328,28 @@
         }
 
         function resetTest() {
+            // INICIALIZAR RESPUESTAS Y DUDAS AL REPETIR
             userAnswers = new Array(currentQuizData.length).fill(-1);
+            userDoubts = new Array(currentQuizData.length).fill(false);
             currentQuestionIndex = 0;
+            
             document.getElementById('quiz-box').classList.remove('hidden');
             
             const resultsBox = document.getElementById('results-box');
             if (resultsBox) resultsBox.classList.add('hidden');
             
             loadQuestion();
+        }
+
+        // FUNCIÓN QUE CONTROLA EL CLICK EN EL BOTÓN DE DUDA
+        function toggleDoubt() {
+            userDoubts[currentQuestionIndex] = !userDoubts[currentQuestionIndex];
+            const doubtBtn = document.getElementById('doubt-btn');
+            if (userDoubts[currentQuestionIndex]) {
+                doubtBtn.classList.add('active');
+            } else {
+                doubtBtn.classList.remove('active');
+            }
         }
 
         function loadQuestion() {
@@ -2369,12 +2385,14 @@
                 nextBtn.classList.remove('submit-btn');
             }
 
-            // Actualizar visualmente el botón de Duda al pasar de pregunta
+            // ACTUALIZAR ESTADO VISUAL DEL BOTÓN DE DUDA
             const doubtBtn = document.getElementById('doubt-btn');
-            if (userDoubts[currentQuestionIndex]) {
-                doubtBtn.classList.add('active');
-            } else {
-                doubtBtn.classList.remove('active');
+            if (doubtBtn) {
+                if (userDoubts[currentQuestionIndex]) {
+                    doubtBtn.classList.add('active');
+                } else {
+                    doubtBtn.classList.remove('active');
+                }
             }
         }
 
@@ -2422,7 +2440,7 @@
                     fallos++;
                 }
                 
-                // Si la falla, la deja en blanco, o marca que tiene duda, habrá que revisarla
+                // Si falla, en blanco, o tiene DUDA marcada, lo mandamos a revisión
                 if (ans !== currentQuizData[idx].correcta || userDoubts[idx]) {
                     hayParaRevisar = true;
                 }
@@ -2457,12 +2475,13 @@
                 currentQuizData.forEach((item, idx) => {
                     let userAns = userAnswers[idx];
                     
-                    // Solo mostramos la pregunta si está mal, en blanco, o si está marcada como duda
+                    // Mostramos la pregunta en la revisión si está mal, en blanco, o es DUDA
                     if (userAns !== item.correcta || userDoubts[idx]) {
                         const reviewItem = document.createElement('div');
                         reviewItem.classList.add('review-item');
 
                         const tagsContainer = document.createElement('div');
+                        tagsContainer.style.marginBottom = "15px";
 
                         const tag = document.createElement('span');
                         tag.classList.add('review-status-tag');
@@ -2473,17 +2492,16 @@
                             tag.innerText = `Pregunta ${idx + 1} - Fallada`;
                             tag.classList.add('tag-wrong');
                         } else {
-                            // Si llegó aquí y la acertó, es porque era una duda
                             tag.innerText = `Pregunta ${idx + 1} - Acertada`;
                             tag.classList.add('tag-correct');
                         }
                         tagsContainer.appendChild(tag);
 
-                        // Añadir etiqueta de DUDA si fue marcada
+                        // ETIQUETA EXCLUSIVA SI ESTABA MARCADA COMO DUDA
                         if (userDoubts[idx]) {
                             const doubtTag = document.createElement('span');
                             doubtTag.classList.add('review-status-tag', 'tag-doubt');
-                            doubtTag.innerText = `🚩 DUDA`;
+                            doubtTag.innerText = `🚩 Duda Marcada`;
                             tagsContainer.appendChild(doubtTag);
                         }
 
@@ -2532,18 +2550,13 @@
         // 4. BARRERAS DE SEGURIDAD BÁSICAS
         // ========================================================
         
-        // Desactivar el clic derecho (evita el "Inspeccionar" con ratón)
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-        });
-
-        // Bloquear atajos de teclado para herramientas de desarrollador
+        document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
         document.onkeydown = function(e) {
-            if (e.keyCode === 123) { return false; } // F12
-            if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.keyCode === 73) { return false; } // Ctrl+Shift+I o Cmd+Option+I
-            if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.keyCode === 74) { return false; } // Ctrl+Shift+J o Cmd+Option+J
-            if ((e.ctrlKey || e.metaKey) && e.keyCode === 85) { return false; }               // Ctrl+U o Cmd+Option+U
-            if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.keyCode === 67) { return false; } // Ctrl+Shift+C o Cmd+Option+C
+            if (e.keyCode === 123) { return false; } 
+            if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.keyCode === 73) { return false; } 
+            if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.keyCode === 74) { return false; } 
+            if ((e.ctrlKey || e.metaKey) && e.keyCode === 85) { return false; }               
+            if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.keyCode === 67) { return false; } 
         };
         
     </script>
