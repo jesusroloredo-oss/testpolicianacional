@@ -536,6 +536,30 @@
             cursor: pointer;
             box-shadow: 0 2px 5px rgba(0,0,0,0.4);
         }
+
+        /* Estilos para el botón y etiqueta de DUDA */
+        .doubt-btn {
+            background-color: transparent;
+            border-color: #f59e0b;
+            color: #f59e0b;
+        }
+        .doubt-btn.active {
+            background-color: #f59e0b;
+            color: white;
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.6);
+            border-color: #f59e0b;
+        }
+        .tag-doubt { 
+            background-color: rgba(245, 158, 11, 0.15); 
+            color: #fbbf24; 
+            border: 1px solid rgba(245, 158, 11, 0.4); 
+            margin-left: 10px;
+        }
+        .tag-correct {
+            background-color: rgba(16, 185, 129, 0.15); 
+            color: #34d399; 
+            border: 1px solid rgba(16, 185, 129, 0.4);
+        }
         
     </style>
     <link rel="apple-touch-icon" href="/ChatGPT Image 24 may 2026, 20_13_16.png">
@@ -743,6 +767,7 @@
                 </div>
             <div class="action-container">
                 <button id="prev-btn" class="nav-btn" onclick="prevQuestion()">← Anterior</button>
+                <button id="doubt-btn" class="nav-btn doubt-btn" onclick="toggleDoubt()">🚩 Duda</button>
                 <button id="next-btn" class="nav-btn" onclick="nextQuestion()">Siguiente →</button>
             </div>
         </div>
@@ -2130,6 +2155,7 @@
         let currentQuizData = []; // Guardará el banco de preguntas activo
         let pendingQuizData = []; // Guardará temporalmente el banco para cortar
         let userAnswers = [];     // Historial de respuestas del intento actual
+        let userDoubts = [];      // <--- NUEVA VARIABLE PARA LAS DUDAS
         let currentQuestionIndex = 0;
 
 
@@ -2191,6 +2217,7 @@
             currentQuizData = shuffledDb.slice(0, numQuestions);
             
             userAnswers = new Array(currentQuizData.length).fill(-1);
+            userDoubts = new Array(currentQuizData.length).fill(false);
             currentQuestionIndex = 0;
 
             document.getElementById('single-config-panel').classList.add('hidden');
@@ -2341,6 +2368,14 @@
                 nextBtn.innerText = "Siguiente →";
                 nextBtn.classList.remove('submit-btn');
             }
+
+            // Actualizar visualmente el botón de Duda al pasar de pregunta
+            const doubtBtn = document.getElementById('doubt-btn');
+            if (userDoubts[currentQuestionIndex]) {
+                doubtBtn.classList.add('active');
+            } else {
+                doubtBtn.classList.remove('active');
+            }
         }
 
         function selectOption(selectedIndex) {
@@ -2376,6 +2411,7 @@
             let aciertos = 0;
             let fallos = 0;
             let enBlanco = 0;
+            let hayParaRevisar = false;
 
             userAnswers.forEach((ans, idx) => {
                 if (ans === -1) {
@@ -2384,6 +2420,11 @@
                     aciertos++;
                 } else {
                     fallos++;
+                }
+                
+                // Si la falla, la deja en blanco, o marca que tiene duda, habrá que revisarla
+                if (ans !== currentQuizData[idx].correcta || userDoubts[idx]) {
+                    hayParaRevisar = true;
                 }
             });
 
@@ -2410,26 +2451,43 @@
             const reviewListContainer = document.getElementById('review-list');
             reviewListContainer.innerHTML = ''; 
 
-            if (fallos === 0 && enBlanco === 0) {
-                reviewListContainer.innerHTML = '<p style="text-align:center; color:var(--text-muted);">¡Examen perfecto! No tienes fallos ni preguntas en blanco que revisar.</p>';
+            if (!hayParaRevisar) {
+                reviewListContainer.innerHTML = '<p style="text-align:center; color:var(--text-muted);">¡Examen perfecto! No tienes fallos ni dudas marcadas para revisar.</p>';
             } else {
                 currentQuizData.forEach((item, idx) => {
                     let userAns = userAnswers[idx];
                     
-                    if (userAns !== item.correcta) {
+                    // Solo mostramos la pregunta si está mal, en blanco, o si está marcada como duda
+                    if (userAns !== item.correcta || userDoubts[idx]) {
                         const reviewItem = document.createElement('div');
                         reviewItem.classList.add('review-item');
+
+                        const tagsContainer = document.createElement('div');
 
                         const tag = document.createElement('span');
                         tag.classList.add('review-status-tag');
                         if (userAns === -1) {
                             tag.innerText = `Pregunta ${idx + 1} - En Blanco`;
                             tag.classList.add('tag-blank');
-                        } else {
+                        } else if (userAns !== item.correcta) {
                             tag.innerText = `Pregunta ${idx + 1} - Fallada`;
                             tag.classList.add('tag-wrong');
+                        } else {
+                            // Si llegó aquí y la acertó, es porque era una duda
+                            tag.innerText = `Pregunta ${idx + 1} - Acertada`;
+                            tag.classList.add('tag-correct');
                         }
-                        reviewItem.appendChild(tag);
+                        tagsContainer.appendChild(tag);
+
+                        // Añadir etiqueta de DUDA si fue marcada
+                        if (userDoubts[idx]) {
+                            const doubtTag = document.createElement('span');
+                            doubtTag.classList.add('review-status-tag', 'tag-doubt');
+                            doubtTag.innerText = `🚩 DUDA`;
+                            tagsContainer.appendChild(doubtTag);
+                        }
+
+                        reviewItem.appendChild(tagsContainer);
 
                         const qText = document.createElement('div');
                         qText.classList.add('review-question');
