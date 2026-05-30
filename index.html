@@ -178,6 +178,7 @@
         .img-lopj { background-image: url('https://www.economistjurist.es/wp-content/uploads/sites/2/2014/11/LOPJ.jpg'); }
         .img-jurado { background-image: url('https://ospina.es/wp-content/uploads/2020/07/jury.jpg'); }
         .img-habeas { background-image: url('https://imagenes.20minutos.es/files/image_1920_1080/uploads/imagenes/2020/08/01/que-es-el-procedimiento-habeas-corpus.jpeg'); }
+        .img-detencion { background-image: url('https://netpol.es/wp-content/uploads/2024/01/instruccion_1_2024_curso_procedimiento_detencion_policial.jpg'); }
         
         /* Nuevas imágenes específicas para Extranjería e Infracciones */
         .img-lo4-2000 { background-image: url('https://i0.wp.com/efe.com/wp-content/uploads/2026/03/EXTRANJERIA-OFICINA.webp?fit=900%2C600&ssl=1'); }
@@ -709,7 +710,7 @@
         </div>
 
         <div class="section-title">Tema 21: Derecho Procesal Penal</div>
-        <div class="grid grid-single">
+        <div class="grid">
             
             <!-- TARJETA LOPJ -->
             <div onclick="startTest('lopj')" class="card">
@@ -727,6 +728,12 @@
             <div onclick="startTest('habeas')" class="card">
                 <div class="card-image img-habeas"></div>
                 <div class="card-title">Habeas Corpus</div>
+            </div>
+
+            <!-- TARJETA DETENCIÓN POLICIAL -->
+            <div onclick="startTest('detencion')" class="card">
+                <div class="card-image img-detencion"></div>
+                <div class="card-title">Detención Policial</div>
             </div>
 
         </div>
@@ -790,6 +797,7 @@
                 <label><input type="checkbox" value="lopj"> Tema 21: LOPJ</label>
                 <label><input type="checkbox" value="jurado"> Tema 21: Tribunal Jurado</label>
                 <label><input type="checkbox" value="habeas"> Tema 21: Habeas Corpus</label>
+                <label><input type="checkbox" value="detencion"> Tema 21: Detención Policial</label>
                 <label><input type="checkbox" value="dependencia"> Tema 23: Ley de Dependencia</label>
             </div>
 
@@ -2279,6 +2287,19 @@
           {"pregunta": "Según la Ley Orgánica 6/1984 del procedimiento de Habeas Corpus, una vez dictado el auto de incoación, los Jueces practicaran todas las actuaciones y dictaran resolución en el plazo de:", "opciones": ["Setenta y dos horas", "Cuarenta y ocho horas", "Veinticuatro horas"], "correcta": 2}
         ];
 
+        // BANCO 16: TEMA 21 - DETENCIÓN POLICIAL (9 PREGUNTAS CORREGIDAS)
+        const dbDetencion = [
+          {"pregunta": "Conforme a la Instrucción 1/2024 se la Secretaría de Estado de Seguridad del procedimiento integral de la detención policial, la detención efectuada por las Fuerzas y Cuerpos de Seguridad del Estado constituye una:", "opciones": ["Medida cautelar personal", "Medida de seguridad en general", "Medida no privativa de la libertad"], "correcta": 0},
+          {"pregunta": "¿Cuál es el plazo de conservación de las grabaciones de los calabozos?:", "opciones": ["Al menos 7 días, serán destruidas", "Al menos 15 días, serán destruidas", "Al menos 30 días, serán destruidas"], "correcta": 2},
+          {"pregunta": "Siempre que para efectuar la detención se requiera del empleo de la fuerza, los o las agentes deben asegurase que la intensidad y el medio utilizado son los más idóneos y adecuados, ¿qué supone la congruencia?:", "opciones": ["Que, una vez decidido el empleo de la fuerza y el medio idóneo, el o la agente deberá adecuar la intensidad de su empleo, de forma que no sobrepase la estrictamente necesaria para conseguir el control de la persona, quedando absolutamente proscrito todo exceso", "Que, una vez haya decidido el empleo de la fuerza y para que éste sea legítimo, habrá de elegir, de entre los medios previstos y disponibles, el que sea más idóneo y que mejor se adapte a la concreta situación, valorando, para ello, las prestaciones del medio agresivo, sus características, grados y demás efectos que respondan a la situación y finalidad legal pretendida", "La necesidad o no de recurrir a la coacción física en la detención, de acuerdo con los datos conocidos sobre la situación y el sujeto en cuestión"], "correcta": 1},
+          {"pregunta": "En conformidad a la ISES 1/2024 ¿en qué libro se deberá registrar la detención de un menor de 12 años al que se le atribuye la comisión de una infracción penal?:", "opciones": ["Libro de registro y custodia de menores detenidos", "Libro de registro de actuaciones con menores e incapaces en situación de riesgo", "Libro de registro de diligencias de identificación"], "correcta": 1},
+          {"pregunta": "De acuerdo a la Instrucción 1/2024 de la Secretaría de Estado de Seguridad de procedimiento integral de la detención policial, en cuanto al arma de fuego:", "opciones": ["El uso siempre que sea posible, de conminaciones claras dirigidas a la persona agresora para que abandone su actitud y de la advertencia de que se halla ante un agente de la autoridad, tanto de manera verbal como mediante el desenfunde del arma", "Los agentes harán uso de armas de fuego en las situaciones en que exista una situación grave para su vida, su integridad física o la de terceras personas, o en aquellas circunstancias que puedan suponer un grave riesgo para la seguridad pública y siempre de conformidad con los citados principios de oportunidad, congruencia y proporcionalidad", "El uso del arma de fuego, queda circunscrito cuando la violencia física ponga peligro a la seguridad ciudadana"], "correcta": 1},
+          {"pregunta": "Según Instrucción 1/2024 de la Secretaría de Estado de Seguridad del procedimiento integral de la detención policial, las personas detenidas en espacios marinos o aéreos:", "opciones": ["Serán puestas en libertad o a disposición judicial tan pronto como sea posible, sin que se pueda exceder del plazo de 48 horas", "Serán puestas en libertad o a disposición judicial tan pronto como sea posible, sin que se pueda exceder del plazo de 72 horas", "Serán puestas en libertad o a disposición judicial tan pronto como sea posible, sin que se pueda exceder del plazo de 24 horas"], "correcta": 1},
+          {"pregunta": "Según la Instrucción 1/2024 de la Secretaría de Estado de Seguridad del protocolo integral de la detención policial, en lo relativo al empleo de la fuerza en la detención, los agentes de policía podrán hacer uso del arma de fuego cuando:", "opciones": ["No puedan ser utilizados otros medios menos lesivos para impedir o repeler la agresión", "La agresión sea de tal intensidad y violencia que ponga en peligro, aunque sea leve, la vida o integridad corporal de la persona o personas atacadas", "El agresor no abandone su actitud intimidante, se hayan dado o no las conminaciones pertinentes para que detenga su actividad delictiva."], "correcta": 0},
+          {"pregunta": "Según la Instrucción 1/2024 de la Secretaría de Estado de Seguridad, el criterio general de ocupación de las áreas de custodia de detenidos de las Fuerzas y Cuerpos de Seguridad:", "opciones": ["Será de una persona detenida por celda, independientemente de la capacidad máxima de cada una", "Se ajustará a la capacidad mínima de dos personas por celda", "Se ajustará a la capacidad máxima establecida para cada una de ellas"], "correcta": 0},
+          {"pregunta": "Según la Instrucción 1/2024 de la Secretaría de Estado de Seguridad por la que se aprueba el \"procedimiento integral de la detención policial\", el traslado de menores se realizará:", "opciones": ["En la forma que menos les perjudique, con respeto y garantía de sus derechos", "En forma que menos les perjudique su integridad moral y garantizando los derechos y deberes del menor", "En la forma que menos les perjudique su dignidad y libertades"], "correcta": 0}
+        ];
+
         // BANCO 10: TEMA 23 - LEY DE DEPENDENCIA (12 PREGUNTAS LEY 39/2006 CORREGIDAS)
         const dbDependencia = [
           {"pregunta": "Las tareas más elementales de la persona, que le permiten desenvolverse con un mínimo de autonomía e independencia, se definen como:", "opciones": ["Actividades Básicas de la Vida Diaria", "Dependencia", "Necesidades de apoyo"], "correcta": 0},
@@ -2328,6 +2349,7 @@
             else if (quizType === 'lopj') { db = dbLOPJ; title = "Tema 21: LOPJ"; }
             else if (quizType === 'jurado') { db = dbJurado; title = "Tema 21: Tribunal Jurado"; }
             else if (quizType === 'habeas') { db = dbHabeas; title = "Tema 21: Habeas Corpus"; }
+            else if (quizType === 'detencion') { db = dbDetencion; title = "Tema 21: Detención Policial"; }
             else if (quizType === 'dependencia') { db = dbDependencia; title = "Tema 23: Ley de Dependencia"; }
             else if (quizType === 'lo42015') { db = dbLO42015; title = "Tema 14: LO 4/2015"; }
 
@@ -2422,6 +2444,7 @@
                 'lopj': typeof dbLOPJ !== 'undefined' ? dbLOPJ : null,
                 'jurado': typeof dbJurado !== 'undefined' ? dbJurado : null,
                 'habeas': typeof dbHabeas !== 'undefined' ? dbHabeas : null,
+                'detencion': typeof dbDetencion !== 'undefined' ? dbDetencion : null,
                 'dependencia': typeof dbDependencia !== 'undefined' ? dbDependencia : null,
                 'lo42015': typeof dbLO42015 !== 'undefined' ? dbLO42015 : null
             };
