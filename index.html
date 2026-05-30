@@ -177,6 +177,7 @@
         .img-lo4-2015 { background-image: url('https://www.abogadoscea.es/images/yootheme/img/actualidad/Ley_Seguridad_Ciudadana.jpg'); }
         .img-lopj { background-image: url('https://www.economistjurist.es/wp-content/uploads/sites/2/2014/11/LOPJ.jpg'); }
         .img-jurado { background-image: url('https://ospina.es/wp-content/uploads/2020/07/jury.jpg'); }
+        .img-habeas { background-image: url('https://imagenes.20minutos.es/files/image_1920_1080/uploads/imagenes/2020/08/01/que-es-el-procedimiento-habeas-corpus.jpeg'); }
         
         /* Nuevas imágenes específicas para Extranjería e Infracciones */
         .img-lo4-2000 { background-image: url('https://i0.wp.com/efe.com/wp-content/uploads/2026/03/EXTRANJERIA-OFICINA.webp?fit=900%2C600&ssl=1'); }
@@ -722,6 +723,12 @@
                 <div class="card-title">Tribunal Jurado</div>
             </div>
 
+            <!-- TARJETA HABEAS CORPUS -->
+            <div onclick="startTest('habeas')" class="card">
+                <div class="card-image img-habeas"></div>
+                <div class="card-title">Habeas Corpus</div>
+            </div>
+
         </div>
 
         <div class="section-title">Tema 23: Políticas de Igualdad</div>
@@ -782,6 +789,7 @@
                 <label><input type="checkbox" value="delitos"> Tema 20: Delitos Informáticos</label>
                 <label><input type="checkbox" value="lopj"> Tema 21: LOPJ</label>
                 <label><input type="checkbox" value="jurado"> Tema 21: Tribunal Jurado</label>
+                <label><input type="checkbox" value="habeas"> Tema 21: Habeas Corpus</label>
                 <label><input type="checkbox" value="dependencia"> Tema 23: Ley de Dependencia</label>
             </div>
 
@@ -2259,6 +2267,18 @@
           {"pregunta": "Según la Ley Orgánica 5/1995 del Tribunal del Jurado, los Diputados del Parlamento Europeo:", "opciones": ["Incurren en causa de prohibición para formar parte del Tribunal del Jurado", "Están incapacitados para ser jurado", "Son incompatibles para el desempeño de la función de jurado"], "correcta": 2}
         ];
 
+        // BANCO 15: TEMA 21 - HABEAS CORPUS (8 PREGUNTAS CORREGIDAS)
+        const dbHabeas = [
+          {"pregunta": "Carlos se encuentra detenido en la Comisaria de Leganés, aunque su detención se produjo en una zona limítrofe con Getafe. Él cree estar ilegalmente detenido por su conducta y solicita un Habeas Corpus. ¿Qué Autoridad judicial es competente de conocer la solicitud?:", "opciones": ["El Juez Central de Instrucción del lugar en que se efectuó la detención", "El Juez de Instrucción del lugar en que se haya producido la detención", "El Juez de Instrucción del lugar donde se encuentre la persona privada de libertad"], "correcta": 2},
+          {"pregunta": "Conforme con la Ley Orgánica 6/1984 reguladora del procedimiento de «Habeas Corpus», contra la resolución del auto que incoe el procedimiento de Habeas Corpus o deniegue su solicitud:", "opciones": ["No cabrá recurso", "Cabrá Recurso de Reposición", "Cabrá Recurso de Amparo"], "correcta": 0},
+          {"pregunta": "Según la Ley Orgánica 6/1984 que regula el procedimiento de Habeas Corpus, una vez dictado por el Juez auto de incoación del procedimiento deberá practicar la totalidad de las actuaciones para el esclarecimiento de los hechos en un plazo de:", "opciones": ["Veinticuatro horas", "Setenta y dos horas", "Cuarenta y ocho horas"], "correcta": 0},
+          {"pregunta": "Conforme a la Ley Orgánica 6/1984 reguladora del procedimiento de Habeas Corpus (señale la INCORRECTA):", "opciones": ["Es competente para conocer la solicitud el Juez de Instrucción del lugar en el que se efectuó la detención", "Podrá instar el procedimiento el abogado defensor del privado de libertad", "La autoridad o funcionario público competente estará obligado a poner inmediatamente en conocimiento del Juez competente la solicitud"], "correcta": 1},
+          {"pregunta": "Según la Ley Orgánica 6/1984 reguladora del procedimiento de Habeas Corpus, promovida la solicitud de Habeas Corpus el Juez examinará la concurrencia de los requisitos para su tramitación y dará traslado de la misma:", "opciones": ["Al Ministerio Fiscal", "A la Sección de Instrucción del Tribunal de Instancia", "Al abogado defensor del privado de libertad"], "correcta": 0},
+          {"pregunta": "En el ámbito de la Jurisdicción Militar será competente para conocer de la solicitud de Habeas Corpus el Juez Togado Militar de Instrucción:", "opciones": ["Del lugar donde se encuentre el detenido", "Del lugar donde se produjo la detención", "Del lugar del último paradero del detenido"], "correcta": 1},
+          {"pregunta": "El Defensor del Pueblo está legitimado para:", "opciones": ["Interponer la cuestión de inconstitucionalidad", "Ejercer el derecho de gracia, que no podrá autorizar indultos generales", "Instar el procedimiento de Habeas Corpus"], "correcta": 2},
+          {"pregunta": "Según la Ley Orgánica 6/1984 del procedimiento de Habeas Corpus, una vez dictado el auto de incoación, los Jueces practicaran todas las actuaciones y dictaran resolución en el plazo de:", "opciones": ["Setenta y dos horas", "Cuarenta y ocho horas", "Veinticuatro horas"], "correcta": 2}
+        ];
+
         // BANCO 10: TEMA 23 - LEY DE DEPENDENCIA (12 PREGUNTAS LEY 39/2006 CORREGIDAS)
         const dbDependencia = [
           {"pregunta": "Las tareas más elementales de la persona, que le permiten desenvolverse con un mínimo de autonomía e independencia, se definen como:", "opciones": ["Actividades Básicas de la Vida Diaria", "Dependencia", "Necesidades de apoyo"], "correcta": 0},
@@ -2307,6 +2327,7 @@
             else if (quizType === 'delitos') { db = dbDelitos; title = "Tema 20: Delitos Informáticos"; }
             else if (quizType === 'lopj') { db = dbLOPJ; title = "Tema 21: LOPJ"; }
             else if (quizType === 'jurado') { db = dbJurado; title = "Tema 21: Tribunal Jurado"; }
+            else if (quizType === 'habeas') { db = dbHabeas; title = "Tema 21: Habeas Corpus"; }
             else if (quizType === 'dependencia') { db = dbDependencia; title = "Tema 23: Ley de Dependencia"; }
             else if (quizType === 'lo42015') { db = dbLO42015; title = "Tema 14: LO 4/2015"; }
 
@@ -2400,6 +2421,7 @@
                 'delitos': typeof dbDelitos !== 'undefined' ? dbDelitos : null,
                 'lopj': typeof dbLOPJ !== 'undefined' ? dbLOPJ : null,
                 'jurado': typeof dbJurado !== 'undefined' ? dbJurado : null,
+                'habeas': typeof dbHabeas !== 'undefined' ? dbHabeas : null,
                 'dependencia': typeof dbDependencia !== 'undefined' ? dbDependencia : null,
                 'lo42015': typeof dbLO42015 !== 'undefined' ? dbLO42015 : null
             };
