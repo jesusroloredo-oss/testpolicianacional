@@ -176,6 +176,7 @@
         .img-dependencia { background-image: url('https://despresdelcancer.cat/wp-content/uploads/2018/03/P16-1044_M-ORGANITZO_LLEI-DEPENDENCIA-_febrer2018_v0-2_INFO_CAST.jpg'); }
         .img-lo4-2015 { background-image: url('https://www.abogadoscea.es/images/yootheme/img/actualidad/Ley_Seguridad_Ciudadana.jpg'); }
         .img-lopj { background-image: url('https://www.economistjurist.es/wp-content/uploads/sites/2/2014/11/LOPJ.jpg'); }
+        .img-jurado { background-image: url('https://ospina.es/wp-content/uploads/2020/07/jury.jpg'); }
         
         /* Nuevas imágenes específicas para Extranjería e Infracciones */
         .img-lo4-2000 { background-image: url('https://i0.wp.com/efe.com/wp-content/uploads/2026/03/EXTRANJERIA-OFICINA.webp?fit=900%2C600&ssl=1'); }
@@ -715,6 +716,12 @@
                 <div class="card-title">LOPJ</div>
             </div>
 
+            <!-- TARJETA TRIBUNAL JURADO -->
+            <div onclick="startTest('jurado')" class="card">
+                <div class="card-image img-jurado"></div>
+                <div class="card-title">Tribunal Jurado</div>
+            </div>
+
         </div>
 
         <div class="section-title">Tema 23: Políticas de Igualdad</div>
@@ -774,6 +781,7 @@
                 <label><input type="checkbox" value="lo42015"> Tema 14: LO 4/2015</label>
                 <label><input type="checkbox" value="delitos"> Tema 20: Delitos Informáticos</label>
                 <label><input type="checkbox" value="lopj"> Tema 21: LOPJ</label>
+                <label><input type="checkbox" value="jurado"> Tema 21: Tribunal Jurado</label>
                 <label><input type="checkbox" value="dependencia"> Tema 23: Ley de Dependencia</label>
             </div>
 
@@ -2234,6 +2242,23 @@
           {"pregunta": "El Tribunal Supremo está integrado por las Salas:", "opciones": ["Primera: De lo Civil; Segunda: De lo Penal; Tercera: De lo Contencioso-Administrativo; Cuarta: De lo Social y Quinta: De lo Militar", "De Apelación, De lo Penal, De lo Contencioso-Administrativo y De lo Social", "De lo Civil y Penal, de lo Contencioso-Administrativo y de lo Social"], "correcta": 0}
         ];
 
+        // BANCO 14: TEMA 21 - TRIBUNAL JURADO (13 PREGUNTAS CORREGIDAS)
+        const dbJurado = [
+          {"pregunta": "Según la Ley Orgánica del Tribunal del Jurado, serán incompatibles para el desempeño de la función de jurado:", "opciones": ["Los Diputados y Senadores de las Cortes Generales, los Diputados del Parlamento Europeo, los miembros de las Asambleas Legislativas de las Comunidades Autónomas y los miembros electos de las Corporaciones locales", "Los condenados por delito doloso, que no hayan obtenido la rehabilitación", "Los que tenga interés, directo o indirecto, en la causa"], "correcta": 0},
+          {"pregunta": "Según lo que establece la Ley Orgánica 5/1995 del Tribunal Jurado, el que haya intervenido en la causa como testigo, perito, fiador o intérprete tendrá:", "opciones": ["Prohibición para ser jurado", "Incompatibilidad para ser jurado", "Falta de capacidad para ser jurado"], "correcta": 0},
+          {"pregunta": "Según la Ley Orgánica 5/1995 del Tribunal del Jurado, cualquier reclamación que se realice contra el acto del sorteo por el que se elige a los candidatos del jurado se realizará ante:", "opciones": ["El Juez Decano de los de Primera Instancia e Instrucción del Partido Judicial", "El Ministerio Fiscal", "La Audiencia Provincial"], "correcta": 0},
+          {"pregunta": "El Tribunal del Jurado tendrá competencia para el conocimiento y fallo de las causas por los delitos:", "opciones": ["De la omisión del deber de socorro", "Del allanamiento de morada", "Ambas son correctas"], "correcta": 2},
+          {"pregunta": "Según la Ley Orgánica 5/1995 del Tribunal del Jurado, los jurados en el ejercicio de sus funciones actuarán con arreglo a los principios:", "opciones": ["Básicos procesales de inmediación", "De independencia, responsabilidad y sumisión a la Ley", "De oralidad, inmediación y celeridad"], "correcta": 1},
+          {"pregunta": "Queda prohibido por la Ley Orgánica 5/1995 del Tribunal Jurado formar parte del tribunal si:", "opciones": ["Es mayor de sesenta y cinco años", "Se tiene interés, directo o indirecto, de la causa", "Se tiene residencia en el extranjero"], "correcta": 1},
+          {"pregunta": "Según la Ley Orgánica 5/1995 del Tribunal del Jurado, podrán excusarse de actuar como jurado:", "opciones": ["Los mayores de sesenta años", "Los que hayan desempeñado efectivamente funciones de jurado dentro de los cinco años precedentes al día de la nueva designación", "Los militares profesionales en activo cunado concurran razones de servicio"], "correcta": 2},
+          {"pregunta": "Conforme a la Ley Orgánica 5/1995 del Tribunal Jurado, ¿cuántos jurados suplentes deben asistir a juicio?:", "opciones": ["Cuatro", "Dos", "Ninguno, los jurados suplentes no es necesario que asistan al juicio"], "correcta": 1},
+          {"pregunta": "De acuerdo con lo que establece la Ley Orgánica 5/1995 del Tribunal del Jurado:", "opciones": ["El Tribunal del Jurado se compone de doce jurados y un Magistrado integrante de la Audiencia Nacional, que lo presidirá", "Si, por razón del aforamiento del acusado, el juicio del Jurado debe celebrarse en el ámbito del Tribunal Supremo o de un Tribunal Superior de Justicia, el Magistrado Presidente del Tribunal del Jurado será un Magistrado de la Sala de lo Penal del Tribunal Supremo o de la Sala de lo Civil y Penal del Tribunal Superior de Justicia, respectivamente", "Al juicio del Jurado asistirán cuatro jurados suplentes"], "correcta": 1},
+          {"pregunta": "Según la Ley Orgánica 5/1995 de Tribunal Jurado, este tendrá conocimiento y fallo de las causas por los delitos tipificados en el Código Penal de:", "opciones": ["La seguridad vial", "La omisión del deber de socorro", "Los abusos sexuales"], "correcta": 1},
+          {"pregunta": "Como regla general, el Tribunal del Jurado se compone de:", "opciones": ["Nueve jurados y un Magistrado integrante de la Audiencia Provincial, que lo presidirá", "Cinco jurados y un Magistrado integrante de la Audiencia Nacional, que lo presidirá", "Siete jurados, un Presidente del Tribunal Superior de Justicia y dos suplentes"], "correcta": 0},
+          {"pregunta": "Sara, con setenta años, ha salido candidata a jurado. Según la Ley Orgánica 5/1995 del Tribunal del Jurado, Sara podrá formular reclamación ante el Juez Decano de los de Primera Instancia e Instrucción del partido judicial al que corresponda el Municipio de su vecindad a efectos de su exclusión de la lista:", "opciones": ["Durante los veinte primeros días del mes septiembre", "Durante los diez primeros días del mes de octubre", "Durante los quince primeros días del mes de noviembre"], "correcta": 2},
+          {"pregunta": "Según la Ley Orgánica 5/1995 del Tribunal del Jurado, los Diputados del Parlamento Europeo:", "opciones": ["Incurren en causa de prohibición para formar parte del Tribunal del Jurado", "Están incapacitados para ser jurado", "Son incompatibles para el desempeño de la función de jurado"], "correcta": 2}
+        ];
+
         // BANCO 10: TEMA 23 - LEY DE DEPENDENCIA (12 PREGUNTAS LEY 39/2006 CORREGIDAS)
         const dbDependencia = [
           {"pregunta": "Las tareas más elementales de la persona, que le permiten desenvolverse con un mínimo de autonomía e independencia, se definen como:", "opciones": ["Actividades Básicas de la Vida Diaria", "Dependencia", "Necesidades de apoyo"], "correcta": 0},
@@ -2281,6 +2306,7 @@
             else if (quizType === 'dgp') { db = dbDgp; title = "Tema 8: DGP"; }
             else if (quizType === 'delitos') { db = dbDelitos; title = "Tema 20: Delitos Informáticos"; }
             else if (quizType === 'lopj') { db = dbLOPJ; title = "Tema 21: LOPJ"; }
+            else if (quizType === 'jurado') { db = dbJurado; title = "Tema 21: Tribunal Jurado"; }
             else if (quizType === 'dependencia') { db = dbDependencia; title = "Tema 23: Ley de Dependencia"; }
             else if (quizType === 'lo42015') { db = dbLO42015; title = "Tema 14: LO 4/2015"; }
 
@@ -2373,6 +2399,7 @@
                 'dgp': typeof dbDgp !== 'undefined' ? dbDgp : null,
                 'delitos': typeof dbDelitos !== 'undefined' ? dbDelitos : null,
                 'lopj': typeof dbLOPJ !== 'undefined' ? dbLOPJ : null,
+                'jurado': typeof dbJurado !== 'undefined' ? dbJurado : null,
                 'dependencia': typeof dbDependencia !== 'undefined' ? dbDependencia : null,
                 'lo42015': typeof dbLO42015 !== 'undefined' ? dbLO42015 : null
             };
