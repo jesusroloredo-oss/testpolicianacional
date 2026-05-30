@@ -179,6 +179,7 @@
         .img-jurado { background-image: url('https://ospina.es/wp-content/uploads/2020/07/jury.jpg'); }
         .img-habeas { background-image: url('https://imagenes.20minutos.es/files/image_1920_1080/uploads/imagenes/2020/08/01/que-es-el-procedimiento-habeas-corpus.jpeg'); }
         .img-detencion { background-image: url('https://netpol.es/wp-content/uploads/2024/01/instruccion_1_2024_curso_procedimiento_detencion_policial.jpg'); }
+        .img-fiscal { background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJTAroG6DwqGb1onxF77F8ZAIb5gqLK4LueA&s'); }
         
         /* Nuevas imágenes específicas para Extranjería e Infracciones */
         .img-lo4-2000 { background-image: url('https://i0.wp.com/efe.com/wp-content/uploads/2026/03/EXTRANJERIA-OFICINA.webp?fit=900%2C600&ssl=1'); }
@@ -736,6 +737,12 @@
                 <div class="card-title">Detención Policial</div>
             </div>
 
+            <!-- TARJETA MINISTERIO FISCAL -->
+            <div onclick="startTest('fiscal')" class="card">
+                <div class="card-image img-fiscal"></div>
+                <div class="card-title">Ministerio Fiscal</div>
+            </div>
+
         </div>
 
         <div class="section-title">Tema 23: Políticas de Igualdad</div>
@@ -798,6 +805,7 @@
                 <label><input type="checkbox" value="jurado"> Tema 21: Tribunal Jurado</label>
                 <label><input type="checkbox" value="habeas"> Tema 21: Habeas Corpus</label>
                 <label><input type="checkbox" value="detencion"> Tema 21: Detención Policial</label>
+                <label><input type="checkbox" value="fiscal"> Tema 21: Ministerio Fiscal</label>
                 <label><input type="checkbox" value="dependencia"> Tema 23: Ley de Dependencia</label>
             </div>
 
@@ -2300,6 +2308,16 @@
           {"pregunta": "Según la Instrucción 1/2024 de la Secretaría de Estado de Seguridad por la que se aprueba el \"procedimiento integral de la detención policial\", el traslado de menores se realizará:", "opciones": ["En la forma que menos les perjudique, con respeto y garantía de sus derechos", "En forma que menos les perjudique su integridad moral y garantizando los derechos y deberes del menor", "En la forma que menos les perjudique su dignidad y libertades"], "correcta": 0}
         ];
 
+        // BANCO 17: TEMA 21 - MINISTERIO FISCAL (6 PREGUNTAS CORREGIDAS)
+        const dbFiscal = [
+          {"pregunta": "Para ser Fiscal Europeo Delegado en España hay que tener una antigüedad mínima como juez o fiscal de:", "opciones": ["Quince años", "Diez años", "Cinco años"], "correcta": 1},
+          {"pregunta": "Velar por que la función jurisdiccional se ejerza eficazmente conforme a las leyes y en los plazos y términos en ellas señalados, ejercitando, en su caso, las acciones, recursos y actuaciones pertinentes, es una función de:", "opciones": ["De las Cortes Generales", "Del Fiscal Europeo Delegado", "Del Ministerio Fiscal"], "correcta": 2},
+          {"pregunta": "Según la Ley Orgánica 50/1981 del Ministerio Fiscal, la duración del mandato de la Fiscal General del Estado es de:", "opciones": ["Tres años", "Cuatro años", "Cinco años"], "correcta": 1},
+          {"pregunta": "El Fiscal General del Estado será nombrado por:", "opciones": ["El rey, a propuesta del Gobierno, oído el Ministerio Fiscal eligiéndose entre juristas españoles de reconocido prestigio con más de diez años de ejercicio", "El rey, a propuesta del Gobierno, oído el Consejo General Poder Judicial eligiéndose entre juristas españoles de reconocido prestigio con más de veinticinco años de ejercicio", "El rey, a propuesta del Gobierno, oído el Consejo General Poder Judicial eligiéndose entre juristas españoles de reconocido prestigio con más de quince años de ejercicio"], "correcta": 2},
+          {"pregunta": "Conforme a la Ley Orgánica 50/1981 por la que se regula el Estatuto Orgánico del Ministerio Fiscal, el Fiscal General del Estado (señale la INCORRECTA):", "opciones": ["Es nombrado por el Rey, a propuesta del Gobierno, oído previamente el Consejo General del Poder Judicial", "Su mandato tendrá una duración de cinco años", "Tomará posesión del cargo ante el Pleno del Tribunal Supremo"], "correcta": 1},
+          {"pregunta": "El mandato del Fiscal General del Estado, con carácter general, es de:", "opciones": ["Cuatro años", "Cinco años", "Seis años"], "correcta": 0}
+        ];
+
         // BANCO 10: TEMA 23 - LEY DE DEPENDENCIA (12 PREGUNTAS LEY 39/2006 CORREGIDAS)
         const dbDependencia = [
           {"pregunta": "Las tareas más elementales de la persona, que le permiten desenvolverse con un mínimo de autonomía e independencia, se definen como:", "opciones": ["Actividades Básicas de la Vida Diaria", "Dependencia", "Necesidades de apoyo"], "correcta": 0},
@@ -2350,6 +2368,7 @@
             else if (quizType === 'jurado') { db = dbJurado; title = "Tema 21: Tribunal Jurado"; }
             else if (quizType === 'habeas') { db = dbHabeas; title = "Tema 21: Habeas Corpus"; }
             else if (quizType === 'detencion') { db = dbDetencion; title = "Tema 21: Detención Policial"; }
+            else if (quizType === 'fiscal') { db = dbFiscal; title = "Tema 21: Ministerio Fiscal"; }
             else if (quizType === 'dependencia') { db = dbDependencia; title = "Tema 23: Ley de Dependencia"; }
             else if (quizType === 'lo42015') { db = dbLO42015; title = "Tema 14: LO 4/2015"; }
 
@@ -2445,6 +2464,7 @@
                 'jurado': typeof dbJurado !== 'undefined' ? dbJurado : null,
                 'habeas': typeof dbHabeas !== 'undefined' ? dbHabeas : null,
                 'detencion': typeof dbDetencion !== 'undefined' ? dbDetencion : null,
+                'fiscal': typeof dbFiscal !== 'undefined' ? dbFiscal : null,
                 'dependencia': typeof dbDependencia !== 'undefined' ? dbDependencia : null,
                 'lo42015': typeof dbLO42015 !== 'undefined' ? dbLO42015 : null
             };
