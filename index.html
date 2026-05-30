@@ -175,6 +175,7 @@
         .img-delitos { background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi9_iQtjSMCR2E0d2_fJTBz9hNcmHrKq3R3tM2WpbyzstxnEkdWKiOcBBMo3QO-XS3sJ8_-k2bu4iu2yJSQkKh842FtPb5bdxtANv5Xslbl4LPrasvnFsyB3hzVOZFXzWyP3G1HdNKIRpNK/s1600/delito-informatico.jpg'); }
         .img-dependencia { background-image: url('https://despresdelcancer.cat/wp-content/uploads/2018/03/P16-1044_M-ORGANITZO_LLEI-DEPENDENCIA-_febrer2018_v0-2_INFO_CAST.jpg'); }
         .img-lo4-2015 { background-image: url('https://www.abogadoscea.es/images/yootheme/img/actualidad/Ley_Seguridad_Ciudadana.jpg'); }
+        .img-lopj { background-image: url('https://www.economistjurist.es/wp-content/uploads/sites/2/2014/11/LOPJ.jpg'); }
         
         /* Nuevas imágenes específicas para Extranjería e Infracciones */
         .img-lo4-2000 { background-image: url('https://i0.wp.com/efe.com/wp-content/uploads/2026/03/EXTRANJERIA-OFICINA.webp?fit=900%2C600&ssl=1'); }
@@ -705,6 +706,17 @@
 
         </div>
 
+        <div class="section-title">Tema 21: Derecho Procesal Penal</div>
+        <div class="grid grid-single">
+            
+            <!-- TARJETA LOPJ -->
+            <div onclick="startTest('lopj')" class="card">
+                <div class="card-image img-lopj"></div>
+                <div class="card-title">LOPJ</div>
+            </div>
+
+        </div>
+
         <div class="section-title">Tema 23: Políticas de Igualdad</div>
         <div class="grid grid-single">
             
@@ -761,6 +773,7 @@
                 <label><input type="checkbox" value="rd2402007"> Tema 10: RD 240/2007</label>
                 <label><input type="checkbox" value="lo42015"> Tema 14: LO 4/2015</label>
                 <label><input type="checkbox" value="delitos"> Tema 20: Delitos Informáticos</label>
+                <label><input type="checkbox" value="lopj"> Tema 21: LOPJ</label>
                 <label><input type="checkbox" value="dependencia"> Tema 23: Ley de Dependencia</label>
             </div>
 
@@ -2205,6 +2218,22 @@
           {"pregunta": "Luisma es un hacker que en su tiempo libre se dedica a realizar actividades de ransomware, llegando a conseguir grandes cantidades de dinero a través de transferencias. ¿De qué delito es responsable Luisma?:", "opciones": ["Un delito de estafa", "Un delito de daños informáticos", "Un delito de extorsión"], "correcta": 0}
         ];
 
+        // BANCO 13: TEMA 21 - LOPJ (12 PREGUNTAS CORREGIDAS)
+        const dbLOPJ = [
+          {"pregunta": "En relación con la Ley Orgánica 6/1985 del Poder Judicial, la sala de lo penal del Tribunal Supremo conocerá de:", "opciones": ["Los recursos de casación, revisión y otros extraordinarios en materia penal que establezca la ley", "La falsificación de moneda y fabricación de tarjetas de crédito y débito falsas y cheques de viajero falsos, siempre que sean cometidos por organizaciones o grupos criminales", "Los delitos cometidos fuera del territorio nacional, cuando conforme a las leyes o a los tratados corresponda su enjuiciamiento a los Tribunales españoles"], "correcta": 0},
+          {"pregunta": "Según la Ley Orgánica del Poder Judicial, el Tribunal Superior de Justicia:", "opciones": ["Tomará nombre de la Comunidad Autónoma y extenderá su jurisdicción al ámbito territorial de ésta", "Tomará nombre de la provincia y extenderá su jurisdicción al ámbito territorial de ésta", "Tendrán su sede en la capital de la provincia, de la que tomarán nombre, extenderán su jurisdicción en toda ella aun cuando existieren secciones desplazadas"], "correcta": 0},
+          {"pregunta": "La instrucción de los procesos para exigir responsabilidad penal por los delitos recogidos en los Títulos del Código Penal relativos a homicidio, aborto, lesiones, lesiones al feto, delitos contra la libertad, delitos contra la integridad moral, contra la libertad e indemnidad sexual, contra la intimidad y el derecho a la propia imagen, contra el honor o cualquier otro delito cometido con violencia o intimidación, siempre que se hubiesen cometido contra quien haya estado ligada al autor por análoga relación de afectividad, aun sin convivencia, así como los cometidos sobre los descendientes propios, le corresponde a:", "opciones": ["La Sección de Violencia sobre la mujer", "La Sección de Violencia contra la Infancia y la Adolescencia", "La Sección de Instrucción"], "correcta": 0},
+          {"pregunta": "Le corresponde la adopción de la orden de protección a las víctimas de violencia sobre la mujer, infancia y adolescencia a:", "opciones": ["La Sección de Instrucción del Tribunal de Instancia cuando esté desarrollando funciones de guardia, siempre que no pueda ser adoptada por el juez, la jueza, el magistrado o la magistrada de la Sección de Violencia sobre la Mujer", "La Sección de Violencia sobre la Mujer sin perjuicio de las competencias atribuidas al juez o jueza de guardia", "Ambas son correctas"], "correcta": 2},
+          {"pregunta": "De acuerdo con el principio universal el art. 23 de la Ley Orgánica del Poder Judicial, conocerá la jurisdicción española de los hechos cometidos por españoles o extranjeros fuera del territorio nacional cuando sean susceptibles de tipificarse, según la ley penal española, los delitos (señale la INCORRECTA):", "opciones": ["De traición y contra la paz o la independencia del Estado", "De falsificación de moneda española y su expedición", "Contra la monarquía española"], "correcta": 2},
+          {"pregunta": "El Tribunal Supremo es el órgano jurisdiccional superior en todos los órdenes, salvo lo dispuesto en materia de garantías constitucionales, y está integrado por cinco salas, de las cuales:", "opciones": ["La primera es la sala de lo Social", "La segunda es la sala de lo Penal", "La tercera es la sala de lo Militar"], "correcta": 1},
+          {"pregunta": "La Sala Segunda de lo Penal está integrada en:", "opciones": ["El Tribunal Superior de Justicia", "La Audiencia Nacional", "El Tribunal Supremo"], "correcta": 2},
+          {"pregunta": "El Consejo General del Poder Judicial está formado por:", "opciones": ["El Presidente del Tribunal Supremo, que lo presidirá, y por veinte miembros nombrados por el Rey por un período de cuatro años", "Doce miembros serán Jueces y Magistrados de todas las categorías judiciales, en los términos que establezca la ley orgánica", "Cuatro a propuesta del Congreso de los Diputados, y cuatro a propuesta del Senado, elegidos en ambos casos por mayoría de dos tercios de sus miembros"], "correcta": 1},
+          {"pregunta": "La Sala de lo Penal del Tribunal Supremo conocerá:", "opciones": ["De la instrucción de las causas contra el Presidente del Tribunal Supremo y del Consejo General del Poder Judicial", "De la instrucción y enjuiciamiento de los presidentes de las Audiencias Provinciales", "Del enjuiciamiento de los delitos contra la Corona, su Consorte, su Sucesor o Sucesora"], "correcta": 0},
+          {"pregunta": "Conforme a la Ley Orgánica 6/1985 del Poder Judicial, ¿cuál es la tercera sala del Tribunal Supremo?:", "opciones": ["Sala de lo social", "Sala de lo Contencioso Administrativo", "Sala de lo Penal"], "correcta": 1},
+          {"pregunta": "El presidente del Consejo General del Poder Judicial lo será también:", "opciones": ["Del Tribunal Supremo, nombrado por el Rey por un período de cinco años", "De la Audiencia Nacional, nombrado por el Rey por un período de cuatro años", "De la Audiencia Nacional, nombrado por el Presidente del Gobierno por un periodo de cinco años"], "correcta": 0},
+          {"pregunta": "El Tribunal Supremo está integrado por las Salas:", "opciones": ["Primera: De lo Civil; Segunda: De lo Penal; Tercera: De lo Contencioso-Administrativo; Cuarta: De lo Social y Quinta: De lo Militar", "De Apelación, De lo Penal, De lo Contencioso-Administrativo y De lo Social", "De lo Civil y Penal, de lo Contencioso-Administrativo y de lo Social"], "correcta": 0}
+        ];
+
         // BANCO 10: TEMA 23 - LEY DE DEPENDENCIA (12 PREGUNTAS LEY 39/2006 CORREGIDAS)
         const dbDependencia = [
           {"pregunta": "Las tareas más elementales de la persona, que le permiten desenvolverse con un mínimo de autonomía e independencia, se definen como:", "opciones": ["Actividades Básicas de la Vida Diaria", "Dependencia", "Necesidades de apoyo"], "correcta": 0},
@@ -2251,6 +2280,7 @@
             else if (quizType === 'proteccion') { db = dbProteccion; title = "Tema 7: Protección Civil"; }
             else if (quizType === 'dgp') { db = dbDgp; title = "Tema 8: DGP"; }
             else if (quizType === 'delitos') { db = dbDelitos; title = "Tema 20: Delitos Informáticos"; }
+            else if (quizType === 'lopj') { db = dbLOPJ; title = "Tema 21: LOPJ"; }
             else if (quizType === 'dependencia') { db = dbDependencia; title = "Tema 23: Ley de Dependencia"; }
             else if (quizType === 'lo42015') { db = dbLO42015; title = "Tema 14: LO 4/2015"; }
 
@@ -2342,6 +2372,7 @@
                 'proteccion': typeof dbProteccion !== 'undefined' ? dbProteccion : null,
                 'dgp': typeof dbDgp !== 'undefined' ? dbDgp : null,
                 'delitos': typeof dbDelitos !== 'undefined' ? dbDelitos : null,
+                'lopj': typeof dbLOPJ !== 'undefined' ? dbLOPJ : null,
                 'dependencia': typeof dbDependencia !== 'undefined' ? dbDependencia : null,
                 'lo42015': typeof dbLO42015 !== 'undefined' ? dbLO42015 : null
             };
