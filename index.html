@@ -183,6 +183,7 @@
         .img-penalgeneral { background-image: url('https://www.marcialpons.es/media/img/portadas/2019/7/24/9789583505881.jpg'); }
         .img-sedes { background-image: url('https://s03.s3c.es/imag/_v0/770x420/5/d/b/banderas-europa-recurso.jpg'); }
         .img-prescripciones { background-image: url('https://confilegal.com/ig/noticias/2019/02/10/reloj-arena-tiempo.jpg'); }
+        .img-oficinas { background-image: url('https://s03.s3c.es/imag/_v0/770x420/2/8/c/policia-nacional-recurso-770.jpg'); }
         
         /* Nuevas imágenes específicas para Extranjería e Infracciones */
         .img-lo4-2000 { background-image: url('https://i0.wp.com/efe.com/wp-content/uploads/2026/03/EXTRANJERIA-OFICINA.webp?fit=900%2C600&ssl=1'); }
@@ -788,6 +789,17 @@
                 <div class="card-title">Prescripciones y Caducidades</div>
             </div>
 
+        <div class="section-title">Anexo: Oficinas y Dependencias</div>
+        <div class="grid grid-single">
+            
+            <!-- TARJETA OFICINAS -->
+            <div onclick="startTest('oficinas')" class="card">
+                <div class="card-image img-oficinas"></div>
+                <div class="card-title">Oficinas y Ubicaciones</div>
+            </div>
+
+        </div>
+
         </div>
         
         <div class="section-title">Tema Especial: Simulacros</div>
@@ -845,6 +857,7 @@
                 <label><input type="checkbox" value="dependencia"> Tema 23: Ley de Dependencia</label>
                 <label><input type="checkbox" value="sedes"> Anexo: Sedes Institucionales</label>
                 <label><input type="checkbox" value="prescripciones"> Anexo: Prescripciones</label>
+                <label><input type="checkbox" value="oficinas"> Anexo: Oficinas y Dependencias</label>
             </div>
 
             <h3>2. Número de preguntas: <span id="rango-valor" style="color: var(--accent-glow); font-weight: bold; font-size: 1.3rem;">20</span></h3>
@@ -2494,6 +2507,37 @@
           {"pregunta": "Datos Personales Prevención - ¿Cuándo prescriben las INFRACCIONES?", "opciones": ["3 años, 2 años, 6 meses", "3 años, 2 años, 1 mes", "2 años, 1 año, 6 meses"], "correcta": 0},
           {"pregunta": "Datos Personales Prevención - ¿Cuándo prescriben las SANCIONES?", "opciones": ["3 años, 2 años, 6 meses", "3 años, 2 años, 1 año", "5 años, 2 años, 1 año"], "correcta": 1}
         ];
+
+        // BANCO 21: ANEXO - OFICINAS Y DEPENDENCIAS (27 PREGUNTAS)
+        const dbOficinas = [
+          {"pregunta": "¿De quién depende la Oficina Central Nacional de Interpol?", "opciones": ["División de Cooperación Internacional", "Gabinete Técnico", "Secretaría General"], "correcta": 0},
+          {"pregunta": "¿Dónde se encuentra integrada la Oficina SIRENE?", "opciones": ["División de Personal", "División de Cooperación Internacional", "Unidad de Asuntos Internos"], "correcta": 1},
+          {"pregunta": "¿De quién depende directamente la Oficina de Despacho (D.G. Policía)?", "opciones": ["Titular del Ministerio", "Titular D.G.P", "Gabinete Técnico"], "correcta": 1},
+          {"pregunta": "¿De quién depende la Oficina de Comunicación en el ámbito de la Policía Nacional?", "opciones": ["Secretaría General", "Gabinete de Prensa", "Titular D.G.P"], "correcta": 2},
+          {"pregunta": "¿Cuál es el ámbito de actuación principal de la BIBE?", "opciones": ["Falsificación de moneda", "Trata de seres humanos", "Delitos cibernéticos"], "correcta": 0},
+          {"pregunta": "¿A qué unidad pertenece la Oficina de Estudios?", "opciones": ["UCFAM", "CITCO", "UCCOT"], "correcta": 0},
+          {"pregunta": "¿Dónde se encuadra la Oficina Nacional de Deportes?", "opciones": ["Brigada de Coordinación Operativa, UCCOT", "Secretaría General", "Área de Coordinación Institucional"], "correcta": 0},
+          {"pregunta": "¿De quién depende la Oficina Central de Asuntos Taurinos?", "opciones": ["Ministerio de Cultura", "Brigada de Coordinación Operativa, UCCOT", "División de Operaciones"], "correcta": 1},
+          {"pregunta": "¿A quién están adscritas las Oficinas de Denuncias y Atención al Ciudadano (ODAC)?", "opciones": ["Unidades de Seguridad Ciudadana", "Unidades de Policía Judicial", "Comisarías Generales"], "correcta": 1},
+          {"pregunta": "¿Cuál de estos ámbitos corresponde a la UCRIF?", "opciones": ["TSH, Inmigración ilegal y tráfico de personas", "Control de Puestos fronterizos", "Falsificación de documentos"], "correcta": 0},
+          {"pregunta": "¿De qué se encarga principalmente la UCF?", "opciones": ["Normativa internacional", "Puestos fronterizos", "Cooperación Policial"], "correcta": 1},
+          {"pregunta": "¿Cuál es la materia de competencia del CNIF?", "opciones": ["Puestos fronterizos", "Falsificación de moneda", "Normativa UE e internacional"], "correcta": 2},
+          {"pregunta": "¿Dónde está ubicada la Oficina del Policía?", "opciones": ["Secretaría General, División de Personal", "Gabinete Técnico, Área de Personal", "Titular de la D.G.P"], "correcta": 0},
+          {"pregunta": "¿De qué unidad depende la Oficina de Traducción e Interpretación de Lenguas?", "opciones": ["División de Cooperación Internacional", "Servicios de Asuntos Generales, Secretaría General (Gabinete Técnico)", "Área Jurídica (Gabinete Técnico)"], "correcta": 1},
+          {"pregunta": "La Oficina de Asistencia en Materia de Registros (OARM) se encuadra en:", "opciones": ["Servicios de Asuntos Generales, Secretaría General (Gabinete Técnico)", "Ministerio de Justicia", "División de Personal"], "correcta": 0},
+          {"pregunta": "¿De quién depende la Oficina Central Nacional de Protección de Datos?", "opciones": ["Área de Derechos Humanos", "Área Jurídica, Gabinete Técnico", "D.G. de Coordinación y Estudios"], "correcta": 1},
+          {"pregunta": "¿Dónde se encuentra la Oficina Nacional de Derechos Humanos (ONDH)?", "opciones": ["Área DH e Igualdad, Gabinete Técnico", "IPySS", "D.G. de Coordinación y Estudios"], "correcta": 0},
+          {"pregunta": "¿De qué área depende la Oficina Nacional para la Igualdad de Género (ONIG)?", "opciones": ["Secretaría General", "Área DH e Igualdad, Gabinete Técnico", "División de Personal"], "correcta": 1},
+          {"pregunta": "¿Dónde se encuadra la Oficina de Marca?", "opciones": ["Área de Coordinación Institucional e Identidad Corporativa", "Gabinete de Prensa y Comunicación", "Servicios de Asuntos Generales"], "correcta": 0},
+          {"pregunta": "¿A qué dirección pertenece la Oficina de Coordinación y Ciberseguridad (OCC)?", "opciones": ["D.G. de Coordinación y Estudios", "CITCO", "Secretaría de Estado de Seguridad"], "correcta": 0},
+          {"pregunta": "¿De quién depende la Oficina de Comunicación del Ministerio del Interior?", "opciones": ["Titular D.G.P", "Titular de la Subsecretaría", "Titular del Ministerio"], "correcta": 2},
+          {"pregunta": "¿Dónde está integrada la Oficina Nacional de Información sobre pasajeros (ONIP)?", "opciones": ["D.G. de Policía", "CITCO", "D.G. de Coordinación y Estudios"], "correcta": 1},
+          {"pregunta": "¿De quién depende la Oficina Nacional de Lucha contra los Delitos de Odio (ONLDO)?", "opciones": ["D.G. de Coordinación y Estudios", "Gabinete Técnico", "Ministerio de Justicia"], "correcta": 0},
+          {"pregunta": "¿Dónde se encuentra la Oficina Nacional de Garantías de los Derechos Humanos (ONGADH)?", "opciones": ["IPySS, D.G. Coordinación y Estudios", "Área DH e Igualdad, Gabinete Técnico", "Oficina de Asilo y Refugio"], "correcta": 0},
+          {"pregunta": "¿De quién depende la Oficina Presupuestaria del Ministerio?", "opciones": ["Titular del Ministerio", "Titular de la Subsecretaría de Interior", "D.G. de Coordinación y Estudios"], "correcta": 1},
+          {"pregunta": "¿Dónde se encuadra la Oficina de Asilo y Refugio (OAR)?", "opciones": ["D.G. de Protección Internacional", "Secretaría General de Extranjería", "UCRIF"], "correcta": 0},
+          {"pregunta": "¿De qué ministerio depende la Oficina de Asistencia a las Víctimas del Delito?", "opciones": ["Ministerio del Interior", "Ministerio de Igualdad", "Ministerio de Justicia"], "correcta": 2}
+        ];
         
         // ========================================================
         // VARIABLES GLOBALES DE CONTROL DE ESTADO
@@ -2535,6 +2579,7 @@
             else if (quizType === 'penalgeneral') { db = dbPenalGeneral; title = "Tema 16: Derecho Penal General"; }
             else if (quizType === 'sedes') { db = dbSedes; title = "Anexo: Sedes Institucionales"; }
             else if (quizType === 'prescripciones') { db = dbPrescripciones; title = "Anexo: Prescripciones"; }
+            else if (quizType === 'oficinas') { db = dbOficinas; title = "Anexo: Oficinas y Dependencias"; }
 
             if (!db || db.length === 0) {
                 alert("Este banco de preguntas aún no está disponible.");
@@ -2634,6 +2679,7 @@
                 'penalgeneral': typeof dbPenalGeneral !== 'undefined' ? dbPenalGeneral : null,
                 'sedes': typeof dbSedes !== 'undefined' ? dbSedes : null,
                 'prescripciones': typeof dbPrescripciones !== 'undefined' ? dbPrescripciones : null
+                'oficinas': typeof dbOficinas !== 'undefined' ? dbOficinas : null
             };
 
             checkboxes.forEach((cb, index) => {
